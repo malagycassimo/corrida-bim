@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply flex items-center py-[18px] px-[22px] space-x-1 font-semibold rounded-xl h-min w-fit;
+    }
+}

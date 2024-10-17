@@ -16,3 +16,22 @@ export const links: Link[] = [
         href: "/informacoes",
     },
 ];
+
+export const socials: Link[] = [
+    {
+        label: "Facebook",
+        href: "#",
+    },
+    {
+        label: "Instagram",
+        href: "#",
+    },
+    {
+        label: "Linkedin",
+        href: "#",
+    },
+    {
+        label: "YouTube",
+        href: "#",
+    },
+];

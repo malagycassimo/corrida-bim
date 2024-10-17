@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Titillium_Web } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Layout/Providers";
 
-const font = Titillium_Web({
+const font = Montserrat({
     subsets: ["latin"],
-    weight: ["200", "300", "400", "600", "900"],
 });
 
 export const metadata: Metadata = {

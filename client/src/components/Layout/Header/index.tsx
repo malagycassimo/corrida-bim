@@ -6,36 +6,38 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="container mx-auto bg-zinc-600 text-white py-9 flex justify-between">
-            <nav className="flex space-x-12">
-                <Link href={"/"}>
-                    <Image
-                        alt="Millenium BIM"
-                        src={"/brand-white.svg"}
-                        width={103}
-                        height={113}
-                    />
+        <header className="absolute top-0 left-0 right-0 z-50">
+            <div className="container mx-auto text-white py-9 flex justify-between">
+                <nav className="flex space-x-12">
+                    <Link href={"/"}>
+                        <Image
+                            alt="Millenium BIM"
+                            src={"assets/brand/brand-white.svg"}
+                            width={103}
+                            height={113}
+                        />
+                    </Link>
+                    <ul className="flex mt-7 space-x-6">
+                        {links.map(({ label, href }, idx) => (
+                            <li key={idx}>
+                                <CustomLink
+                                    twClasses="font-semibold text-lg"
+                                    activeClassName="text-primary"
+                                    href={href}
+                                >
+                                    {label}
+                                </CustomLink>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <Link
+                    href={"/inscricao"}
+                    className="btn bg-gradient-to-br from-primary to-secondary"
+                >
+                    <span>Inscreva-se</span> <IconPack.ArrowRight />
                 </Link>
-                <ul className="flex mt-7 space-x-6">
-                    {links.map(({ label, href }, idx) => (
-                        <li key={idx}>
-                            <CustomLink
-                                twClasses="font-semibold text-lg"
-                                activeClassName="text-primary"
-                                href={href}
-                            >
-                                {label}
-                            </CustomLink>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-            <Link
-                href={"/inscricao"}
-                className="text-lg flex items-center py-4 px-5 space-x-1 font-semibold bg-gradient-to-br from-primary to-secondary rounded-lg h-min"
-            >
-                <span>Inscreva-se</span> <IconPack.ArrowRight />
-            </Link>
+            </div>
         </header>
     );
 }
