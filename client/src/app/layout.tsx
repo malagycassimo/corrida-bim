@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
 import "./globals.css";
+import Providers from "@/components/Layout/Providers";
 
 const font = Titillium_Web({
     subsets: ["latin"],
-    weight: ["200", "400", "600", "900"],
+    weight: ["200", "300", "400", "600", "900"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +24,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${font.className} antialiased`}>{children}</body>
+            <body className={`${font.className} antialiased`}>
+                <Providers>{children}</Providers>
+            </body>
         </html>
     );
 }

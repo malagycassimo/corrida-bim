@@ -5,3 +5,19 @@ services:
         env_file: .env
         ports:
             - 27017:27017
+
+    nginx:
+        image: nginx:latest
+        ports:
+            - 80:80
+        volumes:
+            - ./conf.d:/etc/nginx/conf.d
+        depends_on:
+            - mongodb_container
+
+    client:
+        build:
+            context: client
+            dockerfile: Dockerfile
+        ports:
+            - 3000:3000
