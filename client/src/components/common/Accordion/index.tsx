@@ -20,7 +20,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, idx }) => {
             <motion.header
                 initial={false}
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative flex space-x-9 items-center"
+                className="relative flex space-x-9 items-center hover:cursor-pointer"
             >
                 <span className="text-4xl text-primary font-bold">
                     {idx < 10 ? "0" + idx : idx}

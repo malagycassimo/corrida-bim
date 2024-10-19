@@ -4,6 +4,7 @@ import AnimatedComponent from "@/components/common/AnimatedComponent";
 import Carousel from "@/components/common/Carousel";
 import ShiftingCountdown from "@/components/common/Countdown";
 import { IconPack } from "@/components/common/IconPack";
+import StaggeredDropDown from "@/components/Layout/StaggeredDropdown";
 import { carouselImages, partnersImages } from "@/utils/assets";
 import { EmblaOptionsType } from "embla-carousel";
 import Image from "next/image";
@@ -137,6 +138,7 @@ export default function Home() {
                     )}
                 </div>
             </section>
+            <StaggeredDropDown />
         </main>
     );
 }
