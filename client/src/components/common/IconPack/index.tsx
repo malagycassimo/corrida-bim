@@ -138,6 +138,37 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
             />
         </svg>
     ),
+    Menu: ({ width = "25", height = "25" }) => (
+        <svg
+            width={width}
+            height={height}
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M2.62256 3.72415H21.8226"
+                stroke="#19213D"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+            <path
+                d="M2.62256 20.2758H21.8226"
+                stroke="#19213D"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+            <path
+                d="M2.62256 12H21.8226"
+                stroke="#19213D"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    ),
 };
 
 export const IconPackWrapper: React.FC<

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconPack } from "../IconPack";
 
-interface AccordionProps {
+export interface AccordionProps {
     idx: number;
     title: string;
     subtitle?: string;

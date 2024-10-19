@@ -1,4 +1,5 @@
 import Accordion from "@/components/common/Accordion";
+import { landingPageAccordion } from "@/components/common/Accordion/LandingPage";
 import AnimatedComponent from "@/components/common/AnimatedComponent";
 import Carousel from "@/components/common/Carousel";
 import ShiftingCountdown from "@/components/common/Countdown";
@@ -122,12 +123,18 @@ export default function Home() {
 
             <section className="space-y-12 mb-20 mt-14">
                 <h1 className="text-center text-4xl font-bold">Informações</h1>
-                <div className="container mx-auto">
-                    <Accordion
-                        idx={1}
-                        title="Informações gerais"
-                        content="A 15ª Corrida Millennium bim realiza-se no dia 30 de Novembro de 2024, domingo ás 5h."
-                    />
+                <div className="container mx-auto space-y-1">
+                    {landingPageAccordion.map(
+                        ({ title, subtitle, content }, idx) => (
+                            <Accordion
+                                key={idx}
+                                idx={idx + 1}
+                                title={title}
+                                content={content}
+                                subtitle={subtitle}
+                            />
+                        ),
+                    )}
                 </div>
             </section>
         </main>
