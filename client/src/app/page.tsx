@@ -1,9 +1,9 @@
-import Accordion from "@/components/common/Acordion";
+import Accordion from "@/components/common/Accordion";
 import AnimatedComponent from "@/components/common/AnimatedComponent";
 import Carousel from "@/components/common/Carousel";
 import ShiftingCountdown from "@/components/common/Countdown";
 import { IconPack } from "@/components/common/IconPack";
-import { carouselImages } from "@/utils/assets";
+import { carouselImages, partnersImages } from "@/utils/assets";
 import { EmblaOptionsType } from "embla-carousel";
 import Image from "next/image";
 import Link from "next/link";
@@ -95,7 +95,17 @@ export default function Home() {
             {/* Partners section  */}
             <section className="space-y-12 mt-20 mb-14">
                 <h1 className="text-center text-4xl font-bold">Parceiros</h1>
-                <div></div>
+                <div className="container max-w-[920px] mx-auto flex flex-wrap gap-x-[106px] gap-y-3 justify-center">
+                    {partnersImages.map(({ src, alt }) => (
+                        <Image
+                            key={alt}
+                            src={src}
+                            alt={alt}
+                            width={150}
+                            height={101}
+                        />
+                    ))}
+                </div>
             </section>
             {/* Gallery section  */}
             <section className="space-y-12">
@@ -114,8 +124,9 @@ export default function Home() {
                 <h1 className="text-center text-4xl font-bold">Informações</h1>
                 <div className="container mx-auto">
                     <Accordion
-                        title="Section 1"
-                        content="This is the content for section 1. It can be any JSX content."
+                        idx={1}
+                        title="Informações gerais"
+                        content="A 15ª Corrida Millennium bim realiza-se no dia 30 de Novembro de 2024, domingo ás 5h."
                     />
                 </div>
             </section>

@@ -3,6 +3,7 @@ interface ComponentProps {
     height?: number;
     stroke?: string;
     fill?: string;
+    className?: string;
 }
 
 export const IconPack: Record<string, React.FC<ComponentProps>> = {
@@ -94,6 +95,46 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
             <path
                 d="M12.2923 16.6777L9.58421 16.6271C8.70738 16.6094 7.82837 16.6447 6.96873 16.4619C5.66102 16.1889 5.56837 14.8503 5.47143 13.7275C5.33786 12.1489 5.38957 10.5417 5.64164 8.97634C5.78395 8.09799 6.34397 7.57388 7.21002 7.51685C10.1336 7.30986 13.0766 7.33439 15.9937 7.43096C16.3018 7.43981 16.612 7.48819 16.9157 7.54327C18.4153 7.81188 18.4519 9.32881 18.5491 10.6058C18.646 11.8959 18.6051 13.1927 18.4198 14.4741C18.2711 15.535 17.9867 16.4247 16.7865 16.5106C15.2826 16.6229 13.8133 16.7133 12.3052 16.6845C12.3053 16.6777 12.2966 16.6777 12.2923 16.6777ZM10.7002 13.9917C11.8335 13.3268 12.9451 12.6729 14.0719 12.0124C12.9365 11.3475 11.827 10.6936 10.7002 10.0331V13.9917Z"
                 fill="#2E3641"
+            />
+        </svg>
+    ),
+    FilledCross: ({ width = 35, height = 36, className }) => (
+        <svg
+            width={width}
+            height={height}
+            viewBox="0 0 35 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            <rect
+                x="0.291016"
+                y="0.907471"
+                width="34.5373"
+                height="34.5373"
+                rx="17.2687"
+                className="group-hover:fill-primary fill-neutral-800 transition-colors duration-500"
+            />
+            <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M18.2792 13.1394H16.8401V17.4566H12.5229V18.8956H16.8401V23.2128H18.2792V18.8956H22.5963V17.4566H18.2792V13.1394Z"
+                fill="white"
+            />
+        </svg>
+    ),
+    ChevronRight: ({ width = "10", height = "15", className }) => (
+        <svg
+            width={width}
+            height={height}
+            viewBox="0 0 10 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            <path
+                d="M8.76079 6.81346C9.23674 7.2894 9.23674 8.06234 8.76079 8.53828L2.6687 14.6304C2.19275 15.1063 1.41982 15.1063 0.943873 14.6304C0.467928 14.1544 0.467928 13.3815 0.943873 12.9055L6.17546 7.67396L0.94768 2.44238C0.471735 1.96643 0.471735 1.1935 0.94768 0.717554C1.42362 0.241609 2.19656 0.241609 2.6725 0.717554L8.7646 6.80965L8.76079 6.81346Z"
+                fill="#D1005D"
             />
         </svg>
     ),

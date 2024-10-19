@@ -45,3 +45,30 @@ export const carouselImages: CarouselImageProps[] = [
         src: "/assets/images/carousel-item-10.jpg",
     },
 ];
+
+export const partnersImages: CarouselImageProps[] = [
+    {
+        alt: "Heineken Moçambique",
+        src: "/assets/images/partner.png",
+    },
+    {
+        alt: "Município de Maputo",
+        src: "/assets/images/partner-1.png",
+    },
+    {
+        alt: "All around medical solutions",
+        src: "/assets/images/partner-2.png",
+    },
+    {
+        alt: "Associação de Atletismo da Cidade de Maputo",
+        src: "/assets/images/partner-3.png",
+    },
+    {
+        alt: "Hotel Radisson",
+        src: "/assets/images/partner-4.png",
+    },
+    {
+        alt: "Coca cola",
+        src: "/assets/images/partner-5.png",
+    },
+];
