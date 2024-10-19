@@ -116,8 +116,8 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
                 className="group-hover:fill-primary fill-neutral-800 transition-colors duration-500"
             />
             <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M18.2792 13.1394H16.8401V17.4566H12.5229V18.8956H16.8401V23.2128H18.2792V18.8956H22.5963V17.4566H18.2792V13.1394Z"
                 fill="white"
             />

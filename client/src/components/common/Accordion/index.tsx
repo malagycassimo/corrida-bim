@@ -20,12 +20,12 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, idx }) => {
             <motion.header
                 initial={false}
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative flex space-x-9 items-center hover:cursor-pointer"
+                className="relative flex flex-col lg:flex-row lg:space-x-9 lg:items-center hover:cursor-pointer"
             >
                 <span className="text-4xl text-primary font-bold">
                     {idx < 10 ? "0" + idx : idx}
                 </span>
-                <h3 className="text-2xl font-bold">{title}</h3>
+                <h3 className="text-xl font-semibold">{title}</h3>
                 <IconPack.FilledCross
                     className={`group absolute right-0 top-1/2 -translate-y-1/2 origin-center transition-all duration-300 ${isOpen && "rotate-45"}`}
                 />

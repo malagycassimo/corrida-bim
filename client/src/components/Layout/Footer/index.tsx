@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Footer() {
     return (
         <footer className="bg-tertiary pt-12 space-y-12">
-            <div className="flex justify-between items-center container mx-auto">
+            <div className="flex flex-col lg:flex-row lg:justify-between justify-center items-center gap-y-12 container mx-auto">
                 <Image
                     alt="Millenium BIM - Aqui consigo"
                     src={"/assets/brand/brand-main.png"}
@@ -18,7 +18,7 @@ export default function Footer() {
                     {links.map(({ label, href }, idx) => (
                         <li key={idx}>
                             <CustomLink
-                                twClasses="text-lg text-white font-medium"
+                                twClasses="ltext-lg text-white font-medium"
                                 activeClassName="text-primary"
                                 href={href}
                             >
