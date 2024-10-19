@@ -1,8 +1,14 @@
+import Accordion from "@/components/common/Acordion";
 import AnimatedComponent from "@/components/common/AnimatedComponent";
+import Carousel from "@/components/common/Carousel";
 import ShiftingCountdown from "@/components/common/Countdown";
 import { IconPack } from "@/components/common/IconPack";
+import { carouselImages } from "@/utils/assets";
+import { EmblaOptionsType } from "embla-carousel";
 import Image from "next/image";
 import Link from "next/link";
+
+const OPTIONS: EmblaOptionsType = { loop: true };
 
 export default function Home() {
     return (
@@ -83,6 +89,34 @@ export default function Home() {
                             </Link>
                         </div>
                     </AnimatedComponent>
+                </div>
+            </section>
+
+            {/* Partners section  */}
+            <section className="space-y-12 mt-20 mb-14">
+                <h1 className="text-center text-4xl font-bold">Parceiros</h1>
+                <div></div>
+            </section>
+            {/* Gallery section  */}
+            <section className="space-y-12">
+                <h1 className="text-center text-4xl font-bold">Galeria</h1>
+                <div className="space-y-5">
+                    <Carousel slides={carouselImages} options={OPTIONS} />
+                    <Carousel
+                        slides={carouselImages}
+                        options={OPTIONS}
+                        autoScrollOptions={{ direction: "backward" }}
+                    />
+                </div>
+            </section>
+
+            <section className="space-y-12 mb-20 mt-14">
+                <h1 className="text-center text-4xl font-bold">Informações</h1>
+                <div className="container mx-auto">
+                    <Accordion
+                        title="Section 1"
+                        content="This is the content for section 1. It can be any JSX content."
+                    />
                 </div>
             </section>
         </main>
