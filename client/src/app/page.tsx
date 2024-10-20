@@ -25,7 +25,7 @@ export default function Home() {
 
                 <div className="text-white container mx-auto">
                     <AnimatedComponent>
-                        <div className="max-w-[470px] space-y-4">
+                        <div className="max-w-[518px] px-6 space-y-4">
                             <h1 className="text-5xl font-semibold">
                                 15ª Corrida Millennium BIM
                             </h1>
@@ -97,8 +97,7 @@ export default function Home() {
                     src={"/assets/images/CalltoAction.jpg"}
                     alt="Junte-se a nós"
                     fill
-                    objectFit="cover"
-                    className="-z-50"
+                    className="-z-50 object-cover"
                 />
                 <div className="h-full bg-primary/90 flex justify-center items-center">
                     <AnimatedComponent>
@@ -151,7 +150,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="space-y-12 mb-20 mt-14 mx-4 sm:mx-0">
+            <section className="space-y-12 mb-20 mt-14 mx-4 xl:mx-0">
                 <h1 className="text-center text-3xl lg:text-4xl font-bold">
                     Informações
                 </h1>

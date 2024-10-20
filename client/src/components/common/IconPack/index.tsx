@@ -149,23 +149,23 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
             <path
                 d="M2.62256 3.72415H21.8226"
                 stroke="#19213D"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M2.62256 20.2758H21.8226"
                 stroke="#19213D"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M2.62256 12H21.8226"
                 stroke="#19213D"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>
     ),

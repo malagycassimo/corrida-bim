@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="bg-tertiary pt-12 space-y-12">
+        <footer className="bg-tertiary pt-12 space-y-12 overflow-hidden">
             <div className="flex flex-col lg:flex-row lg:justify-between justify-center items-center gap-y-12 container mx-auto">
                 <Image
                     alt="Millenium BIM - Aqui consigo"
@@ -37,10 +37,13 @@ export default function Footer() {
                     ))}
                 </ul>
             </div>
-            <p className="border-t-2 border-white py-6 text-center container mx-auto text-white">
-                Copyright © 2025 Banco Internacional de Moçambique SA. | Todos
-                os Direitos Reservados
-            </p>
+            <div className="px-4 lg:px-0">
+                <p className="border-t-2 border-white py-6 text-center container mx-auto text-wrap text-white">
+                    Copyright © 2025{" "}
+                    <b>Banco Internacional de Moçambique SA.</b> | Todos os
+                    Direitos Reservados
+                </p>
+            </div>
         </footer>
     );
 }
