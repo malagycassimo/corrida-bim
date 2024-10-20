@@ -135,6 +135,7 @@ export default function Home() {
                     ))}
                 </div>
             </section>
+
             {/* Gallery section  */}
             <section className="space-y-12">
                 <h1 className="text-center text-3xl lg:text-4xl font-bold">
@@ -150,6 +151,7 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Accordion section  */}
             <section className="space-y-12 mb-20 mt-14 mx-4 xl:mx-0">
                 <h1 className="text-center text-3xl lg:text-4xl font-bold">
                     Informações

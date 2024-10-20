@@ -12,6 +12,7 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
         height = 15,
         stroke = "white",
         fill = "none",
+        className,
     }) => (
         <svg
             width={width}
@@ -19,6 +20,7 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
             viewBox="0 0 14 15"
             fill={fill}
             xmlns="http://www.w3.org/2000/svg"
+            className={className}
         >
             <path
                 d="M6.86523 2.69424L11.8998 7.49999L6.86523 12.3057"
@@ -167,6 +169,99 @@ export const IconPack: Record<string, React.FC<ComponentProps>> = {
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />
+        </svg>
+    ),
+    Done: ({ className }) => (
+        <svg
+            width="158"
+            height="144"
+            viewBox="0 0 158 144"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            <rect
+                opacity="0.5"
+                x="14.3691"
+                y="0.0355225"
+                width="51.5427"
+                height="51.5427"
+                rx="10"
+                fill="#D1005D"
+            />
+            <rect
+                opacity="0.5"
+                x="128.32"
+                y="32.9056"
+                width="29.3594"
+                height="29.3594"
+                rx="10"
+                fill="#D1005D"
+            />
+            <rect
+                opacity="0.5"
+                x="0.320312"
+                y="74.9056"
+                width="31.5329"
+                height="31.5329"
+                rx="8"
+                fill="#DEDBFF"
+            />
+            <rect
+                opacity="0.5"
+                x="114.607"
+                y="106.857"
+                width="36.5935"
+                height="36.5935"
+                rx="8"
+                fill="#DEDBFF"
+            />
+            <circle cx="83.7969" cy="78.411" r="60" fill="#D1005D" />
+            <g filter="url(#filter0_d_216_192845)">
+                <path
+                    d="M61.0801 81.6557L74.0606 94.6362L106.512 62.1849"
+                    stroke="white"
+                    stroke-width="8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </g>
+            <defs>
+                <filter
+                    id="filter0_d_216_192845"
+                    x="27.0801"
+                    y="32.1849"
+                    width="113.432"
+                    height="100.451"
+                    filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                >
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
+                    <feOffset dy="4" />
+                    <feGaussianBlur stdDeviation="15" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.290196 0 0 0 0 0.227451 0 0 0 0 1 0 0 0 0.3 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_216_192845"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_216_192845"
+                        result="shape"
+                    />
+                </filter>
+            </defs>
         </svg>
     ),
 };

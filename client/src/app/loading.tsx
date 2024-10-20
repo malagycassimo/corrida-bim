@@ -1,0 +1,15 @@
+import Image from "next/image";
+
+export default function Loading() {
+    return (
+        <div className="min-h-svh flex justify-center items-center">
+            <Image
+                alt="Millenium BIM"
+                src={"assets/brand/brand-red.svg"}
+                width={70.96}
+                height={75.78}
+                className="animate-bounce"
+            />
+        </div>
+    );
+}

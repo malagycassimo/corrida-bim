@@ -43,7 +43,7 @@ export default function Header() {
                 <div className="space-x-6 flex items-center">
                     <Link
                         href={"/inscricao"}
-                        className="btn bg-gradient-to-br from-primary to-secondary"
+                        className="btn bg-gradient-to-br from-primary to-secondary hidden lg:flex"
                     >
                         <span>Inscreva-se</span> <IconPack.ArrowRight />
                     </Link>
