@@ -4,6 +4,7 @@ import AnimatedComponent from "@/components/common/AnimatedComponent";
 import Carousel from "@/components/common/Carousel";
 import ShiftingCountdown from "@/components/common/Countdown";
 import { IconPack } from "@/components/common/IconPack";
+import Map from "@/components/common/Map";
 import { carouselImages, partnersImages } from "@/utils/assets";
 import { EmblaOptionsType } from "embla-carousel";
 import Image from "next/image";
@@ -89,6 +90,7 @@ export default function Home() {
                 <p className="mx-10 sm:mx-auto text-lg text-center mt-2 text-neutral-800">
                     Selecione o percurso pretendido para ver a sua rota no mapa
                 </p>
+                <Map />
             </section>
 
             {/* Call to action */}

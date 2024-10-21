@@ -30,20 +30,20 @@ const ShiftingCountdown = () => {
                     <CountdownItem
                         unit="Hour"
                         text="Horas"
-                        className="border-r-0 border-b-2"
+                        className="!border-r-0 border-b-2"
                     />
                 </div>
                 <div className="flex justify-center">
                     <CountdownItem
                         unit="Minute"
                         text="Minutos"
-                        className="border-neutral-400"
+                        className="border-r-neutral-400 !border-r-2"
                         active={false}
                     />
                     <CountdownItem
                         unit="Second"
                         text="Segundos"
-                        className="border-r-0"
+                        className="!border-r-0 border-l-0"
                         active={false}
                     />
                 </div>
