@@ -19,32 +19,30 @@ import {
 
 import { IconPack } from "@/components/common/IconPack";
 import { Dispatch, SetStateAction } from "react";
+import { FormState } from ".";
 
 const formSchema = z.object({
-    email: z.string().email({
-        message: "Please enter a valid email address.",
+    category: z.enum(["walk", "disabled", "pedestrians"], {
+        message: "Selecione uma categoria válida.",
     }),
+    route: z.string(),
+    shirt: z.string(),
 });
 
 export default function Step2({
+    state,
     setState,
 }: {
-    setState: Dispatch<
-        SetStateAction<{
-            steps: string[];
-            currentStep: number;
-        }>
-    >;
+    state: FormState;
+    setState: Dispatch<SetStateAction<FormState>>;
 }) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            email: "",
-        },
+        defaultValues: state.step2 as unknown as z.infer<typeof formSchema>,
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
         setState((state) => {
-            return { ...state, currentStep: 3 };
+            return { ...state, step2: values, currentStep: 2 };
         });
         setTimeout(() => {
             console.log(values);
@@ -56,6 +54,7 @@ export default function Step2({
             return { ...state, currentStep: state.currentStep - 1 };
         });
     }
+
     return (
         <Form {...form}>
             <h1 className="text-center text-3xl font-semibold">
@@ -65,7 +64,7 @@ export default function Step2({
                 <div className="space-y-3">
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="category"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Categoria</FormLabel>
@@ -79,14 +78,14 @@ export default function Step2({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="m@example.com">
-                                            m@example.com
+                                        <SelectItem value="walk">
+                                            Caminhada
                                         </SelectItem>
-                                        <SelectItem value="m@google.com">
-                                            m@google.com
+                                        <SelectItem value="disabled">
+                                            Deficientes
                                         </SelectItem>
-                                        <SelectItem value="m@support.com">
-                                            m@support.com
+                                        <SelectItem value="pedestrians">
+                                            Pedestres
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>
@@ -96,7 +95,7 @@ export default function Step2({
                     />
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="route"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Percurso</FormLabel>
@@ -111,13 +110,13 @@ export default function Step2({
                                     </FormControl>
                                     <SelectContent>
                                         <SelectItem value="m@example.com">
-                                            m@example.com
+                                            Here - Here
                                         </SelectItem>
                                         <SelectItem value="m@google.com">
-                                            m@google.com
+                                            There - There
                                         </SelectItem>
                                         <SelectItem value="m@support.com">
-                                            m@support.com
+                                            Here - Here
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>
@@ -127,7 +126,7 @@ export default function Step2({
                     />
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="shirt"
                         render={({ field }) => (
                             <FormItem className="w-fit">
                                 <FormLabel>Tamaho da camiseta</FormLabel>
@@ -141,14 +140,14 @@ export default function Step2({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="m@example.com">
-                                            m@example.com
+                                        <SelectItem value="small">
+                                            Small
                                         </SelectItem>
-                                        <SelectItem value="m@google.com">
-                                            m@google.com
+                                        <SelectItem value="large">
+                                            Large
                                         </SelectItem>
-                                        <SelectItem value="m@support.com">
-                                            m@support.com
+                                        <SelectItem value="extralarge">
+                                            Extra large
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>

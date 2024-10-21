@@ -14,11 +14,39 @@ type Unit = "Day" | "Hour" | "Minute" | "Second";
 const ShiftingCountdown = () => {
     return (
         <div className="">
-            <div className="mx-auto flex w-full max-w-5xl items-center bg-white">
+            <div className="mx-auto md:flex hidden  w-full max-w-5xl items-center bg-white">
                 <CountdownItem unit="Day" text="Dias" />
                 <CountdownItem unit="Hour" text="Horas" />
                 <CountdownItem unit="Minute" text="Minutos" />
-                <CountdownItem unit="Second" text="Segundos" last={true} />
+                <CountdownItem unit="Second" text="Segundos" last />
+            </div>
+            <div className="block md:hidden mx-auto w-full max-w-5xl bg-white">
+                <div className="flex justify-center">
+                    <CountdownItem
+                        unit="Day"
+                        text="Dias"
+                        className="border-b-2"
+                    />
+                    <CountdownItem
+                        unit="Hour"
+                        text="Horas"
+                        className="border-r-0 border-b-2"
+                    />
+                </div>
+                <div className="flex justify-center">
+                    <CountdownItem
+                        unit="Minute"
+                        text="Minutos"
+                        className="border-neutral-400"
+                        active={false}
+                    />
+                    <CountdownItem
+                        unit="Second"
+                        text="Segundos"
+                        className="border-r-0"
+                        active={false}
+                    />
+                </div>
             </div>
         </div>
     );
@@ -28,19 +56,27 @@ interface CountdownItemProps {
     unit: Unit;
     text: string;
     last?: boolean;
+    className?: string;
+    active?: boolean;
 }
 
-const CountdownItem = ({ unit, text, last = false }: CountdownItemProps) => {
+const CountdownItem = ({
+    unit,
+    text,
+    last = false,
+    className,
+    active = true,
+}: CountdownItemProps) => {
     const { ref, time } = useTimer(unit);
 
     return (
         <div
-            className={`flex h-24 w-1/4 flex-col items-center justify-center gap-1 md:h-36 ${!last && "border-r-[2px] border-primary"}`}
+            className={`flex h-36 flex-1 lg:w-1/4 flex-col items-center justify-center gap-1 ${!last && "border-r-[2px] border-primary"} ${className}`}
         >
             <div className="relative w-full overflow-hidden text-center">
                 <span
                     ref={ref}
-                    className="block text-xl font-semibold text-primary md:text-4xl lg:text-6xl xl:text-7xl"
+                    className={`block text-6xl font-semibold ${active ? "text-primary" : "text-zinc-400"} md:text-4xl lg:text-6xl xl:text-7xl`}
                 >
                     {time}
                 </span>

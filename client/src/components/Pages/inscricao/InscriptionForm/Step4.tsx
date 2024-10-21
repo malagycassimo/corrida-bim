@@ -3,7 +3,7 @@ import { IconPack } from "@/components/common/IconPack";
 
 export default function Step4() {
     return (
-        <div className="py-5 px-8 lg:px-28 space-y-4">
+        <div className="py-5 px-8 xl:px-28 space-y-4">
             <AnimatedComponent>
                 <IconPack.Done className="mx-auto" />
             </AnimatedComponent>

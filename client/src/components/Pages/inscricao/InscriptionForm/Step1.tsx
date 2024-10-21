@@ -29,43 +29,58 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { IconPack } from "@/components/common/IconPack";
 import { Dispatch, SetStateAction } from "react";
+import { provinces, provincesEnum } from "@/utils/statics";
+import { FormState } from ".";
 
 const formSchema = z.object({
-    username: z.string().min(3, {
-        message: "Username must be at least 3 characters.",
+    BI: z.string().min(9, {
+        message: "O bilhete de identidade possui no mínimo 9 caracteres",
     }),
-    email: z.string().email({
-        message: "Please enter a valid email address.",
+    firstName: z.string().min(2, {
+        message: "O nome deve conter no mínimo 2 caracteres",
     }),
-    password: z.string().min(8, {
-        message: "Password must be at least 8 characters.",
+    email: z.string().email({ message: "Insira um email válido" }),
+    lastName: z.string().min(2, {
+        message: "O nome deve conter no mínimo 2 caracteres",
+    }),
+    phone: z.string().min(9, {
+        message: "O telefone deve conter 9 dígitos",
+    }),
+    province: z.enum(["Maputo", ...provincesEnum], {
+        message: "Selecione uma província válida",
     }),
     dob: z.date({
-        required_error: "A date of birth is required.",
+        required_error: "Selecione uma data válida",
+        message: "Selecione uma data válida",
+    }),
+    gender: z.enum(["M", "F", "N"], {
+        message: "Selecione um valor válido",
+    }),
+    emergencyName: z.string().min(2, {
+        message: "O nome deve conter no mínimo 2 caracteres",
+    }),
+    emergencyPhone: z.string().min(9, {
+        message: "O telefone deve conter 9 dígitos",
+    }),
+    emergencyFamiliarity: z.string().min(2, {
+        message: "O nome deve conter no mínimo 2 caracteres",
     }),
 });
 
 export default function Step1({
+    state,
     setState,
 }: {
-    setState: Dispatch<
-        SetStateAction<{
-            steps: string[];
-            currentStep: number;
-        }>
-    >;
+    state: FormState;
+    setState: Dispatch<SetStateAction<FormState>>;
 }) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            username: "",
-            email: "",
-            password: "",
-        },
+        defaultValues: state.step1 as unknown as z.infer<typeof formSchema>,
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
         setState((state) => {
-            return { ...state, currentStep: 1 };
+            return { ...state, step1: values, currentStep: 1 };
         });
         setTimeout(() => {
             console.log(values);
@@ -80,7 +95,7 @@ export default function Step1({
                 <div className="space-y-3">
                     <FormField
                         control={form.control}
-                        name="username"
+                        name="BI"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Bilhete de Identidade</FormLabel>
@@ -94,7 +109,7 @@ export default function Step1({
                     <div className="flex space-x-6">
                         <FormField
                             control={form.control}
-                            name="username"
+                            name="firstName"
                             render={({ field }) => (
                                 <FormItem className="w-full">
                                     <FormLabel>Nome</FormLabel>
@@ -107,7 +122,7 @@ export default function Step1({
                         />
                         <FormField
                             control={form.control}
-                            name="username"
+                            name="lastName"
                             render={({ field }) => (
                                 <FormItem className="w-full">
                                     <FormLabel>Apelido</FormLabel>
@@ -138,14 +153,14 @@ export default function Step1({
                     />
                     <FormField
                         control={form.control}
-                        name="password"
+                        name="phone"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Telefone</FormLabel>
                                 <FormControl>
                                     <Input
-                                        type="password"
-                                        placeholder="********"
+                                        type="string"
+                                        placeholder="Ex: 841234567"
                                         {...field}
                                     />
                                 </FormControl>
@@ -155,7 +170,7 @@ export default function Step1({
                     />
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="province"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Província</FormLabel>
@@ -169,15 +184,16 @@ export default function Step1({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="m@example.com">
-                                            m@example.com
-                                        </SelectItem>
-                                        <SelectItem value="m@google.com">
-                                            m@google.com
-                                        </SelectItem>
-                                        <SelectItem value="m@support.com">
-                                            m@support.com
-                                        </SelectItem>
+                                        {provinces.map(
+                                            ({ value, label }, idx) => (
+                                                <SelectItem
+                                                    key={idx}
+                                                    value={value}
+                                                >
+                                                    {label}
+                                                </SelectItem>
+                                            ),
+                                        )}
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -234,7 +250,7 @@ export default function Step1({
                     />
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="gender"
                         render={({ field }) => (
                             <FormItem className="w-fit">
                                 <FormLabel>Gênero</FormLabel>
@@ -248,14 +264,14 @@ export default function Step1({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="m@example.com">
-                                            m@example.com
+                                        <SelectItem value="M">
+                                            Masculino
                                         </SelectItem>
-                                        <SelectItem value="m@google.com">
-                                            m@google.com
+                                        <SelectItem value="F">
+                                            Femenino
                                         </SelectItem>
-                                        <SelectItem value="m@support.com">
-                                            m@support.com
+                                        <SelectItem value="N">
+                                            Não binário
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>
@@ -270,7 +286,7 @@ export default function Step1({
                     </h2>
                     <FormField
                         control={form.control}
-                        name="username"
+                        name="emergencyName"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Nome</FormLabel>
@@ -283,14 +299,14 @@ export default function Step1({
                     />
                     <FormField
                         control={form.control}
-                        name="password"
+                        name="emergencyPhone"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Telefone</FormLabel>
                                 <FormControl>
                                     <Input
-                                        type="password"
-                                        placeholder="********"
+                                        type="text"
+                                        placeholder="Ex: 841234567"
                                         {...field}
                                     />
                                 </FormControl>
@@ -300,7 +316,7 @@ export default function Step1({
                     />
                     <FormField
                         control={form.control}
-                        name="email"
+                        name="emergencyFamiliarity"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Província</FormLabel>
@@ -310,18 +326,18 @@ export default function Step1({
                                 >
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Selecione a sua província" />
+                                            <SelectValue placeholder="Selecione o grau de familiaridade" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="m@example.com">
-                                            m@example.com
+                                        <SelectItem value="friend">
+                                            Amigo
                                         </SelectItem>
-                                        <SelectItem value="m@google.com">
-                                            m@google.com
+                                        <SelectItem value="bride">
+                                            Esposa/Esposo
                                         </SelectItem>
-                                        <SelectItem value="m@support.com">
-                                            m@support.com
+                                        <SelectItem value="familiar">
+                                            Pais/Filhos
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>

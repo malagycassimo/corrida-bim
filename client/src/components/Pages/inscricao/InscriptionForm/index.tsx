@@ -1,21 +1,61 @@
 "use client";
-
 import AnimatedComponent from "@/components/common/AnimatedComponent";
 import StepProgress from "@/components/common/StepProgress";
 import { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step4 from "./Step4";
+import Step3 from "./Step3";
 
+export type FormState = {
+    steps: string[];
+    currentStep: number;
+    step1: {
+        BI: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        phone: string;
+        province: string;
+        dob: string;
+        gender: string;
+        emergencyName: string;
+        emergencyPhone: string;
+        emergencyFamiliarity: string;
+    };
+    step2: {
+        category: string;
+        route: string;
+        shirt: string;
+    };
+};
 export default function InscriptionForm() {
-    const [formState, setFormState] = useState({
+    const [formState, setFormState] = useState<FormState>({
         steps: [
             "Dados pessoais",
             "Dados da corrida",
             "Confirmação dos dados",
             "Concluído",
         ],
-        currentStep: 1,
+        currentStep: 0,
+        step1: {
+            BI: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            province: "",
+            dob: "",
+            gender: "",
+            emergencyName: "",
+            emergencyPhone: "",
+            emergencyFamiliarity: "",
+        },
+        step2: {
+            category: "",
+            shirt: "",
+            route: "",
+        },
     });
     return (
         <AnimatedComponent>
@@ -26,13 +66,13 @@ export default function InscriptionForm() {
                 />
                 <hr />
                 {formState.currentStep === 0 && (
-                    <Step1 setState={setFormState} />
+                    <Step1 state={formState} setState={setFormState} />
                 )}
                 {formState.currentStep === 1 && (
-                    <Step2 setState={setFormState} />
+                    <Step2 state={formState} setState={setFormState} />
                 )}
                 {formState.currentStep === 2 && (
-                    <Step1 setState={setFormState} />
+                    <Step3 setState={setFormState} state={formState} />
                 )}
                 {formState.currentStep === 3 && <Step4 />}
             </div>
