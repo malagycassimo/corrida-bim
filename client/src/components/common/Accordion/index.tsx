@@ -10,7 +10,12 @@ export interface AccordionProps {
     content: React.ReactNode;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, content, idx }) => {
+const Accordion: React.FC<AccordionProps> = ({
+    title,
+    content,
+    idx,
+    subtitle,
+}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
@@ -44,10 +49,12 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, idx }) => {
                         transition={{ duration: 0.3 }}
                     >
                         <div className="lg:ml-[72px] pt-5">
-                            <span className="relative block text-lg font-medium mb-1">
-                                <IconPack.ChevronRight className="absolute -left-4 top-1/2 -translate-y-1/2 " />{" "}
-                                Data e Horário
-                            </span>
+                            {subtitle && (
+                                <span className="relative block text-lg font-medium mb-1">
+                                    <IconPack.ChevronRight className="absolute -left-4 top-1/2 -translate-y-1/2 " />{" "}
+                                    {subtitle}
+                                </span>
+                            )}
                             {content}
                         </div>
                     </motion.div>
