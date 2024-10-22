@@ -21,8 +21,8 @@ export default function Header() {
                         <Image
                             alt="Millennium bim"
                             src={"assets/brand/brand-red.svg"}
-                            width={50.96}
-                            height={55.78}
+                            width={55.96}
+                            height={60.78}
                             className="block lg:hidden"
                         />
                     </Link>

@@ -15,11 +15,14 @@ export default function Map() {
                 />
                 <Running active={active === "run"} setActive={setActive} />
             </div>
-            <div className="overflow-hidden">
-                {active === "walk" && <Map1 />}
-                {active === "disabled" && <Map1 />}
-                {active === "run" && <Map1 />}
+            <div className="mx-auto max-w-[826px]">
+                {active === "walk" && <Map1 embedId="3283694775464226432" />}
+                {active === "disabled" && (
+                    <Map1 embedId="3282116688013871634" />
+                )}
+                {active === "run" && <Map1 embedId="diferente_id_para_run" />}
             </div>
+            ;
         </div>
     );
 }
