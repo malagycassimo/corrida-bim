@@ -100,7 +100,7 @@ export default function Step1({
                             <FormItem>
                                 <FormLabel>Bilhete de Identidade</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Ex: " {...field} />
+                                    <Input placeholder="Ex: 123456789120A: " {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -114,7 +114,7 @@ export default function Step1({
                                 <FormItem className="w-full">
                                     <FormLabel>Nome</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Ex: " {...field} />
+                                        <Input placeholder="Teu Primeiro Mome " {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -127,7 +127,7 @@ export default function Step1({
                                 <FormItem className="w-full">
                                     <FormLabel>Apelido</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Ex: " {...field} />
+                                        <Input placeholder="Teu Apelido" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -291,7 +291,7 @@ export default function Step1({
                             <FormItem>
                                 <FormLabel>Nome</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Ex: " {...field} />
+                                    <Input placeholder="Nome " {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
