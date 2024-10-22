@@ -12,14 +12,14 @@ export default function Header() {
                 <nav className="flex space-x-12">
                     <Link href={"/"}>
                         <Image
-                            alt="Millenium BIM"
+                            alt="Millennium bim"
                             src={"assets/brand/brand-white.svg"}
                             width={103}
                             height={113}
                             className="lg:block hidden"
                         />
                         <Image
-                            alt="Millenium BIM"
+                            alt="Millennium bim"
                             src={"assets/brand/brand-red.svg"}
                             width={50.96}
                             height={55.78}

@@ -4,7 +4,7 @@ export default function Loading() {
     return (
         <div className="min-h-svh flex justify-center items-center">
             <Image
-                alt="Millenium BIM"
+                alt="Millennium bim"
                 src={"assets/brand/brand-red.svg"}
                 width={70.96}
                 height={75.78}

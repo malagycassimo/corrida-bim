@@ -5,7 +5,11 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         title: "Informações gerais",
         subtitle: "Data e Horário",
         content:
-            "A 15ª Corrida Millennium bim realiza-se no dia 30 de Novembro de 2024, domingo ás 5h.",
+        <p>    
+         A 15ª Corrida Millennium bim terá lugar no sábado, 30 de novembro de 2024, com início às 7h00. O aquecimento começará às 6h20, sob a orientação do ginásio IR Fitness.
+         </p>
+
+         ,
     },
     {
         title: "Retirada de Kits",

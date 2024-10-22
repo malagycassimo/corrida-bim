@@ -9,11 +9,11 @@ const font = Montserrat({
 
 export const metadata: Metadata = {
     title: {
-        template: "%s | Millenium BIM",
-        default: "15ª Corrida | Millenium BIM",
+        template: "%s | Millennium bim",
+        default: "15ª Corrida | Millennium bim",
     },
     description:
-        "Participe da 15ª Corrida Millennium BIM, um evento esportivo emocionante que promove saúde, bem-estar e espírito competitivo. Junte-se a nós nesta celebração única do esporte e da comunidade.",
+        "Participe da 15ª Corrida Millennium bim, um evento esportivo emocionante que promove saúde, bem-estar e espírito competitivo. Junte-se a nós nesta celebração única do esporte e da comunidade.",
 };
 
 export default function RootLayout({

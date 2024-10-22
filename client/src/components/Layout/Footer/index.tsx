@@ -9,7 +9,7 @@ export default function Footer() {
         <footer className="bg-tertiary pt-12 space-y-12 overflow-hidden">
             <div className="flex flex-col lg:flex-row lg:justify-between justify-center items-center gap-y-12 container mx-auto">
                 <Image
-                    alt="Millenium BIM - Aqui consigo"
+                    alt="Millennium bim - Aqui consigo"
                     src={"/assets/brand/brand-main.png"}
                     width={166}
                     height={64}

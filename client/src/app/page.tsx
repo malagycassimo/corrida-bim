@@ -19,7 +19,7 @@ export default function Home() {
             <section className="hidden relative h-[750px] lg:flex items-center">
                 <Image
                     src={"/assets/images/hero.jpg"}
-                    alt="Corrida Millenium BIM"
+                    alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                 />
@@ -28,7 +28,7 @@ export default function Home() {
                     <AnimatedComponent>
                         <div className="max-w-[518px] px-6 space-y-4">
                             <h1 className="text-5xl font-semibold">
-                                15ª Corrida Millennium BIM
+                                15ª Corrida Millennium bim
                             </h1>
                             <p>
                                 Venha participar da corrida mais emocionante do
@@ -50,14 +50,14 @@ export default function Home() {
             <section className="lg:hidden mt-[295px] relative h-[752px]">
                 <Image
                     src={"/assets/images/hero.jpg"}
-                    alt="Corrida Millenium BIM"
+                    alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                 />
                 <AnimatedComponent>
                     <div className="py-9 text-center px-6 text-white bg-gradient-to-br from-primary to-secondary mx-4 sm:mx-auto max-w-xl rounded-xl -translate-y-1/2">
                         <h1 className="text-4xl font-bold">
-                            15ª Corrida Millennium BIM
+                            15ª Corrida Millennium bim
                         </h1>
                         <p className="mt-6 mb-8">
                             Venha participar da corrida mais emocionante do ano!
@@ -105,7 +105,7 @@ export default function Home() {
                     <AnimatedComponent>
                         <div className="max-w-lg space-y-4 px-10 lg:px-0">
                             <h2 className="text-center text-white text-2xl lg:text-3xl font-semibold">
-                                A Corrida Millenium BIM está de volta! Junte-se
+                                A Corrida Millennium bim está de volta! Junte-se
                                 a nós
                             </h2>
                             <Link

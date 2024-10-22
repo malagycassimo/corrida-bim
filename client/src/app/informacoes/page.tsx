@@ -13,7 +13,7 @@ export default function Informacoes() {
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
                     src={"/assets/images/InformationHeroSection.jpg"}
-                    alt="Corrida Millenium BIM"
+                    alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                 />
@@ -69,7 +69,7 @@ export default function Informacoes() {
                     <AnimatedComponent>
                         <div className="max-w-lg space-y-4 px-10 lg:px-0">
                             <h2 className="text-center text-white text-2xl lg:text-3xl font-semibold">
-                                A Corrida Millenium BIM está de volta! Junte-se
+                                A Corrida Millennium bim está de volta! Junte-se
                                 a nós
                             </h2>
                             <Link

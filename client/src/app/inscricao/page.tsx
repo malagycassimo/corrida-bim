@@ -9,7 +9,7 @@ export default function Inscricao() {
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
                     src={"/assets/images/InscriptionHeroSection.jpg"}
-                    alt="Corrida Millenium BIM"
+                    alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                 />
