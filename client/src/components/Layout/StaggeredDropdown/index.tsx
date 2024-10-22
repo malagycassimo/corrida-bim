@@ -1,6 +1,7 @@
 "use client";
 import { IconPack } from "@/components/common/IconPack";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const StaggeredDropDown: React.FC = () => {
@@ -22,9 +23,21 @@ const StaggeredDropDown: React.FC = () => {
                     style={{ originY: "top", translateX: "-50%" }}
                     className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] -left-[220%] w-48 overflow-hidden"
                 >
-                    <Option setOpen={setOpen} text="Percursos " />
-                    <Option setOpen={setOpen} text="Inscrição" />
-                    <Option setOpen={setOpen} text="Informações" />
+                    <Option
+                        setOpen={setOpen}
+                        text="Percursos"
+                        href="/percursos"
+                    />
+                    <Option
+                        setOpen={setOpen}
+                        text="Inscrição"
+                        href="/inscricao"
+                    />
+                    <Option
+                        setOpen={setOpen}
+                        text="Informações"
+                        href="/informacoes"
+                    />
                 </motion.ul>
             </motion.div>
         </div>
@@ -34,13 +47,19 @@ const StaggeredDropDown: React.FC = () => {
 interface OptionProps {
     text: string;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    href: string;
 }
 
-const Option: React.FC<OptionProps> = ({ text, setOpen }) => {
+const Option: React.FC<OptionProps> = ({ text, setOpen, href }) => {
+    const router = useRouter();
+    const handleClick = () => {
+        router.push(href);
+        setOpen(false);
+    };
     return (
         <motion.li
             variants={itemVariants}
-            onClick={() => setOpen(false)}
+            onClick={handleClick}
             className="flex items-center gap-2 w-full p-2 text-xs font-medium whitespace-nowrap rounded-md hover:bg-primaryLightest text-slate-700  transition-colors cursor-pointer"
         >
             <span>{text}</span>
