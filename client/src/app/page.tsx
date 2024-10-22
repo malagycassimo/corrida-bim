@@ -127,14 +127,15 @@ export default function Home() {
                 </h1>
                 <div className="container max-w-[920px] mx-auto flex flex-wrap gap-x-[106px] gap-y-3 justify-center">
                     {partnersImages.map(({ src, alt }) => (
-                        <Image
-                            key={alt}
-                            src={src}
-                            alt={alt}
-                            width={150}
-                            height={101}
-                            style={{ width: "150px", height: "auto" }}
-                        />
+                        <div className="relative w-36 h-24 " key={alt}>
+                            <Image
+                                key={alt}
+                                src={src}
+                                alt={alt}
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
                     ))}
                 </div>
             </section>
