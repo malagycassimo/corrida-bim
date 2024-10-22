@@ -20,7 +20,7 @@ const Accordion: React.FC<AccordionProps> = ({
 
     return (
         <div
-            className={`py-9 px-11 rounded-[20px] transition-colors duration-300 ${isOpen ? "bg-primaryLighter" : "bg-primaryLightest"}`}
+            className={`py-9 px-11 max-w-[920px] mx-auto rounded-[20px] transition-colors duration-300 ${isOpen ? "bg-primaryLighter" : "bg-primaryLightest"}`}
         >
             <motion.header
                 initial={false}
