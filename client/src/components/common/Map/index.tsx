@@ -15,7 +15,7 @@ export default function Map() {
                 />
                 <Running active={active === "run"} setActive={setActive} />
             </div>
-            <div className="h-[623px] overflow-hidden">
+            <div className="overflow-hidden">
                 {active === "walk" && <Map1 />}
                 {active === "disabled" && <Map1 />}
                 {active === "run" && <Map1 />}
@@ -34,7 +34,7 @@ const Walk = ({
     return (
         <button
             onClick={() => setActive("walk")}
-            className={`space-x-2 border-2 border-primary rounded-lg py-[6px] px-[7px] flex items-center group transition-all duration-500 ${active && "bg-gradient-to-br from-primary to-secondary"}`}
+            className={`lg:space-x-2 border-2 border-primary rounded-lg py-[6px] px-[7px] flex items-center group transition-all duration-500 ${active && "bg-gradient-to-br from-primary to-secondary"}`}
         >
             <div
                 className={`size-8 border-2 rounded bg-primary/10 flex justify-center items-center ${active ? "border-white" : "border-primary"}`}
@@ -44,7 +44,7 @@ const Walk = ({
             <span
                 className={`text-sm font-medium ${active ? "text-white" : "text-primary"}`}
             >
-                Caminhada<span className="lg:inline-block hidden"> - 7km</span>
+                <span className="md:inline-block hidden">Caminhada - 7km</span>
             </span>
         </button>
     );
@@ -60,7 +60,7 @@ const Disabled = ({
     return (
         <button
             onClick={() => setActive("disabled")}
-            className={`space-x-2 border-2 border-primary rounded-lg py-[6px] px-[7px] flex items-center group transition-all duration-500 ${active && "bg-gradient-to-br from-primary to-secondary"}`}
+            className={`lg:space-x-2  border-2 border-primary rounded-lg py-[6px] px-[7px] flex items-center group transition-all duration-500 ${active && "bg-gradient-to-br from-primary to-secondary"}`}
         >
             <div
                 className={`size-8 border-2 rounded bg-primary/10 flex justify-center items-center ${active ? "border-white" : "border-primary"}`}
@@ -70,8 +70,9 @@ const Disabled = ({
             <span
                 className={`text-sm font-medium ${active ? "text-white" : "text-primary"}`}
             >
-                Deficientes
-                <span className="lg:inline-block hidden"> - 9km</span>
+                <span className="md:inline-block hidden">
+                    Deficientes - 9km
+                </span>
             </span>
         </button>
     );
@@ -87,7 +88,7 @@ const Running = ({
     return (
         <button
             onClick={() => setActive("run")}
-            className={`space-x-2 border-2 border-primary rounded-lg py-[6px] px-[7px] flex items-center group transition-all duration-500 ${active && "bg-gradient-to-br from-primary to-secondary"}`}
+            className={`lg:space-x-2 border-2 border-primary rounded-lg py-[6px] px-[7px] flex items-center group transition-all duration-500 ${active && "bg-gradient-to-br from-primary to-secondary"}`}
         >
             <div
                 className={`size-8 border-2 rounded bg-primary/10 flex justify-center items-center ${active ? "border-white" : "border-primary"}`}
@@ -97,7 +98,7 @@ const Running = ({
             <span
                 className={`text-sm font-medium ${active ? "text-white" : "text-primary"}`}
             >
-                Pedestres<span className="lg:inline-block hidden"> - 15km</span>
+                <span className="md:inline-block hidden">Pedestres - 15km</span>
             </span>
         </button>
     );

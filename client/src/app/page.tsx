@@ -133,6 +133,7 @@ export default function Home() {
                             alt={alt}
                             width={150}
                             height={101}
+                            style={{ width: "150px", height: "auto" }}
                         />
                     ))}
                 </div>
