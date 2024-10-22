@@ -5,7 +5,7 @@ type Link = {
 export const links: Link[] = [
     {
         label: "Percursos",
-        href: "/percuros",
+        href: "/#route",
     },
     {
         label: "Inscrição",

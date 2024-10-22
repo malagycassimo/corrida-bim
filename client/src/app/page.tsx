@@ -83,7 +83,7 @@ export default function Home() {
             </section>
 
             {/* Routes section  */}
-            <section className="mt-14 mb-20">
+            <section className="mt-14 mb-20" id="route">
                 <h2 className="max-w-md mx-10 sm:mx-auto text-2xl font-bold lg:text-3xl lg:font-semibold text-center">
                     Veja os percursos na Corrida do Millennium bim
                 </h2>
