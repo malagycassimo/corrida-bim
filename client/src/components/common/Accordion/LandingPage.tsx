@@ -12,7 +12,13 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
          ,
     },
     {
-        title: "Retirada de Kits",
-        content: <div>Texto sobre retirada de kits</div>,
+        title: "Inscrições",
+        content:
+        <p>    
+As categorias de Portadores de Deficiências, Juvenis e Federados deverão inscrever-se na Associação de Atletismo da Cidade de Maputo, sita no Parque dos
+Continuadores, entre os dias 28 de Outubro e 8 de Novembro de 2024. As inscrições gerais para a corrida (15km) são reservadas aos primeiros 2000 atletas, não existindo um limite máximo de
+participantes para a caminhada (7km) </p>
+
+         ,
     },
 ];
