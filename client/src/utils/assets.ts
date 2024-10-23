@@ -73,7 +73,7 @@ export const partnersImages: CarouselImageProps[] = [
     },
     {
         alt: "Sumol Compal",
-        src: "/assets/images/sumolcompal.png",
+        src: "/assets/images/compal.png",
     },
     {
         alt: "Água da Namaacha",
