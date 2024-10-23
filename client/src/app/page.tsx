@@ -26,11 +26,11 @@ export default function Home() {
 
                 <div className="text-white container mx-auto">
                     <AnimatedComponent>
-                        <div className="max-w-[518px] px-6 space-y-4">
-                            <h1 className="text-5xl font-semibold">
+                        <div className="max-w-[700px] px-6 space-y-4">
+                            <h1 className="text-[4.6rem] leading-none font-bold">
                                 15ª Corrida Millennium bim
                             </h1>
-                            <p>
+                            <p className="text-lg">
                                 Venha participar da corrida mais emocionante do
                                 ano!
                                 <br />
@@ -76,7 +76,7 @@ export default function Home() {
 
             {/* Countdown section  */}
             <section className="mt-16 mx-10 sm:mx-0">
-                <h2 className="text-center max-w-2xl text-2xl lg:text-3xl font-bold lg:font-semibold mx-auto mb-11">
+                <h2 className="text-center max-w-2xl text-2xl lg:text-3xl font-bold lg:font-bold mx-auto mb-11">
                     A sua jornada na corrida mais aguardada de Maputo começa em
                 </h2>
                 <ShiftingCountdown />
@@ -84,7 +84,7 @@ export default function Home() {
 
             {/* Routes section  */}
             <section className="mt-14 mb-20" id="route">
-                <h2 className="max-w-md mx-10 sm:mx-auto text-2xl font-bold lg:text-3xl lg:font-semibold text-center">
+                <h2 className="max-w-md mx-10 sm:mx-auto text-2xl font-bold lg:text-3xl lg:font-bold text-center">
                     Veja os percursos na Corrida do Millennium bim
                 </h2>
                 <p className="mx-10 sm:mx-auto text-lg text-center mt-2 text-neutral-800">

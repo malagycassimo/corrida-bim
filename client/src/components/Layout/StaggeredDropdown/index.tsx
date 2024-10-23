@@ -23,11 +23,7 @@ const StaggeredDropDown: React.FC = () => {
                     style={{ originY: "top", translateX: "-50%" }}
                     className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] -left-[220%] w-48 overflow-hidden"
                 >
-                    <Option
-                        setOpen={setOpen}
-                        text="Percursos"
-                        href="/percursos"
-                    />
+                    <Option setOpen={setOpen} text="Percursos" href="/#route" />
                     <Option
                         setOpen={setOpen}
                         text="Inscrição"
