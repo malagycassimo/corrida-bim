@@ -8,7 +8,7 @@ export default function Inscricao() {
             {/* Hero section */}
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/InscriptionHeroSection.jpg"}
+                    src={"/assets/images/inscricao-hero.webp"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
@@ -18,7 +18,7 @@ export default function Inscricao() {
                     <AnimatedComponent>
                         <div className="max-w-[518px] px-6 space-y-4">
                             <h1 className="text-5xl font-semibold">
-                                Inscrição
+                                Inscrição  
                             </h1>
                         </div>
                     </AnimatedComponent>
@@ -27,7 +27,7 @@ export default function Inscricao() {
             <section className="mt-[100px] relative h-96 lg:hidden">
                 <Image
                     alt="Informações"
-                    src={"/assets/images/InscriptionHeroSection.jpg"}
+                    src={"/assets/images/inscricao-hero-m.webp"}
                     fill
                     className="object-cover"
                 />

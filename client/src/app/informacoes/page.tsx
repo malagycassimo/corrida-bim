@@ -12,7 +12,7 @@ export default function Informacoes() {
             {/* Hero section */}
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/InformationHeroSection.jpg"}
+                    src={"/assets/images/info-hero.webp"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
@@ -32,7 +32,7 @@ export default function Informacoes() {
             <section className="mt-[100px] relative h-96 lg:hidden">
                 <Image
                     alt="Informações"
-                    src={"/assets/images/carousel-item-10.jpg"}
+                    src={"/assets/images/info-hero-m.webp"}
                     fill
                     className="object-cover"
                 />
