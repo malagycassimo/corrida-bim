@@ -29,8 +29,9 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { IconPack } from "@/components/common/IconPack";
 import { Dispatch, SetStateAction } from "react";
-import { provinces, provincesEnum } from "@/utils/statics";
+import { countries, provinces, provincesEnum } from "@/utils/statics";
 import { FormState } from ".";
+import { PhoneInput } from "@/components/ui/PhoneInput";
 
 const formSchema = z.object({
     BI: z.string().min(9, {
@@ -43,8 +44,8 @@ const formSchema = z.object({
     lastName: z.string().min(2, {
         message: "O nome deve conter no mínimo 2 caracteres",
     }),
-    phone: z.string().min(9, {
-        message: "O telefone deve conter 9 dígitos",
+    phone: z.string({
+        message: "Insira um número de telefone válido com código do país",
     }),
     province: z.enum(["Maputo", ...provincesEnum], {
         message: "Selecione uma província válida",
@@ -53,6 +54,7 @@ const formSchema = z.object({
         required_error: "Selecione uma data válida",
         message: "Selecione uma data válida",
     }),
+    country: z.string({ message: "Selecione um país válido" }),
     gender: z.enum(["M", "F", "N"], {
         message: "Selecione um valor válido",
     }),
@@ -63,7 +65,7 @@ const formSchema = z.object({
         message: "O telefone deve conter 9 dígitos",
     }),
     emergencyFamiliarity: z.string().min(2, {
-        message: "O nome deve conter no mínimo 2 caracteres",
+        message: "Selecione um valor válido",
     }),
 });
 
@@ -80,11 +82,12 @@ export default function Step1({
     });
     function onSubmit(values: z.infer<typeof formSchema>) {
         setState((state) => {
-            return { ...state, step1: values, currentStep: 1 };
+            const formattedValues = {
+                ...values,
+                dob: values.dob.toISOString(), // ou format(values.dob, 'yyyy-MM-dd')
+            };
+            return { ...state, step1: formattedValues, currentStep: 1 };
         });
-        setTimeout(() => {
-            console.log(values);
-        }, 2000);
     }
     return (
         <Form {...form}>
@@ -100,13 +103,16 @@ export default function Step1({
                             <FormItem>
                                 <FormLabel>Bilhete de Identidade</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Ex: 123456789120A: " {...field} />
+                                    <Input
+                                        placeholder="Ex: 123456789120A "
+                                        {...field}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <div className="flex space-x-6">
+                    <div className="flex md:flex-row flex-col space-y-3 md:space-y-0 md:space-x-6">
                         <FormField
                             control={form.control}
                             name="firstName"
@@ -114,7 +120,10 @@ export default function Step1({
                                 <FormItem className="w-full">
                                     <FormLabel>Nome</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Teu Primeiro Mome " {...field} />
+                                        <Input
+                                            placeholder="Teu Primeiro Nome "
+                                            {...field}
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -127,7 +136,10 @@ export default function Step1({
                                 <FormItem className="w-full">
                                     <FormLabel>Apelido</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Teu Apelido" {...field} />
+                                        <Input
+                                            placeholder="Teu Apelido"
+                                            {...field}
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -151,40 +163,24 @@ export default function Step1({
                             </FormItem>
                         )}
                     />
+                    <PhoneInput control={form.control} name="phone" />
                     <FormField
                         control={form.control}
-                        name="phone"
+                        name="country"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Telefone</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        type="string"
-                                        placeholder="Ex: 841234567"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="province"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Província</FormLabel>
+                                <FormLabel>Nacionalidade</FormLabel>
                                 <Select
                                     onValueChange={field.onChange}
-                                    defaultValue={field.value}
+                                    defaultValue="Moçambique"
                                 >
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Selecione a sua província" />
+                                            <SelectValue placeholder="Selecione a sua nacionalidade" />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        {provinces.map(
+                                        {countries.map(
                                             ({ value, label }, idx) => (
                                                 <SelectItem
                                                     key={idx}
@@ -200,6 +196,40 @@ export default function Step1({
                             </FormItem>
                         )}
                     />
+                    {form.watch("country") === "Moçambique" && (
+                        <FormField
+                            control={form.control}
+                            name="province"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Província</FormLabel>
+                                    <Select
+                                        onValueChange={field.onChange}
+                                        defaultValue="maputo"
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Selecione a sua província" />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            {provinces.map(
+                                                ({ value, label }, idx) => (
+                                                    <SelectItem
+                                                        key={idx}
+                                                        value={value}
+                                                    >
+                                                        {label}
+                                                    </SelectItem>
+                                                ),
+                                            )}
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    )}
                     <FormField
                         control={form.control}
                         name="dob"

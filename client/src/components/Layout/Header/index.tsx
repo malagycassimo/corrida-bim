@@ -30,7 +30,7 @@ export default function Header() {
                         {links.map(({ label, href }, idx) => (
                             <li key={idx}>
                                 <CustomLink
-                                    twClasses="font-semibold text-lg hover:text-primary transition-colors duration-300"
+                                    twClasses="font-semibold text-lg hover:text-primary transition-colors duration-300 cursor-pointer"
                                     activeClassName="text-primary"
                                     href={href}
                                 >

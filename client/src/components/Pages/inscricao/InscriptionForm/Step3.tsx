@@ -25,7 +25,7 @@ export default function Step3({
                 Confirmação dos dados
             </h1>
 
-            <div className="flex justify-between space-x-10">
+            <div className="flex sm:flex-row flex-col justify-between space-y-3 sm:space-y-0 sm:space-x-10">
                 <div className="space-y-3 flex-1">
                     <Field field="Bilhete de Identidade" value={step1.BI} />
                     <Field
@@ -53,7 +53,7 @@ export default function Step3({
                         className="rotate-180"
                         stroke="#52525b"
                     />{" "}
-                    <span>Anterior</span>
+                    <span className="hidden sm:inline-block">Anterior</span>
                 </button>
                 <button
                     onClick={onNext}

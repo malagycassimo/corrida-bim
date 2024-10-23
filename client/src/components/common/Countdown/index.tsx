@@ -102,6 +102,7 @@ const useTimer = (unit: Unit) => {
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleCountdown = async () => {

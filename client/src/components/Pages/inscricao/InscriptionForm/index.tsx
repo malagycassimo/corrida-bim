@@ -16,6 +16,7 @@ export type FormState = {
         lastName: string;
         email: string;
         phone: string;
+        country: string;
         province: string;
         dob: string;
         gender: string;
@@ -43,8 +44,9 @@ export default function InscriptionForm() {
             firstName: "",
             lastName: "",
             email: "",
-            phone: "",
-            province: "",
+            phone: "+258 ",
+            country: "Moçambique",
+            province: "maputo",
             dob: "",
             gender: "",
             emergencyName: "",
@@ -57,6 +59,7 @@ export default function InscriptionForm() {
             route: "",
         },
     });
+    console.log(formState);
     return (
         <AnimatedComponent>
             <div className="lg:w-1/2 max-w-4xl py-11 rounded-3xl space-y-8 lg:mx-auto px-9 lg:px-20 shadow-lg relative m-6 lg:m-0 border  lg:-top-20 z-10 bg-white">

@@ -18,7 +18,7 @@ export default function Inscricao() {
                     <AnimatedComponent>
                         <div className="max-w-[518px] px-6 space-y-4">
                             <h1 className="text-5xl font-semibold">
-                                Inscrição  
+                                Inscrição
                             </h1>
                         </div>
                     </AnimatedComponent>
