@@ -15,6 +15,7 @@ export default function Informacoes() {
                     src={"/assets/images/info-hero.webp"}
                     alt="Corrida Millennium bim"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="mx-auto object-cover -z-50"
                 />
 
@@ -34,6 +35,7 @@ export default function Informacoes() {
                     alt="Informações"
                     src={"/assets/images/info-hero-m.webp"}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                 />
                 <div className="absolute text-center text-white bg-primary bottom-0 right-0 left-0 py-4 text-lg font-semibold">
@@ -97,13 +99,13 @@ export default function Informacoes() {
                                 src={src}
                                 alt={alt}
                                 fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-contain"
                             />
                         </div>
                     ))}
                 </div>
             </section>
-
         </main>
     );
 }

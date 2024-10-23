@@ -20,6 +20,8 @@ import {
 import { IconPack } from "@/components/common/IconPack";
 import { Dispatch, SetStateAction } from "react";
 import { FormState } from ".";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 const formSchema = z.object({
     category: z.enum(
@@ -44,6 +46,7 @@ const formSchema = z.object({
     ),
     route: z.string(),
     shirt: z.string(),
+    accept: z.boolean({ message: "Concorde com os termos para avançar" }),
 });
 
 export default function Step2({
@@ -205,6 +208,31 @@ export default function Step2({
                             </FormItem>
                         )}
                     />
+                    <FormField
+                        control={form.control}
+                        name="accept"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md">
+                                <FormControl>
+                                    <Checkbox
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                    />
+                                </FormControl>
+                                <div className="space-y-1 leading-none">
+                                    <FormLabel>
+                                        Li e concordo com o{" "}
+                                        <Link
+                                            className="text-primary cursor-pointer"
+                                            href={"/assets/regulamento.pdf"}
+                                        >
+                                            regulamento
+                                        </Link>
+                                    </FormLabel>
+                                </div>
+                            </FormItem>
+                        )}
+                    />
                 </div>
                 <div className="flex justify-between items-center">
                     <button
@@ -218,6 +246,7 @@ export default function Step2({
                         <span className="hidden sm:inline-block">Anterior</span>
                     </button>
                     <button
+                        disabled={form.watch("accept") === false}
                         type="submit"
                         className="ml-auto btn text-white bg-gradient-to-br from-primary to-secondary flex"
                     >

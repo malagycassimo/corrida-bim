@@ -28,6 +28,7 @@ export type FormState = {
         category: string;
         route: string;
         shirt: string;
+        accept: boolean;
     };
 };
 export default function InscriptionForm() {
@@ -57,9 +58,9 @@ export default function InscriptionForm() {
             category: "",
             shirt: "",
             route: "",
+            accept: false,
         },
     });
-    console.log(formState);
     return (
         <AnimatedComponent>
             <div className="lg:w-1/2 max-w-4xl py-11 rounded-3xl space-y-8 lg:mx-auto px-9 lg:px-20 shadow-lg relative m-6 lg:m-0 border  lg:-top-20 z-10 bg-white">
