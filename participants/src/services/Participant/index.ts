@@ -1,11 +1,15 @@
 import type { Participant } from "../../models/types";
+import type { MailerService } from "../Mailer";
 import type { ParticipantService } from "../types";
-
+import * as MailDefaults from "../Mailer/defaults";
 const ParticipantServ = (
     Participants: Participant.ParticipantRepository,
+    Mail: MailerService,
 ): ParticipantService => {
-    const store = async (user: Participant.ParticipantRequest) => {
-        return await Participants.store(user);
+    const store = async (participant: Participant.ParticipantRequest) => {
+        const particp = await Participants.store(participant);
+        await Mail.sendEmail(MailDefaults.WELCOME(participant));
+        return particp;
     };
     const get = async (id: string) => {
         return await Participants.get(id);
