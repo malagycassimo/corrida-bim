@@ -15,7 +15,20 @@ datasource db {
 
 model Participant {
     id    String @id @default(auto()) @map("_id") @db.ObjectId
-    name  String
-    email String @unique
-    age   Int
+    BI                  String    @unique
+    firstName           String
+    lastName            String
+    email               String    @unique
+    phone               String
+    province            String
+    dob                 String
+    country             String
+    gender              String
+    emergencyName       String
+    emergencyPhone      String
+    emergencyFamiliarity String
+    category            String
+    route               String
+    shirt               String
+    @@index([BI, email, phone])
 }

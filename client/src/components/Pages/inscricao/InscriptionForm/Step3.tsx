@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { FormState } from ".";
 import { IconPack } from "@/components/common/IconPack";
+import { submitData } from "@/app/inscricao/action";
 
 export default function Step3({
     state: { step1, step2 },
@@ -15,6 +16,7 @@ export default function Step3({
         });
     }
     function onNext() {
+        submitData({ ...step1, ...step2 });
         setState((state) => {
             return { ...state, currentStep: state.currentStep + 1 };
         });

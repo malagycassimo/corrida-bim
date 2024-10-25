@@ -98,9 +98,6 @@ export default function Step2({
                                         <SelectItem value="caminhada">
                                             Caminhada
                                         </SelectItem>
-                                        <SelectItem value="caminhada">
-                                            Caminhada
-                                        </SelectItem>
                                         <SelectItem value="juvenis">
                                             Juvenis
                                         </SelectItem>

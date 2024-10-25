@@ -1,23 +1,32 @@
 version: "3.7"
 services:
-    mongodb_container:
+    database:
         image: prismagraphql/mongo-single-replica:4.4.3-bionic
         env_file: .env
-        ports:
-            - 27017:27017
+        network_mode: host
 
     nginx:
         image: nginx:latest
-        ports:
-            - 80:80
+        network_mode: host
         volumes:
             - ./conf.d:/etc/nginx/conf.d
         depends_on:
-            - mongodb_container
+            - database
 
     client:
         build:
             context: client
             dockerfile: Dockerfile
-        ports:
-            - 3000:3000
+        depends_on:
+            - server
+        env_file: .env
+        network_mode: host
+
+    server:
+        build:
+            context: participants
+            dockerfile: Dockerfile
+        depends_on:
+            - database
+        env_file: .env
+        network_mode: host

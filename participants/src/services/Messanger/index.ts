@@ -23,7 +23,7 @@ const rabbitMqServer = (uri: string): Messager => {
             const webhookUrl = discordWebhooks[routingKey];
             if (!webhookUrl) {
                 console.error(
-                    `No Disco/rd webhook URL found for routing key: ${routingKey}`,
+                    `No Discord webhook URL found for routing key: ${routingKey}`,
                 );
                 return false;
             }

@@ -3,7 +3,7 @@ import type { Participant } from "../../models/types";
 
 const WELCOME = ({
     email,
-    name,
+    firstName,
 }: Participant.ParticipantRequest): EmailOptions => {
     return {
         from: "info@corridamillenniumbim.co.mz",
@@ -11,7 +11,7 @@ const WELCOME = ({
         subject: "Parabéns, você se inscreveu a 15 Corrida do Millenium BIM",
         template: {
             id: "d-4a916931b8d54ae4aa620a7398980b28",
-            data: { name },
+            data: { name: firstName },
         },
     };
 };

@@ -11,12 +11,8 @@ const participantsController = (
         next: NextFunction,
     ): Promise<void> => {
         try {
-            const { name, email, age } = req.body;
-            const participant = await participantService.store({
-                name,
-                email,
-                age,
-            });
+            const request = req.body;
+            const participant = await participantService.store(request);
             res.status(201).json({
                 message: "Participante criado com sucesso",
                 data: participant,

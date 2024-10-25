@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // Definição de porta e inicialização do servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.SERVER_PORT || 3002;
 app.listen(PORT, () => {
     router(app);
     console.log(`Servidor iniciado na porta ${PORT}`);

@@ -10,14 +10,38 @@ export enum EventTypes {
 export namespace Participant {
     export interface ParticipantSchema {
         id: string;
-        name: string;
+        BI: string;
+        firstName: string;
         email: string;
-        age: number;
+        lastName: string;
+        phone: string;
+        province: string;
+        dob: string;
+        country: string;
+        gender: string;
+        emergencyName: string;
+        emergencyPhone: string;
+        emergencyFamiliarity: string;
+        category: string;
+        route: string;
+        shirt: string;
     }
     export interface ParticipantRequest {
-        name: string;
+        BI: string;
+        firstName: string;
         email: string;
-        age: number;
+        lastName: string;
+        phone: string;
+        province: string;
+        dob: string;
+        country: string;
+        gender: string;
+        emergencyName: string;
+        emergencyPhone: string;
+        emergencyFamiliarity: string;
+        category: string;
+        route: string;
+        shirt: string;
     }
     export interface ParticipantRepository {
         store: (participant: ParticipantRequest) => Promise<ParticipantSchema>;
