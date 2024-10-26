@@ -7,7 +7,7 @@ import StaggeredDropDown from "../StaggeredDropdown";
 
 export default function Header() {
     return (
-        <header className="absolute top-0 left-0 right-0 z-50">
+        <header className="absolute top-0 left-0 right-0 z-10">
             <div className="container mx-auto text-white pr-7 pl-12 py-4 lg:py-9 flex justify-between">
                 <nav className="flex space-x-12">
                     <Link href={"/"}>
