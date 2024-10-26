@@ -1,24 +1,18 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
     provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mongodb"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
 model Participant {
-    id    String @id @default(auto()) @map("_id") @db.ObjectId
-    BI                  String    @unique
+    id                  String   @id @default(uuid())
+    IDCode                  String   @unique
     firstName           String
     lastName            String
-    email               String    @unique
+    email               String   @unique
     phone               String
     province            String
     dob                 String
@@ -30,5 +24,6 @@ model Participant {
     category            String
     route               String
     shirt               String
-    @@index([BI, email, phone])
+
+    @@index([IDCode, email, phone])
 }

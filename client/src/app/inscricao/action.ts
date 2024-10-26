@@ -3,7 +3,7 @@
 export const submitData = async (data: Record<string, string | boolean>) => {
     const { accept, ...rest } = data;
     try {
-        await fetch("http://localhost:3002/participants/store", {
+        await fetch("http://server:3002/participants/store", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

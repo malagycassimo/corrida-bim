@@ -10,7 +10,7 @@ export enum EventTypes {
 export namespace Participant {
     export interface ParticipantSchema {
         id: string;
-        BI: string;
+        IDCode: string;
         firstName: string;
         email: string;
         lastName: string;
@@ -27,7 +27,7 @@ export namespace Participant {
         shirt: string;
     }
     export interface ParticipantRequest {
-        BI: string;
+        IDCode: string;
         firstName: string;
         email: string;
         lastName: string;

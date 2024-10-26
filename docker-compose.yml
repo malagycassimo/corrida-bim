@@ -1,17 +1,22 @@
-version: "3.7"
 services:
     database:
-        image: prismagraphql/mongo-single-replica:4.4.3-bionic
+        image: postgres:14-alpine
         env_file: .env
-        network_mode: host
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        networks:
+            - backend
 
     nginx:
         image: nginx:latest
-        network_mode: host
         volumes:
             - ./conf.d:/etc/nginx/conf.d
         depends_on:
-            - database
+            - client
+        networks:
+            - frontend
+        ports:
+            - 80:80
 
     client:
         build:
@@ -20,7 +25,8 @@ services:
         depends_on:
             - server
         env_file: .env
-        network_mode: host
+        networks:
+            - frontend
 
     server:
         build:
@@ -29,4 +35,20 @@ services:
         depends_on:
             - database
         env_file: .env
-        network_mode: host
+        networks:
+            - backend
+            - frontend
+        command:
+            [
+                "sh",
+                "-c",
+                "sleep 10 && bunx prisma migrate dev --skip-generate && bun run ./dist/index.js ",
+            ]
+
+volumes:
+    postgres_data:
+networks:
+    backend:
+        driver: bridge
+    frontend:
+        driver: bridge
