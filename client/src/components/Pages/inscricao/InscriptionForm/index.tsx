@@ -11,7 +11,7 @@ export type FormState = {
     steps: string[];
     currentStep: number;
     step1: {
-        BI: string;
+        IDCode: string;
         firstName: string;
         lastName: string;
         email: string;
@@ -41,13 +41,13 @@ export default function InscriptionForm() {
         ],
         currentStep: 0,
         step1: {
-            BI: "",
+            IDCode: "",
             firstName: "",
             lastName: "",
             email: "",
             phone: "+258 ",
             country: "Moçambique",
-            province: "maputo",
+            province: "Maputo",
             dob: "",
             gender: "",
             emergencyName: "",

@@ -22,29 +22,25 @@ import { Dispatch, SetStateAction } from "react";
 import { FormState } from ".";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
+import { categories, routes } from "@/utils/statics";
 
 const formSchema = z.object({
     category: z.enum(
-        [
-            "caminhada",
-            "juvenis",
-            "populares",
-            "veteranos-35-45-f-40-50-h",
-            "veteranos-maior-45-f-maior-50-h",
-            "federados",
-            "estrangeiros-menor-50-h-menor-45-f",
-            "estrangeiros-maior-50-h-maior-45-f",
-            "deficientes-de-triciclos",
-            "deficientes-de-cadeiras",
-            "pessoal-bim-menor-40",
-            "pessoal-bim-maior-40",
-            "pessoal-bim-reformado",
+        categories.map(({ value }) => value) as unknown as readonly [
+            string,
+            ...string[],
         ],
         {
             message: "Selecione uma categoria válida.",
         },
     ),
-    route: z.string(),
+    route: z.enum(
+        routes.map(({ value }) => value) as unknown as readonly [
+            string,
+            ...string[],
+        ],
+        { message: "Selecione uma rota válida" },
+    ),
     shirt: z.string(),
     accept: z.boolean({ message: "Concorde com os termos para avançar" }),
 });
@@ -95,49 +91,14 @@ export default function Step2({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="caminhada">
-                                            Caminhada
-                                        </SelectItem>
-                                        <SelectItem value="juvenis">
-                                            Juvenis
-                                        </SelectItem>
-                                        <SelectItem value="populares">
-                                            Populares
-                                        </SelectItem>
-                                        <SelectItem value="veteranos-35-45-f-40-50-h">
-                                            Veteranos 35-45 (F) & 40-50 (M) anos
-                                            (a)
-                                        </SelectItem>
-                                        <SelectItem value="veteranos-maior-45-f-maior-50-h">
-                                            Veteranos maior de 45 (F) & maior de
-                                            50 (M) anos (a)
-                                        </SelectItem>
-                                        <SelectItem value="federados">
-                                            Federados
-                                        </SelectItem>
-                                        <SelectItem value="estrangeiros-menor-50-h-menor-45-f">
-                                            Estrangeiros menor de 50 anos (M) /
-                                            menor de 45 anos (F) (c)
-                                        </SelectItem>
-                                        <SelectItem value="estrangeiros-maior-50-h-maior-45-f">
-                                            Estrangeiros maior de 50 anos (M) /
-                                            maior de 45 anos (F) (c)
-                                        </SelectItem>
-                                        <SelectItem value="deficientes-de-triciclos">
-                                            Deficientes de triciclos (b)
-                                        </SelectItem>
-                                        <SelectItem value="deficientes-de-cadeiras">
-                                            Deficientes de cadeiras (b)
-                                        </SelectItem>
-                                        <SelectItem value="pessoal-bim-menor-40">
-                                            Pessoal do BIM menor de 40 anos (c)
-                                        </SelectItem>
-                                        <SelectItem value="pessoal-bim-maior-40">
-                                            Pessoal do BIM maior de 40 anos (c)
-                                        </SelectItem>
-                                        <SelectItem value="pessoal-bim-reformado">
-                                            Pessoal do BIM reformado
-                                        </SelectItem>
+                                        {categories.map(({ value, label }) => (
+                                            <SelectItem
+                                                key={value}
+                                                value={value}
+                                            >
+                                                {label}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -160,15 +121,14 @@ export default function Step2({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="caminhada">
-                                            Caminhada - 7KM
-                                        </SelectItem>
-                                        <SelectItem value="dificiente">
-                                            Portadores De Deficiência - 9k
-                                        </SelectItem>
-                                        <SelectItem value="pedestre">
-                                            Corrrida Pedestre - 15km
-                                        </SelectItem>
+                                        {routes.map(({ value, label }) => (
+                                            <SelectItem
+                                                value={value}
+                                                key={value}
+                                            >
+                                                {label}
+                                            </SelectItem>
+                                        ))}
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -191,12 +151,12 @@ export default function Step2({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="small">S</SelectItem>
-                                        <SelectItem value="large">L</SelectItem>
-                                        <SelectItem value="extralarge">
+                                        <SelectItem value="Small">S</SelectItem>
+                                        <SelectItem value="Large">L</SelectItem>
+                                        <SelectItem value="ExtraLarge">
                                             XL
                                         </SelectItem>
-                                        <SelectItem value="doubleextralarge">
+                                        <SelectItem value="DoubleExtraLarge">
                                             XXL
                                         </SelectItem>
                                     </SelectContent>

@@ -29,12 +29,12 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { IconPack } from "@/components/common/IconPack";
 import { Dispatch, SetStateAction } from "react";
-import { countries, provinces, provincesEnum } from "@/utils/statics";
+import { countries, provinces } from "@/utils/statics";
 import { FormState } from ".";
 import { PhoneInput } from "@/components/ui/PhoneInput";
 
 const formSchema = z.object({
-    BI: z.string().min(9, {
+    IDCode: z.string().min(9, {
         message: "O bilhete de identidade possui no mínimo 9 caracteres",
     }),
     firstName: z.string().min(2, {
@@ -44,26 +44,41 @@ const formSchema = z.object({
     lastName: z.string().min(2, {
         message: "O nome deve conter no mínimo 2 caracteres",
     }),
-    phone: z.string({
+    phone: z.string().regex(/^\+258\s(8[2-7])\d{7}$/, {
         message: "Insira um número de telefone válido com código do país",
     }),
-    province: z.enum(["Maputo", ...provincesEnum], {
-        message: "Selecione uma província válida",
-    }),
+    province: z.enum(
+        provinces.map(({ value }) => value) as unknown as readonly [
+            string,
+            ...string[],
+        ],
+        {
+            message: "Selecione uma província válida",
+        },
+    ),
     dob: z.date({
         required_error: "Selecione uma data válida",
         message: "Selecione uma data válida",
     }),
-    country: z.string({ message: "Selecione um país válido" }),
+    country: z.enum(
+        countries.map(({ value }) => value) as unknown as readonly [
+            string,
+            ...string[],
+        ],
+        { message: "Selecione um país válido" },
+    ),
     gender: z.enum(["M", "F", "N"], {
         message: "Selecione um valor válido",
     }),
     emergencyName: z.string().min(2, {
         message: "O nome deve conter no mínimo 2 caracteres",
     }),
-    emergencyPhone: z.string().min(9, {
-        message: "O telefone deve conter 9 dígitos",
-    }),
+    emergencyPhone: z
+        .string()
+        .regex(
+            /^(8[2-7])\d{7}$/,
+            "Número de telefone inválido. Use o formato: 8X1234567",
+        ),
     emergencyFamiliarity: z.string().min(2, {
         message: "Selecione um valor válido",
     }),
@@ -98,7 +113,7 @@ export default function Step1({
                 <div className="space-y-3">
                     <FormField
                         control={form.control}
-                        name="BI"
+                        name="IDCode"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Bilhete de Identidade</FormLabel>
@@ -360,13 +375,13 @@ export default function Step1({
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="friend">
+                                        <SelectItem value="Amigo">
                                             Amigo
                                         </SelectItem>
-                                        <SelectItem value="bride">
+                                        <SelectItem value="Esposa/Esposo">
                                             Esposa/Esposo
                                         </SelectItem>
-                                        <SelectItem value="familiar">
+                                        <SelectItem value="Pais/Filhos">
                                             Pais/Filhos
                                         </SelectItem>
                                     </SelectContent>

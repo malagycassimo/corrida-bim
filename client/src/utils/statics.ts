@@ -4,21 +4,17 @@ export interface CountryCode {
 }
 
 export const provinces: { label: string; value: string }[] = [
-    { label: "Maputo", value: "maputo" },
-    { label: "Gaza", value: "gaza" },
-    { label: "Inhambane", value: "inhambane" },
-    { label: "Manica", value: "manica" },
-    { label: "Sofala", value: "sofala" },
-    { label: "Tete", value: "tete" },
-    { label: "Zambézia", value: "zambezia" },
-    { label: "Nampula", value: "nampula" },
-    { label: "Cabo Delgado", value: "cabo_delgado" },
-    { label: "Niassa", value: "niassa" },
+    { label: "Maputo", value: "Maputo" },
+    { label: "Gaza", value: "Gaza" },
+    { label: "Inhambane", value: "Inhambane" },
+    { label: "Manica", value: "Manica" },
+    { label: "Sofala", value: "Sofala" },
+    { label: "Tete", value: "Tete" },
+    { label: "Zambézia", value: "Zambézia" },
+    { label: "Nampula", value: "Nampula" },
+    { label: "Cabo Delgado", value: "Cabo Delgado" },
+    { label: "Niassa", value: "Niassa" },
 ];
-
-export const provincesEnum: string[] = provinces.map(
-    (province) => province.value,
-);
 
 export const countryCodes: CountryCode[] = [
     { code: "+93", country: "Afeganistão" },
@@ -405,4 +401,74 @@ export const countries = [
     { label: "Iémen", value: "Iémen" },
     { label: "Zâmbia", value: "Zâmbia" },
     { label: "Zimbabué", value: "Zimbabué" },
+];
+
+export const categories: { label: string; value: string }[] = [
+    {
+        label: "Caminhada",
+        value: "Caminhada",
+    },
+    {
+        label: "Juvenis",
+        value: "Juvenis",
+    },
+    {
+        label: "Populares",
+        value: "Populares",
+    },
+    {
+        label: "Veteranos 35-45 (F) & 40-50 (M) anos (a)",
+        value: "Veteranos 35-45 (F) & 40-50 (M) anos (a)",
+    },
+    {
+        label: "Veteranos maior de 45 (F) & maior de 50 (M) anos (a)",
+        value: "Veteranos maior de 45 (F) & maior de 50 (M) anos (a)",
+    },
+    {
+        label: "Federados",
+        value: "Federados",
+    },
+    {
+        label: "Estrangeiros menor de 50 anos (M) / menor de 45 anos (F) (c)",
+        value: "Estrangeiros menor de 50 anos (M) / menor de 45 anos (F) (c)",
+    },
+    {
+        label: "Estrangeiros maior de 50 anos (M) / maior de 45 anos (F) (c)",
+        value: "Estrangeiros maior de 50 anos (M) / maior de 45 anos (F) (c)",
+    },
+    {
+        label: "Deficientes de triciclos (b)",
+        value: "Deficientes de triciclos (b)",
+    },
+    {
+        label: "Deficientes de cadeiras (b)",
+        value: "Deficientes de cadeiras (b)",
+    },
+    {
+        label: "Pessoal do BIM menor de 40 anos (c)",
+        value: "Pessoal do BIM menor de 40 anos (c)",
+    },
+    {
+        label: "Pessoal do BIM maior de 40 anos (c)",
+        value: "Pessoal do BIM maior de 40 anos (c)",
+    },
+    {
+        label: "Pessoal do BIM reformado",
+        value: "Pessoal do BIM reformado",
+    },
+];
+
+export const routes: { label: string; value: string }[] = [
+    {
+        label: "Caminhada - 7KM",
+        value: "Caminhada - 7KM",
+    },
+    {
+        label: "Portadores De Deficiência - 9k",
+        value: "Portadores De Deficiência - 9k",
+    },
+    {
+        label: "Corrrida Pedestre - 15km",
+        value: "Corrrida Pedestre - 15km",
+    },
 ];

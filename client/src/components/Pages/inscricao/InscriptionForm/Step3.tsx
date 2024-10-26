@@ -29,7 +29,7 @@ export default function Step3({
 
             <div className="flex sm:flex-row flex-col justify-between space-y-3 sm:space-y-0 sm:space-x-10">
                 <div className="space-y-3 flex-1">
-                    <Field field="Bilhete de Identidade" value={step1.BI} />
+                    <Field field="Bilhete de Identidade" value={step1.IDCode} />
                     <Field
                         field="Nome completo"
                         value={`${step1.firstName} ${step1.lastName}`}
