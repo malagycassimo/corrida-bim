@@ -7,9 +7,6 @@ import {
 } from "lucide-react";
 import { MetricCard } from "./MetricCard";
 import { motion } from "framer-motion";
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 type DataItem = {
     id: string;
@@ -56,15 +53,6 @@ const item = {
 };
 
 export const Metrics = ({ data }: { data: DataItem[] }) => {
-    const { isAuthenticated } = useAuth();
-    const router = useRouter();
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            router.push("/");
-        }
-    }, [isAuthenticated, router]);
-
     return (
         <div className="p-4">
             <motion.div
