@@ -3,7 +3,7 @@ import { Metrics } from "@/components/Metrics";
 import Image from "next/image";
 
 async function getData() {
-    const res = await fetch("http://localhost:3002/participants/fetch", {
+    const res = await fetch("http://server:3002/participants/fetch", {
         cache: "no-store",
     });
     if (!res.ok) {

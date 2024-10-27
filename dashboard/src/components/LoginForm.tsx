@@ -31,12 +31,12 @@ export const LoginForm = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-3/12"
+            className="w-10/12 md:w-7/12 lg:w-4/12 xl:w-3/12"
         >
             <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
                 className="w-full flex justify-center mb-4"
             >
                 <div className="p-3 rounded-full">
