@@ -27,6 +27,8 @@ services:
         env_file: .env
         networks:
             - frontend
+        deploy:
+            replicas: 3
 
     dashboard:
         build:
@@ -37,8 +39,6 @@ services:
         env_file: .env
         networks:
             - frontend
-        ports:
-            - 5555:3000
 
     server:
         build:
@@ -56,6 +56,8 @@ services:
                 "-c",
                 "sleep 10 && bunx prisma migrate dev --skip-generate && bun run ./dist/index.js ",
             ]
+        deploy:
+            replicas: 3
 
 volumes:
     postgres_data:
