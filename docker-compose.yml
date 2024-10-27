@@ -28,6 +28,18 @@ services:
         networks:
             - frontend
 
+    dashboard:
+        build:
+            context: dashboard
+            dockerfile: Dockerfile
+        depends_on:
+            - server
+        env_file: .env
+        networks:
+            - frontend
+        ports:
+            - 5555:3000
+
     server:
         build:
             context: participants
