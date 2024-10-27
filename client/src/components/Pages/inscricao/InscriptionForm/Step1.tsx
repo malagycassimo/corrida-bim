@@ -44,7 +44,7 @@ const formSchema = z.object({
     lastName: z.string().min(2, {
         message: "O nome deve conter no mínimo 2 caracteres",
     }),
-    phone: z.string().regex(/^\+258\s(8[2-7])\d{7}$/, {
+    phone: z.string().min(9, {
         message: "Insira um número de telefone válido com código do país",
     }),
     province: z.enum(
