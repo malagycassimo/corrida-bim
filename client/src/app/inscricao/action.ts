@@ -32,3 +32,38 @@ export const submitData = async (data: Record<string, string | boolean>) => {
         console.error(e);
     }
 };
+
+export const getIsAvailable = async (): Promise<boolean> => {
+    try {
+        const response = await fetch("http://server:3002/participants/fetch", {
+            cache: "no-store",
+        });
+        const data: { route: string }[] = await response.json();
+        const filtered = data.filter(({ route }) =>
+            route.includes("Corrida Pedestre - 15km"),
+        );
+        if (filtered.length >= 1800) {
+            return false;
+        } else {
+            return true;
+        }
+    } catch (e) {
+        if (e instanceof Error) {
+            await fetch(process.env.DISCORD_URL as string, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    {
+                        source: "CLIENT",
+                        e: e.message,
+                    },
+                    null,
+                    2,
+                ),
+            });
+        }
+        return false;
+    }
+};

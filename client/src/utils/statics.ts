@@ -444,18 +444,6 @@ export const categories: { label: string; value: string }[] = [
         label: "Deficientes de cadeiras (b)",
         value: "Deficientes de cadeiras (b)",
     },
-    {
-        label: "Pessoal do BIM menor de 40 anos (c)",
-        value: "Pessoal do BIM menor de 40 anos (c)",
-    },
-    {
-        label: "Pessoal do BIM maior de 40 anos (c)",
-        value: "Pessoal do BIM maior de 40 anos (c)",
-    },
-    {
-        label: "Pessoal do BIM reformado",
-        value: "Pessoal do BIM reformado",
-    },
 ];
 
 export const routes: { label: string; value: string }[] = [
@@ -468,7 +456,7 @@ export const routes: { label: string; value: string }[] = [
         value: "Portadores De Deficiência - 9k",
     },
     {
-        label: "Corrrida Pedestre - 15km",
-        value: "Corrrida Pedestre - 15km",
+        label: "Corrida Pedestre - 15km",
+        value: "Corrida Pedestre - 15km",
     },
 ];

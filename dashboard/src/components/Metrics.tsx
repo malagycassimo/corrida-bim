@@ -75,12 +75,12 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                         title="Total de inscritos 15 Km"
                         value={
                             data.filter(({ route }) =>
-                                route.includes("Corrrida Pedestre - 15km"),
+                                route.includes("Corrida Pedestre - 15km"),
                             ).length
                         }
                         change={`${
                             (data.filter(({ route }) =>
-                                route.includes("Corrrida Pedestre - 15km"),
+                                route.includes("Corrida Pedestre - 15km"),
                             ).length /
                                 data.length) *
                             100

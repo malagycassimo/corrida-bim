@@ -23,6 +23,7 @@ import { FormState } from ".";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { categories, routes } from "@/utils/statics";
+import { getIsAvailable } from "@/app/inscricao/action";
 
 const formSchema = z.object({
     category: z.enum(
@@ -70,24 +71,8 @@ export default function Step2({
 
     useEffect(() => {
         (async () => {
-            try {
-                const response = await fetch(
-                    "http://server:3002/participants/fetch",
-                    { cache: "no-store" },
-                );
-                const data: { route: string }[] = await response.json();
-                const filtered = data.filter(({ route }) =>
-                    route.includes("Corrrida Pedestre - 15km"),
-                );
-                if (filtered.length >= 1800) {
-                    setAvailable(false);
-                } else {
-                    setAvailable(true);
-                }
-            } catch (_error) {
-                setAvailable(false);
-                console.error(_error);
-            }
+            const isAvailable = await getIsAvailable();
+            setAvailable(isAvailable);
         })();
     }, []);
 
@@ -150,7 +135,7 @@ export default function Step2({
                                                 key={value}
                                                 disabled={
                                                     value ===
-                                                        "Corrrida Pedestre - 15km" &&
+                                                        "Corrida Pedestre - 15km" &&
                                                     !available
                                                 }
                                             >

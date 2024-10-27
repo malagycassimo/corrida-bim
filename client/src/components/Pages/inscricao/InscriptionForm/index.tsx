@@ -78,7 +78,7 @@ export default function InscriptionForm() {
                 {formState.currentStep === 2 && (
                     <Step3 setState={setFormState} state={formState} />
                 )}
-                {formState.currentStep === 3 && <Step4 />}
+                {formState.currentStep === 3 && <Step4 state={formState} />}
             </div>
         </AnimatedComponent>
     );
