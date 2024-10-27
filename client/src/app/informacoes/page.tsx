@@ -1,3 +1,4 @@
+"use client";
 import Accordion from "@/components/common/Accordion";
 import { landingPageAccordion } from "@/components/common/Accordion/LandingPage";
 import AnimatedComponent from "@/components/common/AnimatedComponent";
@@ -5,8 +6,13 @@ import { IconPack } from "@/components/common/IconPack";
 import { partnersImages } from "@/utils/assets";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import Loading from "../loading";
 
 export default function Informacoes() {
+    const [loaded, setLoaded] = useState(false);
+
+    if (!loaded) <Loading />;
     return (
         <main>
             {/* Hero section */}
@@ -17,6 +23,7 @@ export default function Informacoes() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="mx-auto object-cover -z-50"
+                    onLoad={() => setLoaded(true)}
                 />
 
                 <div className="text-white container mx-auto">

@@ -1,8 +1,14 @@
+"use client";
 import AnimatedComponent from "@/components/common/AnimatedComponent";
 import InscriptionForm from "@/components/Pages/inscricao/InscriptionForm";
 import Image from "next/image";
+import { useState } from "react";
+import Loading from "../loading";
 
 export default function Inscricao() {
+    const [loaded, setLoaded] = useState(false);
+
+    if (!loaded) <Loading />;
     return (
         <main className="min-h-svh">
             {/* Hero section */}
@@ -12,6 +18,7 @@ export default function Inscricao() {
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
+                    onLoad={() => setLoaded(true)}
                 />
 
                 <div className="text-white container mx-auto">

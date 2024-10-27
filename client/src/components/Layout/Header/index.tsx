@@ -13,7 +13,7 @@ export default function Header() {
                     <Link href={"/"}>
                         <Image
                             alt="Millennium bim"
-                            src={"assets/brand/brand-white.svg"}
+                            src={"/assets/brand/brand-white.svg"}
                             width={103}
                             height={113}
                             className="lg:block hidden"

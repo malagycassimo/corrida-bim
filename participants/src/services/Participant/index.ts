@@ -8,7 +8,7 @@ const ParticipantServ = (
 ): ParticipantService => {
     const store = async (participant: Participant.ParticipantRequest) => {
         const particp = await Participants.store(participant);
-        await Mail.sendEmail(MailDefaults.WELCOME(participant));
+        await Mail.sendEmail(MailDefaults.WELCOME(particp));
         return particp;
     };
     const get = async (id: string) => {
