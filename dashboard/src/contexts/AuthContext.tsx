@@ -17,7 +17,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const login = async (password: string): Promise<boolean> => {
         try {
-            const CORRECT_PASSWORD = "moz2devz";
+            const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD;
 
             if (password === CORRECT_PASSWORD) {
                 setIsAuthenticated(true);
