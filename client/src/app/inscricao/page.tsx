@@ -37,6 +37,7 @@ export default function Inscricao() {
                     src={"/assets/images/inscricao-hero-m.webp"}
                     fill
                     className="object-cover"
+                    onLoad={() => setLoaded(true)}
                 />
                 <div className="absolute text-center text-white bg-primary bottom-0 right-0 left-0 py-4 text-lg font-semibold">
                     Inscrição

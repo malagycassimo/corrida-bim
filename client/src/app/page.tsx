@@ -61,6 +61,7 @@ export default function Home() {
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
+                    onLoad={() => setLoaded(true)}
                 />
                 <AnimatedComponent>
                     <div className="py-9 text-center px-6 text-white bg-gradient-to-br from-primary to-secondary mx-4 sm:mx-auto max-w-xl rounded-xl -translate-y-1/2">
