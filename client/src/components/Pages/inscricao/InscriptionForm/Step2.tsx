@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 
 import { IconPack } from "@/components/common/IconPack";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FormState } from ".";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
@@ -52,6 +52,7 @@ export default function Step2({
     state: FormState;
     setState: Dispatch<SetStateAction<FormState>>;
 }) {
+    const [available, setAvailable] = useState(false);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: state.step2 as unknown as z.infer<typeof formSchema>,
@@ -61,12 +62,34 @@ export default function Step2({
             return { ...state, step2: values, currentStep: 2 };
         });
     }
-
     function onPrevious() {
         setState((state) => {
             return { ...state, currentStep: state.currentStep - 1 };
         });
     }
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await fetch(
+                    "http://server:3002/participants/fetch",
+                    { cache: "no-store" },
+                );
+                const data: { route: string }[] = await response.json();
+                const filtered = data.filter(({ route }) =>
+                    route.includes("Corrrida Pedestre - 15km"),
+                );
+                if (filtered.length >= 1800) {
+                    setAvailable(false);
+                } else {
+                    setAvailable(true);
+                }
+            } catch (_error) {
+                setAvailable(false);
+                console.error(_error);
+            }
+        })();
+    }, []);
 
     return (
         <Form {...form}>
@@ -125,6 +148,11 @@ export default function Step2({
                                             <SelectItem
                                                 value={value}
                                                 key={value}
+                                                disabled={
+                                                    value ===
+                                                        "Corrrida Pedestre - 15km" &&
+                                                    !available
+                                                }
                                             >
                                                 {label}
                                             </SelectItem>

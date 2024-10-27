@@ -251,7 +251,7 @@ export default function DataTable({
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
             >
-                Showing {filteredData.length} of {data.length} participants
+                Visualizando {filteredData.length} de {data.length} inscritos
             </motion.div>
         </div>
     );
