@@ -18,7 +18,7 @@ const OPTIONS: EmblaOptionsType = { loop: true };
 export default function Home() {
     const [loaded, setLoaded] = useState(false);
 
-    if (!loaded) <Loading />;
+    if (!loaded) return <Loading />;
 
     return (
         <main>

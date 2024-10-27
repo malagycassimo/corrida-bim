@@ -8,7 +8,7 @@ import Loading from "../loading";
 export default function Inscricao() {
     const [loaded, setLoaded] = useState(false);
 
-    if (!loaded) <Loading />;
+    if (!loaded) return <Loading />;
     return (
         <main className="min-h-svh">
             {/* Hero section */}
