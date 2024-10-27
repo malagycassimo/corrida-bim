@@ -24,6 +24,9 @@ export default async function Home() {
                 height={75.78}
                 className="mx-auto my-5"
             />
+            <h1 className="text-2xl my-4 text-brand font-bold mx-3">
+                Dashboard de inscrições
+            </h1>
             <Metrics data={data} />
             <Table initialData={data} />
         </main>
