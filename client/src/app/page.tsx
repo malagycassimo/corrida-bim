@@ -1,3 +1,4 @@
+"use client";
 import Accordion from "@/components/common/Accordion";
 import { landingPageAccordion } from "@/components/common/Accordion/LandingPage";
 import AnimatedComponent from "@/components/common/AnimatedComponent";
@@ -9,12 +10,18 @@ import { carouselImages, partnersImages } from "@/utils/assets";
 import { EmblaOptionsType } from "embla-carousel";
 import Image from "next/image";
 import Link from "next/link";
+import Loading from "./loading";
+import { useState } from "react";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 
 export default function Home() {
+    const [loaded, setLoaded] = useState(false);
+
     return (
         <main>
+            {!loaded && <Loading />}
+
             {/* Hero section */}
             <section className="hidden relative h-[750px] lg:flex items-center">
                 <Image
@@ -22,6 +29,7 @@ export default function Home() {
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
+                    onLoad={() => setLoaded(true)}
                 />
 
                 <div className="text-white container mx-auto">
