@@ -9,10 +9,10 @@ datasource db {
 
 model Participant {
     id                  String   @id @default(uuid())
-    IDCode                  String   @unique
+    IDCode              String   @unique
     firstName           String
     lastName            String
-    email               String   @unique
+    email               String
     phone               String
     province            String
     dob                 String
