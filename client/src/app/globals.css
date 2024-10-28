@@ -17,3 +17,8 @@
 * {
     scroll-behavior: smooth;
 }
+
+select.rdp-dropdown {
+    background: white !important;
+    outline: none;
+}
