@@ -9,6 +9,9 @@ const font = Montserrat({
 export const metadata: Metadata = {
     title: "15a Corrida Millennium BIM",
     description: "Millennium BIM, aqui consigo!",
+    openGraph: {
+        images: ["https://corridamillenniumbim.co.mz/assets/brand/cover.jpg"],
+    },
 };
 
 export default function RootLayout({
