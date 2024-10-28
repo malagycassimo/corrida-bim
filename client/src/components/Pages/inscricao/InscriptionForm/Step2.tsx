@@ -167,6 +167,9 @@ export default function Step2({
                                     </FormControl>
                                     <SelectContent>
                                         <SelectItem value="Small">S</SelectItem>
+                                        <SelectItem value="Medium">
+                                            M
+                                        </SelectItem>
                                         <SelectItem value="Large">L</SelectItem>
                                         <SelectItem value="ExtraLarge">
                                             XL

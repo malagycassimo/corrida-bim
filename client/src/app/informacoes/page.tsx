@@ -22,7 +22,6 @@ export default function Informacoes() {
                     src={"/assets/images/info-hero.webp"}
                     alt="Corrida Millennium bim"
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
                 />

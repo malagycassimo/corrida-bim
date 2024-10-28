@@ -39,7 +39,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         ),
     },
     {
-        title: "Retirada dos Kits",
+        title: "Aquisição dos Kits",
         content: (
             <div>
                 <p>
