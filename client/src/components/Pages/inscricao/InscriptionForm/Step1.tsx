@@ -73,12 +73,9 @@ const formSchema = z.object({
     emergencyName: z.string().min(2, {
         message: "O nome deve conter no mínimo 2 caracteres",
     }),
-    emergencyPhone: z
-        .string()
-        .regex(
-            /^(8[2-7])\d{7}$/,
-            "Número de telefone inválido. Use o formato: 8X1234567",
-        ),
+    emergencyPhone: z.string().min(9, {
+        message: "Insira um número de telefone válido com código do país",
+    }),
     emergencyFamiliarity: z.string().min(2, {
         message: "Selecione um valor válido",
     }),
@@ -286,6 +283,21 @@ export default function Step1({
                                                 date < new Date("1900-01-01")
                                             }
                                             initialFocus
+                                            captionLayout="dropdown-buttons" // Adiciona dropdowns para mês e ano
+                                            fromYear={1900}
+                                            toYear={2010}
+                                            classNames={{
+                                                caption_dropdowns: "space-y-2",
+                                                dropdown_month:
+                                                    "relative p-2 flex rounded-md border border-gray-300",
+                                                dropdown_year:
+                                                    "relative p-2 rounded-md border border-gray-300",
+                                                caption_label: "hidden",
+                                                day_selected:
+                                                    "bg-primaryLightest",
+                                                nav_button_next: "hidden",
+                                                nav_button: "hidden",
+                                            }}
                                         />
                                     </PopoverContent>
                                 </Popover>
@@ -342,23 +354,7 @@ export default function Step1({
                             </FormItem>
                         )}
                     />
-                    <FormField
-                        control={form.control}
-                        name="emergencyPhone"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Telefone</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        type="text"
-                                        placeholder="Ex: 841234567"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                    <PhoneInput control={form.control} name="emergencyPhone" />
                     <FormField
                         control={form.control}
                         name="emergencyFamiliarity"
