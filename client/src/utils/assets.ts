@@ -89,7 +89,7 @@ export const partnersImages: CarouselImageProps[] = [
     },
     {
         alt: "Associação de Atletismo da Cidade de Maputo",
-        src: "/assets/images/partner-4.png",
+        src: "/assets/images/partner-4.jpg",
     },
 
  
