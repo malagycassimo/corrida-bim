@@ -22,7 +22,7 @@ export default function Step4({ state: { step2 } }: { state: FormState }) {
             </h2>
             <p className="text-center text-zinc-600">
                 {allowed
-                    ? "Agradecemos por se inscrever na 15ª Corrida Millennium bim! Sua participação é muito importante para nós e estamos animados para vê-lo(a) no dia 30 de Novembro."
+                    ? "Agradecemos por se inscrever na 15ª Corrida Millennium bim! Sua participação é muito importante para nós e estamos animados para vê-lo(a) no dia 30 de Novembro. Verifique sua caixa de entrada ou spam para o e-mail de confirmação."
                     : "As categorias de Portadores de Deficiências, Juvenis e Federados deverão inscrever-se na Associação de Atletismo da Cidade de Maputo, sita no Parque dos Continuadores, entre os dias 28 de Outubro e 8 de Novembro de 2024."}
             </p>
         </div>
