@@ -9,7 +9,18 @@ const prismaDatabase = (): IDatabase => {
     console.log("Conexão com banco de dados estabelecida");
     return {
         store: async (participant: Participant.ParticipantRequest) => {
-            return await prisma.participant.create({ data: participant });
+            try {
+                return await prisma.participant.create({ data: participant });
+            } catch (error) {
+                if (error instanceof Error && !(error instanceof ErrorImpl)) {
+                    throw new ErrorImpl(
+                        "Erro ao criar participante",
+                        500,
+                        error.message,
+                    );
+                }
+                throw error;
+            }
         },
         get: async (id: string) => {
             try {
