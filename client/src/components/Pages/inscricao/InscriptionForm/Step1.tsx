@@ -17,21 +17,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import { format } from "date-fns";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
 import { IconPack } from "@/components/common/IconPack";
 import { Dispatch, SetStateAction } from "react";
 import { countries, provinces } from "@/utils/statics";
 import { FormState } from ".";
 import { PhoneInput } from "@/components/ui/PhoneInput";
+import CustomCalendar from "@/components/common/CustomCalendar";
 
 const formSchema = z.object({
     IDCode: z.string().min(9, {
@@ -217,7 +208,7 @@ export default function Step1({
                                     <FormLabel>Província</FormLabel>
                                     <Select
                                         onValueChange={field.onChange}
-                                        defaultValue="maputo"
+                                        defaultValue="Maputo"
                                     >
                                         <FormControl>
                                             <SelectTrigger>
@@ -245,65 +236,7 @@ export default function Step1({
                     <FormField
                         control={form.control}
                         name="dob"
-                        render={({ field }) => (
-                            <FormItem className="flex flex-col">
-                                <FormLabel>Data de nascimento</FormLabel>
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <FormControl>
-                                            <Button
-                                                variant={"outline"}
-                                                className={cn(
-                                                    "w-[240px] pl-3 text-left font-normal",
-                                                    !field.value &&
-                                                        "text-muted-foreground",
-                                                )}
-                                            >
-                                                {field.value ? (
-                                                    format(field.value, "PPP")
-                                                ) : (
-                                                    <span>
-                                                        Seleciona uma data
-                                                    </span>
-                                                )}
-                                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                            </Button>
-                                        </FormControl>
-                                    </PopoverTrigger>
-                                    <PopoverContent
-                                        className="w-auto p-0"
-                                        align="start"
-                                    >
-                                        <Calendar
-                                            mode="single"
-                                            selected={field.value}
-                                            onSelect={field.onChange}
-                                            disabled={(date) =>
-                                                date > new Date() ||
-                                                date < new Date("1900-01-01")
-                                            }
-                                            initialFocus
-                                            captionLayout="dropdown-buttons" // Adiciona dropdowns para mês e ano
-                                            fromYear={1900}
-                                            toYear={2010}
-                                            classNames={{
-                                                caption_dropdowns: "space-y-2",
-                                                dropdown_month:
-                                                    "relative p-2 flex rounded-md border border-gray-300",
-                                                dropdown_year:
-                                                    "relative p-2 rounded-md border border-gray-300",
-                                                caption_label: "hidden",
-                                                day_selected:
-                                                    "bg-primaryLightest",
-                                                nav_button_next: "hidden",
-                                                nav_button: "hidden",
-                                            }}
-                                        />
-                                    </PopoverContent>
-                                </Popover>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                        render={({ field }) => <CustomCalendar field={field} />}
                     />
                     <FormField
                         control={form.control}

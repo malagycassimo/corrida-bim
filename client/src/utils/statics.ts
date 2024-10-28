@@ -448,12 +448,12 @@ export const categories: { label: string; value: string }[] = [
 
 export const routes: { label: string; value: string }[] = [
     {
-        label: "Caminhada - 7KM",
-        value: "Caminhada - 7KM",
+        label: "Caminhada - 7km",
+        value: "Caminhada - 7km",
     },
     {
-        label: "Portadores De Deficiência - 9k",
-        value: "Portadores De Deficiência - 9k",
+        label: "Portadores De Deficiência - 9km",
+        value: "Portadores De Deficiência - 9km",
     },
     {
         label: "Corrida Pedestre - 15km",
