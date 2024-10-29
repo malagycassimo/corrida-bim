@@ -95,14 +95,14 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                         value={
                             data.filter(({ route }) =>
                                 route.includes(
-                                    "Portadores De Deficiência - 9k",
+                                    "Portadores De Deficiência - 9km",
                                 ),
                             ).length
                         }
                         change={`${
                             (data.filter(({ route }) =>
                                 route.includes(
-                                    "Portadores De Deficiência - 9k",
+                                    "Portadores De Deficiência - 9km",
                                 ),
                             ).length /
                                 data.length) *
@@ -119,12 +119,12 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                         title="Total de inscritos para caminhada"
                         value={
                             data.filter(({ route }) =>
-                                route.includes("Caminhada - 7KM"),
+                                route.includes("Caminhada - 7km"),
                             ).length
                         }
                         change={`${
                             (data.filter(({ route }) =>
-                                route.includes("Caminhada - 7KM"),
+                                route.includes("Caminhada - 7km"),
                             ).length /
                                 data.length) *
                             100
