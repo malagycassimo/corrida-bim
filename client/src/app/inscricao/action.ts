@@ -1,5 +1,37 @@
 "use server";
 
+interface Participant {
+    id: string;
+    IDCode: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    province: string;
+    dob: string;
+    country: string;
+    gender: string;
+    emergencyName: string;
+    emergencyPhone: string;
+    emergencyFamiliarity: string;
+    category: string;
+    route: string;
+    shirt: string;
+}
+
+export interface PedestrianRaceConstraints {
+    populares: number;
+    veteranosI: number;
+    veteranosII: number;
+    estrangeiros: number;
+    total: number;
+}
+
+export interface AvailabilityResponse {
+    codes: string[];
+    constraints: PedestrianRaceConstraints;
+}
+
 export const submitData = async (data: Record<string, string | boolean>) => {
     const { accept, ...rest } = data;
     try {
@@ -33,37 +65,58 @@ export const submitData = async (data: Record<string, string | boolean>) => {
     }
 };
 
-export const getIsAvailable = async (): Promise<boolean> => {
+export async function getIsAvailable(): Promise<AvailabilityResponse> {
     try {
-        const response = await fetch("http://server:3002/participants/fetch", {
-            cache: "no-store",
-        });
-        const data: { route: string }[] = await response.json();
-        const filtered = data.filter(({ route }) =>
-            route.includes("Corrida Pedestre - 15km"),
+        const response = await fetch("http://server:3002/participants/fetch");
+        const data: Participant[] = await response.json();
+
+        const codes = data.map((participant) => participant.IDCode);
+
+        const pedestrianRace15km = data.filter(
+            (participant) => participant.route === "Corrida Pedestre - 15km",
         );
-        if (filtered.length >= 1800) {
-            return false;
-        } else {
-            return true;
-        }
-    } catch (e) {
-        if (e instanceof Error) {
-            await fetch(process.env.DISCORD_URL as string, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(
-                    {
-                        source: "CLIENT",
-                        e: e.message,
-                    },
-                    null,
-                    2,
-                ),
-            });
-        }
-        return false;
+
+        const constraints = {
+            populares: pedestrianRace15km.filter(
+                (p) => p.category === "Populares",
+            ).length,
+            veteranosI: pedestrianRace15km.filter(
+                (p) =>
+                    p.category === "Veteranos 35-45 (F) & 40-50 (M) anos (a)",
+            ).length,
+            veteranosII: pedestrianRace15km.filter(
+                (p) =>
+                    p.category ===
+                    "Veteranos maior de 45 (F) & maior de 50 (M) anos (a)",
+            ).length,
+            estrangeiros: pedestrianRace15km.filter((p) =>
+                p.category.includes("Estrangeiros"),
+            ).length,
+            get total() {
+                return (
+                    this.populares +
+                    this.veteranosI +
+                    this.veteranosII +
+                    this.estrangeiros
+                );
+            },
+        };
+
+        return {
+            codes,
+            constraints,
+        };
+    } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+        return {
+            codes: [],
+            constraints: {
+                populares: 0,
+                veteranosI: 0,
+                veteranosII: 0,
+                estrangeiros: 0,
+                total: 0,
+            },
+        };
     }
-};
+}

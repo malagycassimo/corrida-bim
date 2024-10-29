@@ -79,11 +79,12 @@ export default function CustomCalendar({ field }: { field: FieldType }) {
                             labelYearDropdown: () => "Ano",
                         }}
                         classNames={{
-                            caption_dropdowns: "space-y-2",
+                            caption_dropdowns:
+                                "space-y-2 flex flex-col-reverse",
                             dropdown_month:
-                                "relative p-2 flex rounded-md border border-gray-300",
+                                "relative p-2 gap-2 flex rounded-md border border-gray-300",
                             dropdown_year:
-                                "relative p-2 rounded-md border border-gray-300",
+                                "relative p-2 flex gap-2 rounded-md border border-gray-300",
                             caption_label: "hidden",
                             day_selected: "bg-primaryLightest",
                             nav_button_next: "hidden",

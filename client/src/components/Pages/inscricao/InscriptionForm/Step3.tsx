@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import { FormState } from ".";
 import { IconPack } from "@/components/common/IconPack";
 import { submitData } from "@/app/inscricao/action";
@@ -10,13 +10,21 @@ export default function Step3({
     state: FormState;
     setState: Dispatch<SetStateAction<FormState>>;
 }) {
+    const allowed = useMemo(() => {
+        return (
+            !step2.category.includes("Deficientes") &&
+            !step2.category.includes("Juvenis") &&
+            !step2.category.includes("Federados")
+        );
+    }, [step2]);
+
     function onPrevious() {
         setState((state) => {
             return { ...state, currentStep: state.currentStep - 1 };
         });
     }
     function onNext() {
-        submitData({ ...step1, ...step2 });
+        if (allowed) submitData({ ...step1, ...step2 });
         setState((state) => {
             return { ...state, currentStep: state.currentStep + 1 };
         });

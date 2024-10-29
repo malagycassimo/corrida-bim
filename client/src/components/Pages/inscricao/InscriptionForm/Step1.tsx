@@ -23,11 +23,21 @@ import { countries, provinces } from "@/utils/statics";
 import { FormState } from ".";
 import { PhoneInput } from "@/components/ui/PhoneInput";
 import CustomCalendar from "@/components/common/CustomCalendar";
+import { getIsAvailable } from "@/app/inscricao/action";
 
 const formSchema = z.object({
-    IDCode: z.string().min(9, {
-        message: "O bilhete de identidade possui no mínimo 9 caracteres",
-    }),
+    IDCode: z
+        .string()
+        .min(9, {
+            message: "O bilhete de identidade possui no mínimo 9 caracteres",
+        })
+        .refine(
+            async (val) => {
+                const response = await getIsAvailable();
+                return !response.codes.includes(val);
+            },
+            { message: "Bilhete de identidade já registrado" },
+        ),
     firstName: z.string().min(2, {
         message: "O nome deve conter no mínimo 2 caracteres",
     }),
@@ -158,7 +168,7 @@ export default function Step1({
                                 <FormControl>
                                     <Input
                                         type="email"
-                                        placeholder="Ex: teuemail@gmaill.com"
+                                        placeholder="Ex: teuemail@exemplo.com"
                                         {...field}
                                     />
                                 </FormControl>

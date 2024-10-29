@@ -18,12 +18,12 @@ import {
 } from "@/components/ui/select";
 
 import { IconPack } from "@/components/common/IconPack";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { FormState } from ".";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { categories, routes } from "@/utils/statics";
-import { getIsAvailable } from "@/app/inscricao/action";
+import { isAvailable } from "@/utils/helpers";
 
 const formSchema = z.object({
     category: z.enum(
@@ -55,7 +55,6 @@ export default function Step2({
     state: FormState;
     setState: Dispatch<SetStateAction<FormState>>;
 }) {
-    const [available, setAvailable] = useState(false);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: state.step2 as unknown as z.infer<typeof formSchema>,
@@ -70,13 +69,6 @@ export default function Step2({
             return { ...state, currentStep: state.currentStep - 1 };
         });
     }
-
-    useEffect(() => {
-        (async () => {
-            const isAvailable = await getIsAvailable();
-            setAvailable(isAvailable);
-        })();
-    }, []);
 
     return (
         <Form {...form}>
@@ -105,8 +97,15 @@ export default function Step2({
                                             <SelectItem
                                                 key={value}
                                                 value={value}
+                                                disabled={
+                                                    !isAvailable(
+                                                        value,
+                                                        state.availability
+                                                            .constraints,
+                                                    )
+                                                }
                                             >
-                                                {label}
+                                                {`${label} ${isAvailable(value, state.availability.constraints) ? "" : "(Esgotado)"}`}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
@@ -135,11 +134,6 @@ export default function Step2({
                                             <SelectItem
                                                 value={value}
                                                 key={value}
-                                                disabled={
-                                                    value ===
-                                                        "Corrida Pedestre - 15km" &&
-                                                    !available
-                                                }
                                             >
                                                 {label}
                                             </SelectItem>
