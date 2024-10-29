@@ -9,7 +9,8 @@ export default function Step4({ state: { step2 } }: { state: FormState }) {
         return (
             !step2.category.includes("Deficientes") &&
             !step2.category.includes("Juvenis") &&
-            !step2.category.includes("Federados")
+            !step2.category.includes("Federados") &&
+            !step2.category.includes("Thomas")
         );
     }, [step2]);
 

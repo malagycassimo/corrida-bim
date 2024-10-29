@@ -14,7 +14,8 @@ export default function Step3({
         return (
             !step2.category.includes("Deficientes") &&
             !step2.category.includes("Juvenis") &&
-            !step2.category.includes("Federados")
+            !step2.category.includes("Federados") &&
+            !step2.category.includes("Thomas")
         );
     }, [step2]);
 

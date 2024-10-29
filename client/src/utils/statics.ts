@@ -444,6 +444,10 @@ export const categories: { label: string; value: string }[] = [
         label: "Deficientes de cadeiras (b)",
         value: "Deficientes de cadeiras (b)",
     },
+    {
+        label: "Thomas",
+        value: "Thomas",
+    },
 ];
 
 export const routes: { label: string; value: string }[] = [
