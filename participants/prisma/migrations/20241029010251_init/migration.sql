@@ -24,7 +24,4 @@ CREATE TABLE "Participant" (
 CREATE UNIQUE INDEX "Participant_IDCode_key" ON "Participant"("IDCode");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Participant_email_key" ON "Participant"("email");
-
--- CreateIndex
 CREATE INDEX "Participant_IDCode_email_phone_idx" ON "Participant"("IDCode", "email", "phone");

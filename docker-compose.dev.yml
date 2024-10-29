@@ -6,6 +6,8 @@ services:
             - postgres_data:/var/lib/postgresql/data
         networks:
             - backend
+        ports:
+            - 5432:5432
 
     dashboard:
         build:
