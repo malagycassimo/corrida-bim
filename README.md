@@ -29,11 +29,11 @@ Para rodar o projeto localmente utilizando Docker e Docker Compose, siga os pass
    cd repo-corrida-bim
    ```
 
-2. Certifique-se de que você tem o **Docker** e o **Docker Compose** instalados na sua máquina.
+2. Certifique-se de que você tem o **Docker**, o **Make** e o **Docker Compose** instalados na sua máquina.
 
 3. Inicie os containers usando o comando:
    ```bash
-   docker-compose up --build
+   make up COMPOSE_FILE=docker-compose.dev.yml
    ```
 
 4. Acesse os serviços:
@@ -50,23 +50,24 @@ Para rodar o projeto localmente utilizando Docker e Docker Compose, siga os pass
 ├── participants/       # Serviço de gestão de participantes
 ├── dashboard/          # Painel administrativo (Frontend)
 ├── client/             # Página inicial e formulário de inscrição (Frontend)
+├── .env.example        # Arquivo exemplo para variáveis de ambiente
+├── Makefile            # Arquivo contendo instruções Make
 ├── docker-compose.yml  # Arquivo de configuração do Docker Compose
 └── README.md           # Este arquivo
 ```
 
 ## ⚙️ Comandos Úteis
 
+### Verificar comandos
+
+```bash
+make help
+```
+
 ### Derrubar os containers
 
 ```bash
-docker-compose down
-```
-
-### Atualizar as dependências de um serviço
-
-```bash
-cd participants
-bun install
+make down
 ```
 
 ## 📊 Monitoramento
@@ -74,7 +75,7 @@ bun install
 Para monitorar os logs dos containers em tempo real, você pode usar o seguinte comando:
 
 ```bash
-docker-compose logs -f
+make logs
 ```
 
 ## 📄 Licença

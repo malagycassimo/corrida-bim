@@ -6,8 +6,18 @@ services:
             - postgres_data:/var/lib/postgresql/data
         networks:
             - backend
+
+    client:
+        build:
+            context: client
+            dockerfile: Dockerfile
+        depends_on:
+            - server
+        env_file: .env
+        networks:
+            - frontend
         ports:
-            - 5432:5432
+            - 3000:3000
 
     dashboard:
         build:
@@ -19,7 +29,8 @@ services:
         networks:
             - frontend
         ports:
-            - 5555:3000
+            - 3001:3000
+
     server:
         build:
             context: participants
@@ -36,8 +47,7 @@ services:
                 "-c",
                 "sleep 10 && bunx prisma migrate dev --skip-generate && bun run ./dist/index.js ",
             ]
-        ports:
-            - 3002:3002
+
 volumes:
     postgres_data:
 networks:
