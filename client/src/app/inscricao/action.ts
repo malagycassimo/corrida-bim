@@ -33,7 +33,7 @@ export interface AvailabilityResponse {
 }
 
 export const submitData = async (data: Record<string, string | boolean>) => {
-    const { accept, ...rest } = data;
+    const { accept, acceptterms, ...rest } = data;
     try {
         await fetch("http://server:3002/participants/store", {
             method: "POST",
@@ -55,6 +55,7 @@ export const submitData = async (data: Record<string, string | boolean>) => {
                         data,
                         e: e.message,
                         accept,
+                        acceptterms,
                     },
                     null,
                     2,

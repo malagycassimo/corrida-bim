@@ -28,6 +28,7 @@ interface Step2Data {
     route: string;
     shirt: string;
     accept: boolean;
+    acceptterms: boolean;
 }
 
 export interface FormState {
@@ -65,6 +66,7 @@ const initialFormState: FormState = {
         shirt: "",
         route: "",
         accept: false,
+        acceptterms: false,
     },
     availability: {
         codes: [],

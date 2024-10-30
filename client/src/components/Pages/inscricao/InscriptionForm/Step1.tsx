@@ -303,7 +303,7 @@ export default function Step1({
                         name="emergencyFamiliarity"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Província</FormLabel>
+                                <FormLabel>Grau de parentesco</FormLabel>
                                 <Select
                                     onValueChange={field.onChange}
                                     defaultValue={field.value}

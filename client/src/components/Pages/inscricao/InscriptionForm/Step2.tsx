@@ -40,10 +40,13 @@ const formSchema = z.object({
             string,
             ...string[],
         ],
-        { message: "Selecione uma rota válida" },
+        { message: "Selecione um percurso válida" },
     ),
     shirt: z.string(),
     accept: z.boolean().refine((val) => val === true, {
+        message: "Concorde com o regulamento para prosseguir",
+    }),
+    acceptterms: z.boolean().refine((val) => val === true, {
         message: "Concorde com os termos para prosseguir",
     }),
 });
@@ -194,9 +197,41 @@ export default function Step2({
                                             Li e concordo com o{" "}
                                             <Link
                                                 className="text-primary cursor-pointer"
-                                                href={"/assets/regulamento.pdf"}
+                                                href={
+                                                    "/assets/docs/Regulamento - 15ª Corrida Millennium bim.docx"
+                                                }
                                             >
-                                                regulamento
+                                                Regulamento
+                                            </Link>
+                                        </FormLabel>
+                                    </div>
+                                </div>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="acceptterms"
+                        render={({ field }) => (
+                            <FormItem>
+                                <div className="flex flex-row space-x-2 items-start">
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            Li e concordo com o{" "}
+                                            <Link
+                                                className="text-primary cursor-pointer"
+                                                href={
+                                                    "/assets/docs/Termo de Responsabilidade.docx"
+                                                }
+                                            >
+                                                Termo de Responsabilidade
                                             </Link>
                                         </FormLabel>
                                     </div>

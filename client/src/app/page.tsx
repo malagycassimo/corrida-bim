@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Loading from "./loading";
 import { useState } from "react";
+import { shuffleArray } from "@/utils/helpers";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 
@@ -25,11 +26,12 @@ export default function Home() {
             {/* Hero section */}
             <section className="hidden relative h-[750px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/hero.webp"}
+                    src={"/assets/images/BIM-MARATONA-COVER.png"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
+                    quality={100}
                 />
 
                 <div className="text-white container mx-auto">
@@ -57,11 +59,12 @@ export default function Home() {
             </section>
             <section className="lg:hidden mt-[295px] relative h-[752px]">
                 <Image
-                    src={"/assets/images/hero-m.webp"}
+                    src={"/assets/images/BIM-MARATONA-COVER-MOBILE.png"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
+                    quality={100}
                 />
                 <AnimatedComponent>
                     <div className="py-9 text-center px-6 text-white bg-gradient-to-br from-primary to-secondary mx-4 sm:mx-auto max-w-xl rounded-xl -translate-y-1/2">
@@ -156,7 +159,10 @@ export default function Home() {
                     Galeria
                 </h1>
                 <div className="space-y-5">
-                    <Carousel slides={carouselImages} options={OPTIONS} />
+                    <Carousel
+                        slides={shuffleArray(carouselImages)}
+                        options={OPTIONS}
+                    />
                     <Carousel
                         slides={carouselImages}
                         options={OPTIONS}

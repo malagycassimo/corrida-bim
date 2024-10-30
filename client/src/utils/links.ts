@@ -20,18 +20,18 @@ export const links: Link[] = [
 export const socials: Link[] = [
     {
         label: "Facebook",
-        href: "#",
+        href: "https://www.facebook.com/BancoMillenniumbim/?id=com.ebankit.android.millenniumbim&hl=pt_PT",
     },
     {
         label: "Instagram",
-        href: "#",
+        href: "https://www.instagram.com/millennium.bim/",
     },
     {
         label: "Linkedin",
-        href: "#",
+        href: "https://www.linkedin.com/company/millenniumbim/",
     },
     {
         label: "YouTube",
-        href: "#",
+        href: "https://www.youtube.com/channel/UCS-mrXPuizjTpXhIxtGQogw",
     },
 ];

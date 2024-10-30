@@ -27,7 +27,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     As categorias de Portadores de Deficiências, Juvenis e
                     Federados devem inscrever-se na Associação de Atletismo da
                     Cidade de Maputo, localizada no Parque dos Continuadores,
-                    entre 28 de Outubro e 8 de Novembro de 2024.
+                    entre 1 e 15 de Novembro.
                 </p>
                 <br></br>
                 <p>
