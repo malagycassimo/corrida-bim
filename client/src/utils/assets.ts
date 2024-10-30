@@ -71,7 +71,7 @@ export const partnersImages: CarouselImageProps[] = [
     {
         alt: "Fidelidade Impar",
         src: "/assets/images/fidelidadeimpar.png",
-        customStyle: "w-72 ",
+        customStyle: "w-72",
     },
     {
         alt: "Sumol Compal",
