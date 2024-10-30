@@ -1,6 +1,7 @@
 export type CarouselImageProps = {
     alt: string;
     src: string;
+    customStyle?: string;
 };
 
 export const carouselImages: CarouselImageProps[] = [
@@ -70,6 +71,7 @@ export const partnersImages: CarouselImageProps[] = [
     {
         alt: "Fidelidade Impar",
         src: "/assets/images/fidelidadeimpar.png",
+        customStyle: "w-72 ",
     },
     {
         alt: "Sumol Compal",
@@ -91,7 +93,4 @@ export const partnersImages: CarouselImageProps[] = [
         alt: "Associação de Atletismo da Cidade de Maputo",
         src: "/assets/images/partner-4.jpg",
     },
-
- 
-
 ];

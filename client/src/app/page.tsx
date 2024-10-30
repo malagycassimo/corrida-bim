@@ -138,14 +138,16 @@ export default function Home() {
                     Parceiros
                 </h1>
                 <div className="container max-w-[920px] mx-auto flex flex-wrap gap-x-[106px] gap-y-3 justify-center">
-                    {partnersImages.map(({ src, alt }) => (
-                        <div className="relative w-36 h-24 " key={alt}>
+                    {partnersImages.map(({ src, alt, customStyle }) => (
+                        <div
+                            className={`relative w-36 h-24  ${customStyle}`}
+                            key={alt}
+                        >
                             <Image
                                 key={alt}
                                 src={src}
                                 alt={alt}
                                 fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 className="object-contain"
                             />
                         </div>
