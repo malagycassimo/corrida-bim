@@ -198,7 +198,7 @@ export default function Step2({
                                             <Link
                                                 className="text-primary cursor-pointer"
                                                 href={
-                                                    "/assets/docs/Regulamento - 15ª Corrida Millennium bim.docx"
+                                                    "/assets/docs/Regulamento - 15ª Corrida Millennium bim.pdf"
                                                 }
                                             >
                                                 Regulamento
@@ -228,7 +228,7 @@ export default function Step2({
                                             <Link
                                                 className="text-primary cursor-pointer"
                                                 href={
-                                                    "/assets/docs/Termo de Responsabilidade.docx"
+                                                    "/assets/docs/Termo de Responsabilidade.pdf"
                                                 }
                                             >
                                                 Termo de Responsabilidade
