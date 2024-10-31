@@ -50,6 +50,7 @@ Para rodar o projeto localmente utilizando Docker e Docker Compose, siga os pass
 ├── participants/       # Serviço de gestão de participantes
 ├── dashboard/          # Painel administrativo (Frontend)
 ├── client/             # Página inicial e formulário de inscrição (Frontend)
+├── conf.d/             # Arquivos de configuração do Nginx
 ├── .env.example        # Arquivo exemplo para variáveis de ambiente
 ├── Makefile            # Arquivo contendo instruções Make
 ├── docker-compose.yml  # Arquivo de configuração do Docker Compose
