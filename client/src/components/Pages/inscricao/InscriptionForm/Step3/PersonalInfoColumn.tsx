@@ -1,6 +1,6 @@
+import { CONFIRMATION_LABELS } from "../constants";
 import { Step1Data } from "../types";
 import { ConfirmationField } from "./ConfirmationField";
-import { CONFIRMATION_LABELS } from "./constants";
 
 export const PersonalInfoColumn = ({ step1 }: { step1: Step1Data }) => (
     <div className="space-y-3 flex-1">

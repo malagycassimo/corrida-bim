@@ -8,47 +8,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import { getIsAvailable } from "@/app/inscricao/action";
 import { FormState } from "./types";
-
-const initialFormState: FormState = {
-    steps: [
-        "Dados pessoais",
-        "Dados da corrida",
-        "Confirmação dos dados",
-        "Concluído",
-    ],
-    currentStep: 0,
-    step1: {
-        IDCode: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "+258 ",
-        country: "Moçambique",
-        province: "Maputo",
-        dob: "",
-        gender: "",
-        emergencyName: "",
-        emergencyPhone: "",
-        emergencyFamiliarity: "",
-    },
-    step2: {
-        category: "",
-        shirt: "",
-        route: "",
-        accept: false,
-        acceptterms: false,
-    },
-    availability: {
-        codes: [],
-        constraints: {
-            populares: 0,
-            veteranosI: 0,
-            veteranosII: 0,
-            estrangeiros: 0,
-            total: 0,
-        },
-    },
-};
+import { initialFormState } from "./constants";
 
 export default function InscriptionForm() {
     const [formState, setFormState] = useState<FormState>(initialFormState);

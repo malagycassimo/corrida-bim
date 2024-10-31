@@ -1,6 +1,6 @@
+import { CONFIRMATION_LABELS } from "../constants";
 import { Step1Data, Step2Data } from "../types";
 import { ConfirmationField } from "./ConfirmationField";
-import { CONFIRMATION_LABELS } from "./constants";
 
 export const RaceInfoColumn = ({
     step1,

@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import { FormProps } from "../types";
 import { isAllowedCategory } from "@/utils/helpers";
 import { submitData } from "@/app/inscricao/action";
-import { CONFIRMATION_LABELS } from "./constants";
 import { ConfirmationSection } from "./ConfirmationSection";
 import { NavigationButtons } from "./NavigationButtons";
+import { CONFIRMATION_LABELS } from "../constants";
 
 export default function Step3({
     state: { step1, step2 },
