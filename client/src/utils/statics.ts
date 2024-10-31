@@ -405,10 +405,6 @@ export const countries = [
 
 export const categories: { label: string; value: string }[] = [
     {
-        label: "Caminhada",
-        value: "Caminhada",
-    },
-    {
         label: "Juvenis",
         value: "Juvenis",
     },
