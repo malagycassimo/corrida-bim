@@ -1,4 +1,3 @@
-import { IconPack } from "@/components/common/IconPack";
 import CustomLink from "@/components/common/Link";
 import { links } from "@/utils/links";
 import Image from "next/image";
@@ -41,12 +40,6 @@ export default function Header() {
                     </ul>
                 </nav>
                 <div className="space-x-6 flex items-center">
-                    <Link
-                        href={"/inscricao"}
-                        className="btn bg-gradient-to-br from-primary to-secondary hidden lg:flex"
-                    >
-                        <span>Inscreva-se</span> <IconPack.ArrowRight />
-                    </Link>
                     <span className="lg:hidden">
                         <StaggeredDropDown />
                     </span>
