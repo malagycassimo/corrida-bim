@@ -1,8 +1,8 @@
 import AnimatedComponent from "@/components/common/AnimatedComponent";
 import { IconPack } from "@/components/common/IconPack";
-import { FormState } from ".";
 import { useMemo } from "react";
 import Image from "next/image";
+import { FormState } from "./types";
 
 export default function Step4({ state: { step2 } }: { state: FormState }) {
     const allowed = useMemo(() => {

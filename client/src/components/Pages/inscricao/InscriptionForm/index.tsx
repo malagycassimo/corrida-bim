@@ -6,38 +6,8 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { AvailabilityResponse, getIsAvailable } from "@/app/inscricao/action";
-
-interface Step1Data {
-    IDCode: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    country: string;
-    province: string;
-    dob: string;
-    gender: string;
-    emergencyName: string;
-    emergencyPhone: string;
-    emergencyFamiliarity: string;
-}
-
-interface Step2Data {
-    category: string;
-    route: string;
-    shirt: string;
-    accept: boolean;
-    acceptterms: boolean;
-}
-
-export interface FormState {
-    steps: string[];
-    currentStep: number;
-    step1: Step1Data;
-    step2: Step2Data;
-    availability: AvailabilityResponse;
-}
+import { getIsAvailable } from "@/app/inscricao/action";
+import { FormState } from "./types";
 
 const initialFormState: FormState = {
     steps: [

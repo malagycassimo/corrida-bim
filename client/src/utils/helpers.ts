@@ -28,3 +28,15 @@ export function shuffleArray<T>(array: T[]): T[] {
     }
     return shuffled;
 }
+
+export const isAllowedCategory = (category: string): boolean => {
+    const restrictedCategories = [
+        "Deficientes",
+        "Juvenis",
+        "Federados",
+        "Thomas",
+    ];
+    return !restrictedCategories.some((restricted) =>
+        category.includes(restricted),
+    );
+};
