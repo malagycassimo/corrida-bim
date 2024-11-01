@@ -54,7 +54,7 @@ export default function CustomCalendar({ field }: { field: FieldType }) {
                                     locale: pt,
                                 }) // Adicione o locale aqui também
                             ) : (
-                                <span>Seleciona uma data</span>
+                                <span>Selecione uma data</span>
                             )}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
