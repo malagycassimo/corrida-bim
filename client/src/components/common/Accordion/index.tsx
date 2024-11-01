@@ -30,7 +30,7 @@ const Accordion: React.FC<AccordionProps> = ({
                 <span className="text-4xl text-primary font-bold">
                     {idx < 10 ? "0" + idx : idx}
                 </span>
-                <h3 className="text-xl font-semibold max-w-44 xs:max-w-full">
+                <h3 className="text-xl font-semibold max-w-40 xs:max-w-full">
                     {title}
                 </h3>
                 <IconPack.FilledCross

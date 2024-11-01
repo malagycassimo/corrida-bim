@@ -23,7 +23,7 @@ const config: Config = {
                 sm: "calc(var(--radius) - 4px)",
             },
             screens: {
-                xs: "375px",
+                xs: "380px",
             },
         },
     },
