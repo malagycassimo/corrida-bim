@@ -2,11 +2,13 @@
 import express from "express";
 import { router } from "./routes";
 import cors from "cors";
+import { loggerMiddleware } from "./middlewares/loggermiddleware";
 // Uso de Express
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(loggerMiddleware);
 // Definição de porta e inicialização do servidor
 const PORT = process.env.SERVER_PORT || 3002;
 app.listen(PORT, () => {
