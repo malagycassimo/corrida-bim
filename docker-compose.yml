@@ -13,6 +13,7 @@ services:
             - ./conf.d:/etc/nginx/conf.d
         depends_on:
             - client
+            - dashboard
         networks:
             - frontend
         ports:
