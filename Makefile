@@ -6,11 +6,17 @@ COMPOSE = docker compose -f $(COMPOSE_FILE)
 PROJECT_NAME = millenniumbim
 
 # Funções básicas
-.PHONY: up down start stop restart build rebuild logs clean prune ps exec
+.PHONY: up dev down start stop restart build rebuild logs clean prune ps exec
 
 up: ## Sobe todos os serviços em modo deamon (em background)
 	@echo "Iniciando os containers em modo detached..."
 	$(COMPOSE) -p $(PROJECT_NAME) up -d
+
+dev: ## Sobe os serviços em ambiente de desenvolvimento (docker-compose.dev.yml)
+	@echo "Iniciando os containers em ambiente de desenvolvimento..."
+	docker compose -f docker-compose.dev.yml -p $(PROJECT_NAME) up -d --build
+
+
 
 down: ## Para e remove todos os containers e redes
 	@echo "Parando e removendo containers e redes..."

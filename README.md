@@ -38,8 +38,9 @@ Para rodar o projeto localmente utilizando Docker e Docker Compose, siga os pass
 
 4. Acesse os serviços:
 
-   - **Client**: [http://localhost:3000](http://localhost:3000)
+   - **Client**: [http://localhost:3005](http://localhost:3005)
    - **Dashboard**: [http://localhost:3001](http://localhost:3001)
+
 
    Outros serviços, como `participants`, estarão rodando nas portas definidas no `docker-compose.yml`.
 
