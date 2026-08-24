@@ -405,46 +405,43 @@ export const countries = [
 
 export const categories: { label: string; value: string }[] = [
     {
-        label: "Juvenis",
+        label: "Juvenis (inscrição via Associação de Atletismo)",
         value: "Juvenis",
     },
     {
-        label: "Populares",
+        label: "Populares - Masculino (18–39 anos) / Feminino (18–34 anos)",
         value: "Populares",
     },
     {
-        label: "Veteranos 35-45 (F) & 40-50 (M) anos (a)",
-        value: "Veteranos 35-45 (F) & 40-50 (M) anos (a)",
+        label: "Veteranos 1 - Masculino (40–50 anos) / Feminino (35–45 anos)",
+        value: "Veteranos 1",
     },
     {
-        label: "Veteranos maior de 45 (F) & maior de 50 (M) anos (a)",
-        value: "Veteranos maior de 45 (F) & maior de 50 (M) anos (a)",
+        label: "Veteranos 2 - Masculino (>50 anos) / Feminino (>45 anos)",
+        value: "Veteranos 2",
     },
     {
-        label: "Federados",
+        label: "Federados (inscrição via Associação de Atletismo)",
         value: "Federados",
     },
     {
-        label: "Estrangeiros menor de 50 anos (M) / menor de 45 anos (F) (c)",
-        value: "Estrangeiros menor de 50 anos (M) / menor de 45 anos (F) (c)",
+        label: "Estrangeiros 1 - Masculino (18–49 anos) / Feminino (18–44 anos)",
+        value: "Estrangeiros 1",
     },
     {
-        label: "Estrangeiros maior de 50 anos (M) / maior de 45 anos (F) (c)",
-        value: "Estrangeiros maior de 50 anos (M) / maior de 45 anos (F) (c)",
+        label: "Estrangeiros 2 - Masculino (>50 anos) / Feminino (>45 anos)",
+        value: "Estrangeiros 2",
     },
     {
-        label: "Deficientes de triciclos (b)",
-        value: "Deficientes de triciclos (b)",
+        label: "Triciclos (inscrição via Associação de Atletismo)",
+        value: "Triciclos",
     },
     {
-        label: "Deficientes de cadeiras (b)",
-        value: "Deficientes de cadeiras (b)",
-    },
-    {
-        label: "Thomas",
-        value: "Thomas",
+        label: "Cadeirantes (inscrição via Associação de Atletismo)",
+        value: "Cadeirantes",
     },
 ];
+
 
 export const routes: { label: string; value: string }[] = [
     {

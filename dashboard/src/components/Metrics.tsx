@@ -52,7 +52,19 @@ const item = {
     },
 };
 
-export const Metrics = ({ data }: { data: DataItem[] }) => {
+export const Metrics = ({ data = [] }: { data?: DataItem[] }) => {
+    const safeData = Array.isArray(data) ? data : [];
+    const total = safeData.length;
+
+    const count15k = safeData.filter((p) => p.route && p.route.includes("Corrida Pedestre - 15km")).length;
+    const percent15k = total > 0 ? ((count15k / total) * 100).toFixed(1) : "0";
+
+    const countDef = safeData.filter((p) => p.route && p.route.includes("Portadores De Deficiência - 9km")).length;
+    const percentDef = total > 0 ? ((countDef / total) * 100).toFixed(1) : "0";
+
+    const countWalk = safeData.filter((p) => p.route && p.route.includes("Caminhada - 7km")).length;
+    const percentWalk = total > 0 ? ((countWalk / total) * 100).toFixed(1) : "0";
+
     return (
         <div className="p-4">
             <motion.div
@@ -64,7 +76,7 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                 <motion.div variants={item}>
                     <MetricCard
                         title="Total de inscritos"
-                        value={data.length}
+                        value={total}
                         change="Visão geral"
                         icon={<LandPlot className="h-4 w-4 text-gray-400" />}
                     />
@@ -73,18 +85,8 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                 <motion.div variants={item}>
                     <MetricCard
                         title="Total de inscritos 15 Km"
-                        value={
-                            data.filter(({ route }) =>
-                                route.includes("Corrida Pedestre - 15km"),
-                            ).length
-                        }
-                        change={`${
-                            (data.filter(({ route }) =>
-                                route.includes("Corrida Pedestre - 15km"),
-                            ).length /
-                                data.length) *
-                            100
-                        }% dos inscritos`}
+                        value={count15k}
+                        change={`${percent15k}% dos inscritos`}
                         icon={<Footprints className="h-4 w-4 text-gray-400" />}
                     />
                 </motion.div>
@@ -92,22 +94,8 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                 <motion.div variants={item}>
                     <MetricCard
                         title="Total de inscritos deficientes"
-                        value={
-                            data.filter(({ route }) =>
-                                route.includes(
-                                    "Portadores De Deficiência - 9km",
-                                ),
-                            ).length
-                        }
-                        change={`${
-                            (data.filter(({ route }) =>
-                                route.includes(
-                                    "Portadores De Deficiência - 9km",
-                                ),
-                            ).length /
-                                data.length) *
-                            100
-                        }% dos inscritos`}
+                        value={countDef}
+                        change={`${percentDef}% dos inscritos`}
                         icon={
                             <Accessibility className="h-4 w-4 text-gray-400" />
                         }
@@ -117,18 +105,8 @@ export const Metrics = ({ data }: { data: DataItem[] }) => {
                 <motion.div variants={item}>
                     <MetricCard
                         title="Total de inscritos para caminhada"
-                        value={
-                            data.filter(({ route }) =>
-                                route.includes("Caminhada - 7km"),
-                            ).length
-                        }
-                        change={`${
-                            (data.filter(({ route }) =>
-                                route.includes("Caminhada - 7km"),
-                            ).length /
-                                data.length) *
-                            100
-                        }% dos inscritos`}
+                        value={countWalk}
+                        change={`${percentWalk}% dos inscritos`}
                         icon={
                             <PersonStanding className="h-4 w-4 text-gray-400" />
                         }

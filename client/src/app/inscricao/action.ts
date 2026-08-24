@@ -82,26 +82,19 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
                 (p) => p.category === "Populares",
             ).length,
             veteranosI: pedestrianRace15km.filter(
-                (p) =>
-                    p.category === "Veteranos 35-45 (F) & 40-50 (M) anos (a)",
+                (p) => p.category === "Veteranos 1",
             ).length,
             veteranosII: pedestrianRace15km.filter(
-                (p) =>
-                    p.category ===
-                    "Veteranos maior de 45 (F) & maior de 50 (M) anos (a)",
+                (p) => p.category === "Veteranos 2",
             ).length,
             estrangeiros: pedestrianRace15km.filter((p) =>
                 p.category.includes("Estrangeiros"),
             ).length,
             get total() {
-                return (
-                    this.populares +
-                    this.veteranosI +
-                    this.veteranosII +
-                    this.estrangeiros
-                );
+                return data.length;
             },
         };
+
 
         return {
             codes,

@@ -37,11 +37,13 @@ type DataItem = {
 const AnimatedTableRow = motion(TableRow);
 
 export default function DataTable({
-    initialData,
+    initialData = [],
 }: {
-    initialData: DataItem[];
+    initialData?: DataItem[];
 }) {
-    const [data] = useState<DataItem[]>(initialData);
+    const safeInitial = Array.isArray(initialData) ? initialData : [];
+    const [data] = useState<DataItem[]>(safeInitial);
+
     const [searchTerm, setSearchTerm] = useState("");
 
     const filteredData = useMemo(() => {

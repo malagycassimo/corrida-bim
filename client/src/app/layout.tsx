@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Layout/Providers";
-
-const font = Montserrat({
-    subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
     title: {
         template: "%s | Millennium bim",
-        default: "15ª Corrida | Millennium bim",
+        default: "16ª Corrida | Millennium bim",
     },
     description:
-        "Participe da 15ª Corrida Millennium bim, um evento esportivo emocionante que promove saúde, bem-estar e espírito competitivo. Junte-se a nós nesta celebração única do esporte e da comunidade.",
+        "Participe da 16ª Corrida Millennium bim, um evento esportivo emocionante que promove saúde, bem-estar e espírito competitivo. Junte-se a nós nesta celebração única do esporte e da comunidade.",
     openGraph: {
         images: ["https://corridamillenniumbim.co.mz/assets/brand/cover.jpg"],
     },
@@ -26,7 +21,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${font.className} antialiased`}>
+            <body className="antialiased">
                 <Providers>{children}</Providers>
             </body>
         </html>
