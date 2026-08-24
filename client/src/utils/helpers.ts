@@ -4,22 +4,18 @@ export function isAvailable(
     value: string,
     constraints: PedestrianRaceConstraints,
 ) {
+    // 1. Limite Máximo Geral do Evento (5.000 participantes)
     if (constraints.total >= 5000) {
         return false;
     }
-    switch (value) {
-        case "Populares":
-            return constraints.populares < 1500;
-        case "Veteranos 1":
-            return constraints.veteranosI < 200;
-        case "Veteranos 2":
-            return constraints.veteranosII < 100;
-        case "Estrangeiros 1":
-        case "Estrangeiros 2":
-            return constraints.estrangeiros < 100;
-        default:
-            return true;
+
+    // 2. Limite da Caminhada (3.000 participantes)
+    if (value.includes("7km")) {
+        return constraints.caminhada7k < 3000;
     }
+
+    // 3. Limite Geral da Corrida (2.000 atletas) para todas as categorias da corrida (15km)
+    return constraints.corrida15k < 2000;
 }
 
 export function shuffleArray<T>(array: T[]): T[] {

@@ -16,6 +16,12 @@ import {
 import { routes } from "@/utils/statics";
 
 export default function RouteSelect({ form }: Step2SectionProps) {
+    // Filtramos para exibir apenas os percursos disponíveis para inscrição online (15km e 7km)
+    // O percurso de 9km (Portadores de Deficiência) é de inscrição presencial via Associação
+    const onlineRoutes = routes.filter(
+        (r) => !r.value.includes("Deficiência") && !r.value.includes("9km"),
+    );
+
     return (
         <FormField
             control={form.control}
@@ -33,7 +39,7 @@ export default function RouteSelect({ form }: Step2SectionProps) {
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                            {routes.map(({ value, label }) => (
+                            {onlineRoutes.map(({ value, label }) => (
                                 <SelectItem value={value} key={value}>
                                     {label}
                                 </SelectItem>

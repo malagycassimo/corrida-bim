@@ -20,10 +20,8 @@ interface Participant {
 }
 
 export interface PedestrianRaceConstraints {
-    populares: number;
-    veteranosI: number;
-    veteranosII: number;
-    estrangeiros: number;
+    corrida15k: number;
+    caminhada7k: number;
     total: number;
 }
 
@@ -32,69 +30,46 @@ export interface AvailabilityResponse {
     constraints: PedestrianRaceConstraints;
 }
 
-export const submitData = async (data: Record<string, string | boolean>) => {
-    const { accept, acceptterms, ...rest } = data;
+export async function submitData(payload: Record<string, unknown>) {
     try {
-        await fetch("http://server:3002/participants/store", {
+        const response = await fetch("http://server:3002/participants/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(rest),
+            body: JSON.stringify(payload),
         });
-    } catch (e) {
-        if (e instanceof Error) {
-            await fetch(process.env.DISCORD_URL as string, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(
-                    {
-                        source: "CLIENT",
-                        data,
-                        e: e.message,
-                        accept,
-                        acceptterms,
-                    },
-                    null,
-                    2,
-                ),
-            });
+
+        if (!response.ok) {
+            throw new Error("Erro ao registrar participante.");
         }
-        console.error(e);
+
+        return { success: true };
+    } catch (error) {
+        console.error("Erro no submitData:", error);
+        return { success: false, error: "Erro ao realizar inscrição." };
     }
-};
+}
+
+export const submitRegistration = submitData;
 
 export async function getIsAvailable(): Promise<AvailabilityResponse> {
     try {
         const response = await fetch("http://server:3002/participants/fetch");
         const data: Participant[] = await response.json();
 
-        const codes = data.map((participant) => participant.IDCode);
+        const safeData = Array.isArray(data) ? data : [];
+        const codes = safeData.map((participant) => participant.IDCode);
 
-        const pedestrianRace15km = data.filter(
-            (participant) => participant.route === "Corrida Pedestre - 15km",
-        );
-
-        const constraints = {
-            populares: pedestrianRace15km.filter(
-                (p) => p.category === "Populares",
+        const constraints: PedestrianRaceConstraints = {
+            corrida15k: safeData.filter(
+                (p) => p.route && p.route.includes("15km"),
             ).length,
-            veteranosI: pedestrianRace15km.filter(
-                (p) => p.category === "Veteranos 1",
+            caminhada7k: safeData.filter(
+                (p) => p.route && p.route.includes("7km"),
             ).length,
-            veteranosII: pedestrianRace15km.filter(
-                (p) => p.category === "Veteranos 2",
-            ).length,
-            estrangeiros: pedestrianRace15km.filter((p) =>
-                p.category.includes("Estrangeiros"),
-            ).length,
-            get total() {
-                return data.length;
-            },
+            total: safeData.length,
         };
-
 
         return {
             codes,
@@ -105,10 +80,8 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
         return {
             codes: [],
             constraints: {
-                populares: 0,
-                veteranosI: 0,
-                veteranosII: 0,
-                estrangeiros: 0,
+                corrida15k: 0,
+                caminhada7k: 0,
                 total: 0,
             },
         };

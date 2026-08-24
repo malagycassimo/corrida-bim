@@ -10,10 +10,11 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Download, Search } from "lucide-react"; // Adicione ícones
+import { Download, Search, Copy, Check } from "lucide-react";
 import * as XLSX from "xlsx";
 import { Input } from "@/components/ui/input";
-import { motion, AnimatePresence } from "framer-motion"; // Importe o Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
+import { EmailManagerModal } from "@/components/EmailManagerModal";
 
 type DataItem = {
     id: string;
@@ -36,6 +37,17 @@ type DataItem = {
 
 const AnimatedTableRow = motion(TableRow);
 
+const formatDate = (dateStr: string) => {
+    if (!dateStr) return "-";
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return dateStr;
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`;
+};
+
+
 export default function DataTable({
     initialData = [],
 }: {
@@ -43,128 +55,136 @@ export default function DataTable({
 }) {
     const safeInitial = Array.isArray(initialData) ? initialData : [];
     const [data] = useState<DataItem[]>(safeInitial);
-
     const [searchTerm, setSearchTerm] = useState("");
+    const [copiedId, setCopiedId] = useState<string | null>(null);
 
     const filteredData = useMemo(() => {
         return data.filter((item) =>
             Object.values(item).some((value) =>
                 value
-                    .toString()
+                    ?.toString()
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase()),
             ),
         );
     }, [data, searchTerm]);
 
+    const handleCopyId = (id: string) => {
+        navigator.clipboard.writeText(id);
+        setCopiedId(id);
+        setTimeout(() => setCopiedId(null), 2000);
+    };
+
     const exportToExcel = () => {
         try {
             const exportData = data.map((item) => ({
                 ID: item.id,
                 "ID Code": item.IDCode,
-                "First Name": item.firstName,
-                "Last Name": item.lastName,
+                Nome: item.firstName,
+                Apelido: item.lastName,
                 Email: item.email,
-                Phone: item.phone,
-                Province: item.province,
-                "Date of Birth": item.dob,
-                Country: item.country,
-                Gender: item.gender,
-                "Emergency Contact": item.emergencyName,
-                "Emergency Phone": item.emergencyPhone,
-                "Emergency Familiarity": item.emergencyFamiliarity,
-                Category: item.category,
-                Route: item.route,
-                Shirt: item.shirt,
+                Telefone: item.phone,
+                Província: item.province,
+                "Data de Nascimento": formatDate(item.dob),
+                Nacionalidade: item.country,
+                Gênero: item.gender,
+                "Contacto de Emergência": item.emergencyName,
+                "Telefone de Emergência": item.emergencyPhone,
+                "Grau de Parentesco": item.emergencyFamiliarity,
+                Categoria: item.category,
+                Rota: item.route,
+                Camisete: item.shirt,
             }));
             const workbook = XLSX.utils.book_new();
             const worksheet = XLSX.utils.json_to_sheet(exportData);
 
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
-
-            XLSX.writeFile(workbook, "participants_data.xlsx");
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Participantes");
+            XLSX.writeFile(workbook, "participantes_16_corrida_bim.xlsx");
         } catch (error) {
-            console.error("Error exporting to Excel:", error);
+            console.error("Erro ao exportar para Excel:", error);
         }
     };
 
     return (
-        <div className="space-y-6 p-4 bg-white rounded-lg shadow-sm">
+        <div className="space-y-5 p-5 bg-white rounded-2xl shadow-xs border border-slate-200/80">
             {/* Header Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div className="flex-1 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
+                <div className="flex-1 max-w-md">
                     <div className="relative">
-                        <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                         <Input
-                            placeholder="Pesquisar participantes..."
-                            className="pl-8 w-full"
+                            placeholder="Pesquisar por nome, BI, telefone, categoria..."
+                            className="pl-9 bg-slate-50 border-slate-200 focus:bg-white transition-all rounded-xl h-11"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
                 </div>
-                <Button
-                    onClick={exportToExcel}
-                    className="w-full sm:w-auto bg-brand hover:bg-brandSecondary transition-colors duration-300"
-                >
-                    <Download className="mr-2 h-4 w-4" />
-                    Exportar para excel
-                </Button>
+                <div className="flex items-center space-x-3">
+                    <EmailManagerModal data={data} />
+                    <Button
+                        onClick={exportToExcel}
+                        className="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-5 h-11 rounded-xl shadow-xs transition-colors duration-200 shrink-0"
+                    >
+                        <Download className="mr-2 h-4 w-4" />
+                        Exportar para Excel
+                    </Button>
+                </div>
             </div>
 
-            {/* Table Section */}
-            <div className="rounded-md border border-gray-200 overflow-hidden">
-                <div className="overflow-x-auto">
-                    <Table>
+            {/* Table Section with Custom Scrollbar */}
+            <div className="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-xs">
+                <div className="overflow-x-auto custom-scrollbar">
+                    <Table className="w-full text-left text-sm">
                         <TableHeader>
-                            <TableRow className="bg-gray-50">
-                                <TableHead className="font-semibold">
+                            <TableRow className="bg-slate-100/90 border-b border-slate-200 hover:bg-slate-100/90">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     ID
                                 </TableHead>
-                                <TableHead className="font-semibold">
-                                    Bilhete de Identidade
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
+                                    BI / Documento
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Nome
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Apelido
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Email
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Telefone
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Província
                                 </TableHead>
-                                <TableHead className="font-semibold">
-                                    Data de Nascimento
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
+                                    Data Nasc.
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Nacionalidade
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Gênero
                                 </TableHead>
-                                <TableHead className="font-semibold">
-                                    Contacto de emergência
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
+                                    Contacto Emergência
                                 </TableHead>
-                                <TableHead className="font-semibold">
-                                    Telefone de emergência
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
+                                    Tel. Emergência
                                 </TableHead>
-                                <TableHead className="font-semibold">
-                                    Grau de parentesco (contacto de emergência)
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
+                                    Parentesco
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Categoria
                                 </TableHead>
-                                <TableHead className="font-semibold">
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     Rota
                                 </TableHead>
-                                <TableHead className="font-semibold">
-                                    Tamanho da camisete
+                                <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
+                                    Camisete
                                 </TableHead>
                             </TableRow>
                         </TableHeader>
@@ -179,64 +199,131 @@ export default function DataTable({
                                     >
                                         <TableCell
                                             colSpan={16}
-                                            className="text-center h-24 text-gray-500"
+                                            className="text-center py-12 text-slate-400 font-medium"
                                         >
-                                            No results found
+                                            Nenhum participante encontrado
                                         </TableCell>
                                     </AnimatedTableRow>
                                 ) : (
                                     filteredData.map((item, index) => (
                                         <AnimatedTableRow
                                             key={item.id}
-                                            initial={{ opacity: 0, y: 20 }}
+                                            initial={{ opacity: 0, y: 10 }}
                                             animate={{
                                                 opacity: 1,
                                                 y: 0,
                                                 transition: {
-                                                    delay: index * 0.05, // Efeito cascata
+                                                    delay: Math.min(index * 0.03, 0.3),
                                                 },
                                             }}
                                             exit={{
                                                 opacity: 0,
-                                                y: -20,
-                                                transition: {
-                                                    duration: 0.2,
-                                                },
+                                                transition: { duration: 0.15 },
                                             }}
-                                            className="hover:bg-gray-50 transition-colors"
+                                            className="hover:bg-slate-50/90 border-b border-slate-100 transition-colors"
                                         >
-                                            <TableCell>{item.id}</TableCell>
-                                            <TableCell>{item.IDCode}</TableCell>
-                                            <TableCell className="font-medium">
-                                                {item.firstName}
+                                            {/* ID */}
+                                            <TableCell className="whitespace-nowrap py-3 px-4">
+                                                <button
+                                                    onClick={() => handleCopyId(item.id)}
+                                                    className="group flex items-center space-x-1.5 font-mono text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2 py-1 rounded-md transition-colors"
+                                                    title={`Clique para copiar ID: ${item.id}`}
+                                                >
+                                                    <span>{item.id ? `${item.id.slice(0, 8)}...` : "-"}</span>
+                                                    {copiedId === item.id ? (
+                                                        <Check className="h-3 w-3 text-emerald-600" />
+                                                    ) : (
+                                                        <Copy className="h-3 w-3 text-slate-400 group-hover:text-slate-600" />
+                                                    )}
+                                                </button>
                                             </TableCell>
-                                            <TableCell className="font-medium">
-                                                {item.lastName}
+
+                                            {/* BI / Documento */}
+                                            <TableCell className="whitespace-nowrap font-mono font-medium text-slate-800 py-3 px-4">
+                                                {item.IDCode || "-"}
                                             </TableCell>
-                                            <TableCell>{item.email}</TableCell>
-                                            <TableCell>{item.phone}</TableCell>
-                                            <TableCell>
-                                                {item.province}
+
+                                            {/* Nome */}
+                                            <TableCell className="whitespace-nowrap font-semibold text-slate-900 py-3 px-4">
+                                                {item.firstName || "-"}
                                             </TableCell>
-                                            <TableCell>{item.dob}</TableCell>
-                                            <TableCell>
-                                                {item.country}
+
+                                            {/* Apelido */}
+                                            <TableCell className="whitespace-nowrap font-semibold text-slate-900 py-3 px-4">
+                                                {item.lastName || "-"}
                                             </TableCell>
-                                            <TableCell>{item.gender}</TableCell>
-                                            <TableCell>
-                                                {item.emergencyName}
+
+                                            {/* Email */}
+                                            <TableCell className="whitespace-nowrap text-slate-600 py-3 px-4">
+                                                {item.email || "-"}
                                             </TableCell>
-                                            <TableCell>
-                                                {item.emergencyPhone}
+
+                                            {/* Telefone */}
+                                            <TableCell className="whitespace-nowrap font-mono text-slate-700 py-3 px-4">
+                                                {item.phone || "-"}
                                             </TableCell>
-                                            <TableCell>
-                                                {item.emergencyFamiliarity}
+
+                                            {/* Província */}
+                                            <TableCell className="whitespace-nowrap text-slate-700 py-3 px-4">
+                                                {item.province || "-"}
                                             </TableCell>
-                                            <TableCell>
-                                                {item.category}
+
+                                            {/* Data Nasc. */}
+                                            <TableCell className="whitespace-nowrap font-mono text-slate-700 py-3 px-4">
+                                                {formatDate(item.dob)}
                                             </TableCell>
-                                            <TableCell>{item.route}</TableCell>
-                                            <TableCell>{item.shirt}</TableCell>
+
+                                            {/* Nacionalidade */}
+                                            <TableCell className="whitespace-nowrap text-slate-700 py-3 px-4">
+                                                {item.country || "-"}
+                                            </TableCell>
+
+                                            {/* Gênero */}
+                                            <TableCell className="whitespace-nowrap py-3 px-4">
+                                                <span
+                                                    className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${
+                                                        item.gender === "M" || item.gender === "Masculino"
+                                                            ? "bg-sky-50 text-sky-700 border border-sky-200"
+                                                            : "bg-pink-50 text-pink-700 border border-pink-200"
+                                                    }`}
+                                                >
+                                                    {item.gender || "-"}
+                                                </span>
+                                            </TableCell>
+
+                                            {/* Contacto Emergência */}
+                                            <TableCell className="whitespace-nowrap text-slate-700 py-3 px-4">
+                                                {item.emergencyName || "-"}
+                                            </TableCell>
+
+                                            {/* Tel. Emergência */}
+                                            <TableCell className="whitespace-nowrap font-mono text-slate-700 py-3 px-4">
+                                                {item.emergencyPhone || "-"}
+                                            </TableCell>
+
+                                            {/* Parentesco */}
+                                            <TableCell className="whitespace-nowrap text-slate-700 py-3 px-4">
+                                                {item.emergencyFamiliarity || "-"}
+                                            </TableCell>
+
+                                            {/* Categoria */}
+                                            <TableCell className="whitespace-nowrap py-3 px-4">
+                                                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-100">
+                                                    {item.category || "-"}
+                                                </span>
+                                            </TableCell>
+
+                                            {/* Rota */}
+                                            <TableCell className="whitespace-nowrap py-3 px-4">
+                                                <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                                    {item.route || "-"}
+                                                </span>
+                                            </TableCell>
+
+                                            {/* Camisete */}
+                                            <TableCell className="whitespace-nowrap font-bold text-slate-800 py-3 px-4">
+                                                {item.shirt || "-"}
+                                            </TableCell>
                                         </AnimatedTableRow>
                                     ))
                                 )}
@@ -248,12 +335,13 @@ export default function DataTable({
 
             {/* Footer with stats */}
             <motion.div
-                className="text-sm text-gray-500"
+                className="text-xs font-medium text-slate-500 pt-1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
             >
-                Visualizando {filteredData.length} de {data.length} inscritos
+                Visualizando <span className="font-bold text-slate-700">{filteredData.length}</span> de{" "}
+                <span className="font-bold text-slate-700">{data.length}</span> participantes inscritos
             </motion.div>
         </div>
     );
