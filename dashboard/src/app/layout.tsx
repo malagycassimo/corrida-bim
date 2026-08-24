@@ -3,7 +3,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 
 export const metadata: Metadata = {
-    title: "15a Corrida Millennium BIM",
+    title: "16ª Corrida Millennium BIM",
     description: "Millennium BIM, aqui consigo!",
     openGraph: {
         images: ["https://corridamillenniumbim.co.mz/assets/brand/cover.jpg"],

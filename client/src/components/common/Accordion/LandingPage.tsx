@@ -8,10 +8,9 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         subtitle: "Data e Horário",
         content: (
             <p>
-                A 15ª Corrida Millennium bim terá lugar no sábado, 30 de
-                novembro de 2024, com início às 7h00 na Praça da Independência.
-                O aquecimento começará às 6h20, sob a orientação do ginásio IR
-                Fitness.
+                A 16ª Corrida Millennium bim terá lugar no dia 25 de
+                outubro em Maputo, com início às 7h00 na Praça da Independência.
+                O aquecimento começará às 6h20.
             </p>
         ),
     },
@@ -24,19 +23,19 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                 </p>
                 <br></br>
                 <p>
-                    As categorias de Portadores de Deficiências, Juvenis e
-                    Federados devem inscrever-se na Associação de Atletismo da
-                    Cidade de Maputo, localizada no Parque dos Continuadores,
-                    entre 1 e 15 de Novembro.
+                    As categorias de Juvenis, Federados, Triciclos e Cadeirantes
+                    devem inscrever-se presencialmente na Associação de Atletismo da
+                    Cidade de Maputo, localizada no Parque dos Continuadores.
                 </p>
                 <br></br>
                 <p>
-                    As inscrições gerais para a corrida de 15 km são limitadas
-                    aos primeiros 2000 atletas. Para a caminhada de 7 km, não há
-                    limite máximo de participantes
+                    As inscrições gerais para a corrida são limitadas
+                    aos primeiros 2.000 atletas e para a caminhada aos 3.000
+                    participantes (total máximo de 5.000 participantes).
                 </p>
             </div>
         ),
+
     },
     {
         title: "Aquisição dos Kits",

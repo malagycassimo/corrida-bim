@@ -7,6 +7,8 @@ import { FormState } from "./types";
 export default function Step4({ state: { step2 } }: { state: FormState }) {
     const allowed = useMemo(() => {
         return (
+            !step2.category.includes("Triciclos") &&
+            !step2.category.includes("Cadeirantes") &&
             !step2.category.includes("Deficientes") &&
             !step2.category.includes("Juvenis") &&
             !step2.category.includes("Federados") &&
@@ -36,8 +38,8 @@ export default function Step4({ state: { step2 } }: { state: FormState }) {
             </h2>
             <p className="text-center text-zinc-600">
                 {allowed
-                    ? "Agradecemos por se inscrever na 15ª Corrida Millennium bim! Sua participação é muito importante para nós e estamos animados para vê-lo(a) no dia 30 de Novembro. Verifique sua caixa de entrada ou spam para o e-mail de confirmação."
-                    : "Não é possível continuar a inscrição para a categoria seleccionada. As inscrições para as categorias de Portadores de Deficiências, Juvenis, Thomas e Federados deverão ser realizadas presencialmente na Associação de Atletismo da Cidade de Maputo, localizada no Parque dos Continuadores, entre os dias 1 e 15 de Novembro."}
+                    ? "Agradecemos por se inscrever na 16ª Corrida Millennium bim! Sua participação é muito importante para nós e estamos animados para vê-lo(a) no evento. Verifique sua caixa de entrada ou spam para o e-mail de confirmação."
+                    : "Não é possível continuar a inscrição no site para a categoria seleccionada. As inscrições para as categorias de Juvenis, Federados, Triciclos e Cadeirantes deverão ser realizadas presencialmente na Associação de Atletismo da Cidade de Maputo, localizada no Parque dos Continuadores."}
             </p>
         </div>
     );

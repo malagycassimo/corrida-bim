@@ -41,11 +41,11 @@ export const LoginForm = () => {
             >
                 <div className="p-3 rounded-full">
                     <Image
-                        alt="Millennium bim"
-                        src={"assets/brand/brand-red.svg"}
-                        width={70.96}
-                        height={75.78}
-                        className="mx-auto my-5"
+                        alt="16ª Corrida Millennium bim"
+                        src={"/assets/brand/logo-16-color.png"}
+                        width={90}
+                        height={90}
+                        className="mx-auto my-5 object-contain"
                     />
                 </div>
             </motion.div>

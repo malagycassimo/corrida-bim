@@ -38,13 +38,13 @@ export default function Home() {
                     <AnimatedComponent>
                         <div className="max-w-[700px] px-6 space-y-4">
                             <h1 className="text-[4.6rem] leading-none font-bold">
-                                15ª Corrida Millennium bim
+                                16ª Corrida Millennium bim
                             </h1>
                             <p className="text-lg">
                                 Venha participar da corrida mais emocionante do
                                 ano!
                                 <br />
-                                Junte-se a nós no dia 30 de Novembro de 2024.
+                                Junte-se a nós no dia 25 de Outubro.
                             </p>
                             <Link
                                 href={"/inscricao"}
@@ -69,11 +69,11 @@ export default function Home() {
                 <AnimatedComponent>
                     <div className="py-9 text-center px-6 text-white bg-gradient-to-br from-primary to-secondary mx-4 sm:mx-auto max-w-xl rounded-xl -translate-y-1/2">
                         <h1 className="text-4xl font-bold">
-                            15ª Corrida Millennium bim
+                            16ª Corrida Millennium bim
                         </h1>
                         <p className="mt-6 mb-8">
                             Venha participar da corrida mais emocionante do ano!
-                            Junte-se a nós no dia 30 de Novembro de 2024.
+                            Junte-se a nós no dia 25 de Outubro.
                         </p>
                         <Link
                             href={"/inscricao"}

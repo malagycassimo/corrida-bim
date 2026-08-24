@@ -4,11 +4,11 @@ export default function Loading() {
     return (
         <div className="min-h-svh flex justify-center items-center bg-white z-50 fixed inset-0">
             <Image
-                alt="Millennium bim"
-                src={"assets/brand/brand-red.svg"}
-                width={70.96}
-                height={75.78}
-                className="animate-bounce"
+                alt="16ª Corrida Millennium bim"
+                src={"/assets/brand/logo-16-color.png"}
+                width={90}
+                height={90}
+                className="animate-bounce object-contain"
             />
         </div>
     );

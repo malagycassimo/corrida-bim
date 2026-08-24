@@ -1,6 +1,7 @@
-# 🏃‍♂️ 15ª Corrida do Banco Millennium BIM - Monorepo
+# 🏃‍♂️ 16ª Corrida do Banco Millennium BIM - Monorepo
 
-Bem-vindo ao repositório monorepo para a **15ª Corrida do Banco Millennium BIM**! Este projeto destina-se ao desenvolvimento de uma aplicação web que facilita a organização e participação no evento. O sistema é composto por múltiplos serviços que trabalham juntos para fornecer uma plataforma eficiente e intuitiva para administração, inscrição e acompanhamento dos participantes.
+Bem-vindo ao repositório monorepo para a **16ª Corrida do Banco Millennium BIM**! Este projeto destina-se ao desenvolvimento de uma aplicação web que facilita a organização e participação no evento. O sistema é composto por múltiplos serviços que trabalham juntos para fornecer uma plataforma eficiente e intuitiva para administração, inscrição e acompanhamento dos participantes.
+
 
 ## 🚀 Serviços
 

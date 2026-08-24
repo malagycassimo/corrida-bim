@@ -30,7 +30,7 @@ export default function TermsCheckboxes({ form }: Step2SectionProps) {
                                     <Link
                                         className="text-primary cursor-pointer"
                                         href={
-                                            "/assets/docs/Regulamento - 15ª Corrida Millennium bim.pdf"
+                                            "/assets/docs/Regulamento - 16ª Corrida Millennium bim.pdf"
                                         }
                                     >
                                         Regulamento
