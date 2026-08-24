@@ -22,17 +22,23 @@ export default async function Home() {
     const data = await getData();
 
     return (
-        <main className="container mx-auto p-4">
-            <Image
-                alt="16ª Corrida Millennium bim"
-                src={"/assets/brand/logo-16-color.png"}
-                width={85}
-                height={85}
-                className="mx-auto my-5 object-contain"
-            />
-            <h1 className="text-2xl my-4 text-brand font-bold mx-3">
-                Dashboard de inscrições
-            </h1>
+        <main className="container mx-auto px-4 py-8 max-w-[1400px] space-y-6">
+            <div className="flex flex-col items-center justify-center text-center space-y-3 pb-2">
+                <Image
+                    alt="16ª Corrida Millennium bim"
+                    src={"/assets/brand/logo-16-color.png"}
+                    width={100}
+                    height={100}
+                    className="h-24 w-24 object-contain"
+                />
+                <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+                    Dashboard de Inscrições
+                </h1>
+                <p className="text-sm font-medium text-slate-500 max-w-md">
+                    Painel de controle e acompanhamento em tempo real dos participantes da 16ª Corrida Millennium bim
+                </p>
+            </div>
+
             <Metrics data={data} />
             <Table initialData={data} />
         </main>
