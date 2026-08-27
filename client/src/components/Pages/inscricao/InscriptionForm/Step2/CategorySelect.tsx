@@ -22,6 +22,7 @@ import {
 import { categories } from "@/utils/statics";
 import { isAllowedCategory, isAvailable } from "@/utils/helpers";
 import { RestrictedCategoryModal } from "./RestrictedCategoryModal";
+import { CategoryLimitModal } from "./CategoryLimitModal";
 
 export const CategorySelect = ({
     form,
@@ -32,6 +33,8 @@ export const CategorySelect = ({
 }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedRestrictedName, setSelectedRestrictedName] = useState("");
+    const [limitModalOpen, setLimitModalOpen] = useState(false);
+    const [selectedLimitName, setSelectedLimitName] = useState("");
 
     return (
         <FormField
@@ -43,6 +46,13 @@ export const CategorySelect = ({
                         const matchedCat = categories.find((c) => c.value === val);
                         setSelectedRestrictedName(matchedCat ? matchedCat.label : val);
                         setModalOpen(true);
+                        field.onChange("");
+                        return;
+                    }
+                    if (!isAvailable(val, state.availability.constraints)) {
+                        const matchedCat = categories.find((c) => c.value === val);
+                        setSelectedLimitName(matchedCat ? matchedCat.label : val);
+                        setLimitModalOpen(true);
                         field.onChange("");
                         return;
                     }
@@ -91,6 +101,11 @@ export const CategorySelect = ({
                             isOpen={modalOpen}
                             onClose={() => setModalOpen(false)}
                             categoryName={selectedRestrictedName}
+                        />
+                        <CategoryLimitModal
+                            isOpen={limitModalOpen}
+                            onClose={() => setLimitModalOpen(false)}
+                            itemName={selectedLimitName}
                         />
                     </FormItem>
                 );

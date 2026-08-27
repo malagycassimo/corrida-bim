@@ -8,7 +8,11 @@ const ParticipantServ = (
 ): ParticipantService => {
     const store = async (participant: Participant.ParticipantRequest) => {
         const particp = await Participants.store(participant);
-        await Mail.sendEmail(MailDefaults.WELCOME(particp));
+        try {
+            await Mail.sendEmail(MailDefaults.WELCOME(particp));
+        } catch (mailError) {
+            console.error("Erro ao enviar e-mail de boas-vindas:", mailError);
+        }
         return particp;
     };
     const get = async (id: string) => {

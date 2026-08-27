@@ -32,16 +32,21 @@ export interface AvailabilityResponse {
 
 export async function submitData(payload: Record<string, unknown>) {
     try {
-        const response = await fetch("http://server:3002/participants/create", {
+        const cleanPayload = { ...payload };
+        delete cleanPayload.accept;
+        delete cleanPayload.acceptterms;
+        const response = await fetch("http://server:3002/participants/store", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(cleanPayload),
         });
 
         if (!response.ok) {
-            throw new Error("Erro ao registrar participante.");
+            const errorText = await response.text();
+            console.error("Erro do servidor:", response.status, errorText);
+            throw new Error(`Erro ao registrar participante: ${response.status}`);
         }
 
         return { success: true };

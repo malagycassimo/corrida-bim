@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     FormControl,
     FormField,
@@ -14,8 +15,13 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { routes } from "@/utils/statics";
+import { isAvailable } from "@/utils/helpers";
+import { CategoryLimitModal } from "./CategoryLimitModal";
 
-export default function RouteSelect({ form }: Step2SectionProps) {
+export default function RouteSelect({ form, state }: Step2SectionProps) {
+    const [limitModalOpen, setLimitModalOpen] = useState(false);
+    const [selectedLimitName, setSelectedLimitName] = useState("");
+
     // Filtramos para exibir apenas os percursos disponíveis para inscrição online (15km e 7km)
     // O percurso de 9km (Portadores de Deficiência) é de inscrição presencial via Associação
     const onlineRoutes = routes.filter(
@@ -26,29 +32,57 @@ export default function RouteSelect({ form }: Step2SectionProps) {
         <FormField
             control={form.control}
             name="route"
-            render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Percurso</FormLabel>
-                    <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                    >
-                        <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Selecione o seu percurso" />
-                            </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                            {onlineRoutes.map(({ value, label }) => (
-                                <SelectItem value={value} key={value}>
-                                    {label}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                    <FormMessage />
-                </FormItem>
-            )}
+            render={({ field }) => {
+                const handleValueChange = (val: string) => {
+                    if (state && !isAvailable(val, state.availability.constraints)) {
+                        const matchedRoute = routes.find((r) => r.value === val);
+                        setSelectedLimitName(matchedRoute ? matchedRoute.label : val);
+                        setLimitModalOpen(true);
+                        field.onChange("");
+                        return;
+                    }
+                    field.onChange(val);
+                };
+
+                return (
+                    <FormItem>
+                        <FormLabel>Percurso</FormLabel>
+                        <Select
+                            onValueChange={handleValueChange}
+                            value={field.value || ""}
+                        >
+                            <FormControl>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Selecione o seu percurso" />
+                                </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                                {onlineRoutes.map(({ value, label }) => {
+                                    const available = state
+                                        ? isAvailable(value, state.availability.constraints)
+                                        : true;
+                                    return (
+                                        <SelectItem
+                                            value={value}
+                                            key={value}
+                                            disabled={!available}
+                                        >
+                                            {`${label} ${available ? "" : "(Esgotado)"}`}
+                                        </SelectItem>
+                                    );
+                                })}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+
+                        <CategoryLimitModal
+                            isOpen={limitModalOpen}
+                            onClose={() => setLimitModalOpen(false)}
+                            itemName={selectedLimitName}
+                        />
+                    </FormItem>
+                );
+            }}
         />
     );
 }

@@ -55,7 +55,7 @@ services:
             [
                 "sh",
                 "-c",
-                "sleep 10 && bunx prisma migrate dev --skip-generate && bun run ./dist/index.js ",
+                "until bunx prisma migrate deploy; do echo 'A aguardar conexao com a base de dados...'; sleep 2; done && bun run ./dist/index.js",
             ]
 
 volumes:

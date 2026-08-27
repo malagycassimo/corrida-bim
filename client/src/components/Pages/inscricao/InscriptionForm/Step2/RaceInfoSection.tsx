@@ -17,7 +17,7 @@ export const RaceInfoSection = ({
     return (
         <div className="space-y-3">
             <CategorySelect form={form} state={state} />
-            <RouteSelect form={form} />
+            <RouteSelect form={form} state={state} />
             <ShirtSizeSelect form={form} />
             <TermsCheckboxes form={form} />
         </div>
