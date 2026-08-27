@@ -1,5 +1,19 @@
 import type { Participant } from "../models/types";
 
+export interface BulkEmailRequest {
+    recipients: {
+        email: string;
+        firstName?: string;
+        lastName?: string;
+        category?: string;
+        route?: string;
+        IDCode?: string;
+        shirt?: string;
+    }[];
+    subject: string;
+    html: string;
+}
+
 export interface ParticipantService {
     store: (
         participant: Participant.ParticipantRequest,
@@ -11,4 +25,5 @@ export interface ParticipantService {
         id: string,
         participant: Participant.ParticipantSchema,
     ) => Promise<Participant.ParticipantSchema>;
+    sendBulkEmail: (data: BulkEmailRequest) => Promise<{ sentCount: number }>;
 }

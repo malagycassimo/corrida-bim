@@ -42,6 +42,8 @@ services:
         networks:
             - backend
             - frontend
+        ports:
+            - "3002:3002"
         command:
             [
                 "sh",

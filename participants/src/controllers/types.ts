@@ -6,4 +6,5 @@ export interface Participant {
     fetch: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     destroy: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     update: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    sendBulkEmail: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }

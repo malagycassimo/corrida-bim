@@ -106,22 +106,48 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
         return text;
     }, [body, sampleParticipant]);
 
-    const handleSendEmails = () => {
+    const handleSendEmails = async () => {
         if (filteredRecipients.length === 0) return;
         setIsSending(true);
-        setSendProgress(0);
+        setSendProgress(30);
         setIsSuccess(false);
 
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += 10;
-            setSendProgress(progress);
-            if (progress >= 100) {
-                clearInterval(interval);
-                setIsSending(false);
+        try {
+            const serverUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
+            const response = await fetch(`${serverUrl}/participants/send-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    recipients: filteredRecipients.map((item) => ({
+                        email: item.email,
+                        firstName: item.firstName,
+                        lastName: item.lastName,
+                        category: item.category,
+                        route: item.route,
+                        IDCode: item.IDCode,
+                        shirt: item.shirt,
+                    })),
+                    subject,
+                    html: body,
+                }),
+            });
+
+            setSendProgress(100);
+            if (response.ok) {
                 setIsSuccess(true);
+            } else {
+                const errData = await response.json().catch(() => ({}));
+                console.error("Erro no retorno da API ao enviar e-mails:", errData);
+                alert("Ocorreu um erro no servidor ao enviar os e-mails.");
             }
-        }, 150);
+        } catch (error) {
+            console.error("Erro na requisição para envio de e-mails:", error);
+            alert("Não foi possível conectar ao servidor para enviar os e-mails.");
+        } finally {
+            setIsSending(false);
+        }
     };
 
     return (
