@@ -1,4 +1,5 @@
 import { MailerServ } from "../../services/Mailer";
 
-const mailSrv = MailerServ(process.env.SENDGRID_KEY as string);
+const apiKey = (process.env.RESEND_KEY || process.env.RESEND_API_KEY || process.env.SENDGRID_KEY || "") as string;
+const mailSrv = MailerServ(apiKey);
 export { mailSrv };

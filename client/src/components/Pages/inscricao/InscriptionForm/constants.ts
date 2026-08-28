@@ -57,10 +57,8 @@ export const initialFormState: FormState = {
     availability: {
         codes: [],
         constraints: {
-            populares: 0,
-            veteranosI: 0,
-            veteranosII: 0,
-            estrangeiros: 0,
+            corrida15k: 0,
+            caminhada7k: 0,
             total: 0,
         },
     },

@@ -73,12 +73,29 @@ const participantsController = (
         }
     };
 
+    const sendBulkEmail = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ): Promise<void> => {
+        try {
+            const result = await participantService.sendBulkEmail(req.body);
+            res.status(200).json({
+                message: "E-mails enviados com sucesso",
+                sentCount: result.sentCount,
+            });
+        } catch (e) {
+            next(e);
+        }
+    };
+
     return {
         store,
         get,
         fetch,
         destroy,
         update,
+        sendBulkEmail,
     };
 };
 

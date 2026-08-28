@@ -45,6 +45,7 @@ export interface SectionProps {
 }
 export interface Step2SectionProps {
     form: UseFormReturn<z.infer<typeof raceFormSchema>>;
+    state?: FormState;
 }
 
 export interface ConfirmationField {

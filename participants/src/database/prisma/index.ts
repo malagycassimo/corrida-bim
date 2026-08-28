@@ -10,7 +10,8 @@ const prismaDatabase = (): IDatabase => {
     return {
         store: async (participant: Participant.ParticipantRequest) => {
             try {
-                return await prisma.participant.create({ data: participant });
+                const { accept, acceptterms, ...participantData } = participant as any;
+                return await prisma.participant.create({ data: participantData });
             } catch (error) {
                 if (error instanceof Error && !(error instanceof ErrorImpl)) {
                     throw new ErrorImpl(

@@ -56,60 +56,67 @@ export const Metrics = ({ data = [] }: { data?: DataItem[] }) => {
     const safeData = Array.isArray(data) ? data : [];
     const total = safeData.length;
 
-    const count15k = safeData.filter((p) => p.route && p.route.includes("Corrida Pedestre - 15km")).length;
+    const count15k = safeData.filter(
+        (p) => p.route && p.route.includes("15km"),
+    ).length;
     const percent15k = total > 0 ? ((count15k / total) * 100).toFixed(1) : "0";
 
-    const countDef = safeData.filter((p) => p.route && p.route.includes("Portadores De Deficiência - 9km")).length;
+    const countDef = safeData.filter(
+        (p) =>
+            (p.route && (p.route.includes("Deficiência") || p.route.includes("9km"))) ||
+            (p.category &&
+                (p.category.includes("Triciclos") ||
+                    p.category.includes("Cadeirantes") ||
+                    p.category.includes("Deficientes"))),
+    ).length;
     const percentDef = total > 0 ? ((countDef / total) * 100).toFixed(1) : "0";
 
-    const countWalk = safeData.filter((p) => p.route && p.route.includes("Caminhada - 7km")).length;
+    const countWalk = safeData.filter(
+        (p) => p.route && p.route.includes("7km"),
+    ).length;
     const percentWalk = total > 0 ? ((countWalk / total) * 100).toFixed(1) : "0";
 
     return (
-        <div className="p-4">
+        <div className="py-2">
             <motion.div
-                className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
                 variants={container}
                 initial="hidden"
                 animate="show"
             >
                 <motion.div variants={item}>
                     <MetricCard
-                        title="Total de inscritos"
+                        title="Total de Inscritos"
                         value={total}
-                        change="Visão geral"
-                        icon={<LandPlot className="h-4 w-4 text-gray-400" />}
+                        change="Visão geral do evento"
+                        icon={<LandPlot className="h-5 w-5" />}
                     />
                 </motion.div>
 
                 <motion.div variants={item}>
                     <MetricCard
-                        title="Total de inscritos 15 Km"
+                        title="Corrida 15 Km"
                         value={count15k}
                         change={`${percent15k}% dos inscritos`}
-                        icon={<Footprints className="h-4 w-4 text-gray-400" />}
+                        icon={<Footprints className="h-5 w-5" />}
                     />
                 </motion.div>
 
                 <motion.div variants={item}>
                     <MetricCard
-                        title="Total de inscritos deficientes"
-                        value={countDef}
-                        change={`${percentDef}% dos inscritos`}
-                        icon={
-                            <Accessibility className="h-4 w-4 text-gray-400" />
-                        }
-                    />
-                </motion.div>
-
-                <motion.div variants={item}>
-                    <MetricCard
-                        title="Total de inscritos para caminhada"
+                        title="Caminhada 7 Km"
                         value={countWalk}
                         change={`${percentWalk}% dos inscritos`}
-                        icon={
-                            <PersonStanding className="h-4 w-4 text-gray-400" />
-                        }
+                        icon={<PersonStanding className="h-5 w-5" />}
+                    />
+                </motion.div>
+
+                <motion.div variants={item}>
+                    <MetricCard
+                        title="Portadores de Deficiência"
+                        value={countDef}
+                        change={`${percentDef}% dos inscritos`}
+                        icon={<Accessibility className="h-5 w-5" />}
                     />
                 </motion.div>
             </motion.div>

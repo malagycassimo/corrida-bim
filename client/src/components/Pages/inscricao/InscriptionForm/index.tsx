@@ -10,20 +10,40 @@ import { getIsAvailable } from "@/app/inscricao/action";
 import { FormState } from "./types";
 import { initialFormState } from "./constants";
 
+import { isEventFullySoldOut } from "@/utils/helpers";
+import { FullySoldOutNotice } from "./FullySoldOutNotice";
+
 export default function InscriptionForm() {
     const [formState, setFormState] = useState<FormState>(initialFormState);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchAvailability = async () => {
-            const availability = await getIsAvailable();
-            setFormState((prevState) => ({
-                ...prevState,
-                availability,
-            }));
+            try {
+                const availability = await getIsAvailable();
+                setFormState((prevState) => ({
+                    ...prevState,
+                    availability,
+                }));
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchAvailability();
     }, []);
+
+    const fullySoldOut = isEventFullySoldOut(formState.availability?.constraints);
+
+    if (!loading && fullySoldOut) {
+        return (
+            <AnimatedComponent>
+                <div className="lg:w-1/2 max-w-4xl py-11 rounded-3xl space-y-8 lg:mx-auto px-9 lg:px-20 shadow-lg relative m-6 lg:m-0 border lg:-top-20 z-10 bg-white">
+                    <FullySoldOutNotice />
+                </div>
+            </AnimatedComponent>
+        );
+    }
 
     const renderStep = () => {
         const steps = {
