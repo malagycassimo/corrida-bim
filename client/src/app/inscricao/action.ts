@@ -28,6 +28,7 @@ export interface PedestrianRaceConstraints {
 export interface AvailabilityResponse {
     codes: string[];
     constraints: PedestrianRaceConstraints;
+    registrationOpen?: boolean;
 }
 
 export async function submitData(payload: Record<string, unknown>) {
@@ -60,6 +61,17 @@ export const submitRegistration = submitData;
 
 export async function getIsAvailable(): Promise<AvailabilityResponse> {
     try {
+        let registrationOpen = true;
+        try {
+            const statusRes = await fetch("http://server:3002/settings/registration-status", { cache: "no-store" });
+            if (statusRes.ok) {
+                const statusData = await statusRes.json();
+                registrationOpen = statusData.registrationOpen !== false;
+            }
+        } catch (err) {
+            console.error("Erro ao buscar status de configurações:", err);
+        }
+
         const response = await fetch("http://server:3002/participants/fetch");
         const data: Participant[] = await response.json();
 
@@ -79,6 +91,7 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
         return {
             codes,
             constraints,
+            registrationOpen,
         };
     } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -89,6 +102,7 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
                 caminhada7k: 0,
                 total: 0,
             },
+            registrationOpen: true,
         };
     }
 }
