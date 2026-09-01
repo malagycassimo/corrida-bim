@@ -20,9 +20,13 @@ interface MailerService {
 }
 
 const MailerServ = (apiKey: string): MailerService => {
-    const resend = new Resend(apiKey);
+    const resend = apiKey ? new Resend(apiKey) : null;
 
     const sendEmail = async (options: EmailOptions): Promise<void> => {
+        if (!resend) {
+            console.warn("[Mailer] RESEND_KEY não configurada. E-mail não enviado.");
+            return;
+        }
         try {
             let htmlContent = options.html;
 

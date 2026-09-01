@@ -1,5 +1,6 @@
 import { Table } from "@/components/LazyTable";
 import { Metrics } from "@/components/Metrics";
+import { RegistrationToggle } from "@/components/RegistrationToggle";
 import Image from "next/image";
 
 async function getData() {
@@ -18,8 +19,25 @@ async function getData() {
     }
 }
 
+async function getRegistrationStatus(): Promise<boolean> {
+    try {
+        const res = await fetch("http://server:3002/settings/registration-status", {
+            cache: "no-store",
+        });
+        if (!res.ok) {
+            return true;
+        }
+        const data = await res.json();
+        return data.registrationOpen !== false;
+    } catch (error) {
+        console.error("Erro ao buscar estado das inscrições:", error);
+        return true;
+    }
+}
+
 export default async function Home() {
     const data = await getData();
+    const registrationOpen = await getRegistrationStatus();
 
     return (
         <main className="container mx-auto px-4 py-8 max-w-[1400px] space-y-6">
@@ -37,6 +55,10 @@ export default async function Home() {
                 <p className="text-sm font-medium text-slate-500 max-w-md">
                     Painel de controle e acompanhamento em tempo real dos participantes da 16ª Corrida Millennium bim
                 </p>
+
+                <div className="pt-2">
+                    <RegistrationToggle initialStatus={registrationOpen} />
+                </div>
             </div>
 
             <Metrics data={data} />

@@ -11,4 +11,6 @@ export interface IDatabase {
         id: string,
         participant: Participant.ParticipantRequest,
     ) => Promise<Participant.ParticipantSchema>;
+    getSetting: (key: string) => Promise<string | null>;
+    setSetting: (key: string, value: string) => Promise<string>;
 }

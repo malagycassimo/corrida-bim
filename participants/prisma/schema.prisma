@@ -27,3 +27,9 @@ model Participant {
 
     @@index([IDCode, email, phone])
 }
+
+model Setting {
+    key       String   @id
+    value     String
+    updatedAt DateTime @updatedAt
+}
