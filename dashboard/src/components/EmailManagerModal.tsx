@@ -155,7 +155,7 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
             <DialogTrigger asChild>
                 <Button className="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 h-11 rounded-xl shadow-xs transition-all duration-200">
                     <Mail className="mr-2 h-4 w-4 text-rose-400" />
-                    Enviar E-mails / Comunicados
+                    Enviar E-mails
                 </Button>
             </DialogTrigger>
 
@@ -225,11 +225,10 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
                                     <button
                                         key={seg.id}
                                         onClick={() => setAudienceSegment(seg.id)}
-                                        className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
-                                            audienceSegment === seg.id
+                                        className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${audienceSegment === seg.id
                                                 ? "bg-slate-900 text-white border-slate-900 shadow-xs"
                                                 : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100"
-                                        }`}
+                                            }`}
                                     >
                                         {seg.label}
                                     </button>
@@ -249,11 +248,10 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
                                     <button
                                         key={tmpl.id}
                                         onClick={() => handleSelectTemplate(tmpl)}
-                                        className={`p-3 text-left rounded-xl border text-xs font-bold transition-all flex items-center justify-between ${
-                                            selectedTemplate === tmpl.id
+                                        className={`p-3 text-left rounded-xl border text-xs font-bold transition-all flex items-center justify-between ${selectedTemplate === tmpl.id
                                                 ? "bg-rose-50 border-rose-300 text-rose-900 shadow-xs"
                                                 : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
-                                        }`}
+                                            }`}
                                     >
                                         <span>{tmpl.name}</span>
                                         {selectedTemplate === tmpl.id && (
@@ -268,22 +266,20 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
                         <div className="flex border-b border-slate-200 space-x-4">
                             <button
                                 onClick={() => setActiveTab("editor")}
-                                className={`pb-2 text-xs font-bold flex items-center space-x-1.5 border-b-2 transition-colors ${
-                                    activeTab === "editor"
+                                className={`pb-2 text-xs font-bold flex items-center space-x-1.5 border-b-2 transition-colors ${activeTab === "editor"
                                         ? "border-rose-600 text-rose-600"
                                         : "border-transparent text-slate-500 hover:text-slate-800"
-                                }`}
+                                    }`}
                             >
                                 <Edit3 className="h-4 w-4" />
                                 <span>Editar Conteúdo</span>
                             </button>
                             <button
                                 onClick={() => setActiveTab("preview")}
-                                className={`pb-2 text-xs font-bold flex items-center space-x-1.5 border-b-2 transition-colors ${
-                                    activeTab === "preview"
+                                className={`pb-2 text-xs font-bold flex items-center space-x-1.5 border-b-2 transition-colors ${activeTab === "preview"
                                         ? "border-rose-600 text-rose-600"
                                         : "border-transparent text-slate-500 hover:text-slate-800"
-                                }`}
+                                    }`}
                             >
                                 <Eye className="h-4 w-4" />
                                 <span>Pré-visualizar E-mail</span>

@@ -10,6 +10,16 @@ const prismaDatabase = (): IDatabase => {
     return {
         store: async (participant: Participant.ParticipantRequest) => {
             try {
+                const setting = await prisma.setting.findUnique({
+                    where: { key: "registrations_open" },
+                });
+                if (setting && setting.value === "false") {
+                    throw new ErrorImpl(
+                        "As inscrições estão temporariamente fechadas.",
+                        403,
+                        "Inscrições temporariamente fechadas pelo administrador",
+                    );
+                }
                 const { accept, acceptterms, ...participantData } = participant as any;
                 return await prisma.participant.create({ data: participantData });
             } catch (error) {
@@ -92,6 +102,42 @@ const prismaDatabase = (): IDatabase => {
                 if (error instanceof Error && !(error instanceof ErrorImpl)) {
                     throw new ErrorImpl(
                         "Erro ao atualizar o participante",
+                        500,
+                        error.message,
+                    );
+                }
+                throw error;
+            }
+        },
+        getSetting: async (key: string) => {
+            try {
+                const setting = await prisma.setting.findUnique({
+                    where: { key },
+                });
+                return setting ? setting.value : null;
+            } catch (error) {
+                if (error instanceof Error && !(error instanceof ErrorImpl)) {
+                    throw new ErrorImpl(
+                        "Erro ao buscar configuração",
+                        500,
+                        error.message,
+                    );
+                }
+                throw error;
+            }
+        },
+        setSetting: async (key: string, value: string) => {
+            try {
+                const setting = await prisma.setting.upsert({
+                    where: { key },
+                    update: { value },
+                    create: { key, value },
+                });
+                return setting.value;
+            } catch (error) {
+                if (error instanceof Error && !(error instanceof ErrorImpl)) {
+                    throw new ErrorImpl(
+                        "Erro ao salvar configuração",
                         500,
                         error.message,
                     );

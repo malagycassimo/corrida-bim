@@ -9,4 +9,4 @@ const participantRepoImpl = participantRepository(database);
 const ParticipantServImpl = ParticipantServ(participantRepoImpl, mailSrv);
 const participantController = participantsController(ParticipantServImpl);
 
-export { participantController };
+export { participantController, database };
