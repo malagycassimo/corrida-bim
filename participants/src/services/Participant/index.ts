@@ -44,7 +44,9 @@ const ParticipantServ = (
         html: string;
     }) => {
         let sentCount = 0;
-        const sender = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+        const sender =
+            process.env.RESEND_FROM_EMAIL ||
+            "16ª Corrida Millennium bim <nao-responder@corridamillenniumbim.co.mz>";
 
         for (const recipient of data.recipients) {
             if (!recipient.email) continue;

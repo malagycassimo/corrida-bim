@@ -15,7 +15,12 @@ export function RegistrationToggle({ initialStatus }: RegistrationToggleProps) {
 
     const getServerUrl = () => {
         if (typeof window !== "undefined") {
-            return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
+            if (process.env.NEXT_PUBLIC_API_URL) {
+                return process.env.NEXT_PUBLIC_API_URL;
+            }
+            const protocol = window.location.protocol;
+            const hostname = window.location.hostname;
+            return `${protocol}//${hostname}:3002`;
         }
         return "http://server:3002";
     };

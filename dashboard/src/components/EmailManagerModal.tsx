@@ -113,7 +113,11 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
         setIsSuccess(false);
 
         try {
-            const serverUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
+            const serverUrl =
+                process.env.NEXT_PUBLIC_API_URL ||
+                (typeof window !== "undefined"
+                    ? `${window.location.protocol}//${window.location.hostname}:3002`
+                    : "http://localhost:3002");
             const response = await fetch(`${serverUrl}/participants/send-email`, {
                 method: "POST",
                 headers: {
