@@ -11,7 +11,9 @@ const WELCOME = ({
     IDCode,
 }: Participant.ParticipantSchema): EmailOptions => {
     return {
-        from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+        from:
+            process.env.RESEND_FROM_EMAIL ||
+            "16ª Corrida Millennium bim <nao-responder@corridamillenniumbim.co.mz>",
         to: email,
         subject: "Parabéns! Sua inscrição na 16ª Corrida Millennium bim foi confirmada",
         template: {
