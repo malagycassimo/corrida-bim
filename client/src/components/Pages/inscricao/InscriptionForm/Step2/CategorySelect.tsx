@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { raceFormSchema } from "./formSchema";
 import * as z from "zod";
@@ -35,6 +35,15 @@ export const CategorySelect = ({
     const [selectedRestrictedName, setSelectedRestrictedName] = useState("");
     const [limitModalOpen, setLimitModalOpen] = useState(false);
     const [selectedLimitName, setSelectedLimitName] = useState("");
+
+    useEffect(() => {
+        const currentCat = form.getValues("category") || state.step2.category;
+        if (currentCat && !isAllowedCategory(currentCat)) {
+            const matchedCat = categories.find((c) => c.value === currentCat);
+            setSelectedRestrictedName(matchedCat ? matchedCat.label : currentCat);
+            setModalOpen(true);
+        }
+    }, [form, state.step2.category]);
 
     return (
         <FormField
@@ -96,6 +105,11 @@ export const CategorySelect = ({
                             </SelectContent>
                         </Select>
                         <FormMessage />
+                        {field.value && isAllowedCategory(field.value) && (
+                            <p className="text-xs text-green-700 font-medium mt-1">
+                                ✓ Categoria selecionada automaticamente com base nos seus dados pessoais.
+                            </p>
+                        )}
 
                         <RestrictedCategoryModal
                             isOpen={modalOpen}

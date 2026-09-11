@@ -9,8 +9,8 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <p>
                 A 16ª Corrida Millennium bim terá lugar no dia 25 de
-                outubro em Maputo, com início às 7h00 na Praça da Independência.
-                O aquecimento começará às 6h20.
+                outubro em Maputo, com início às 6h30 na Praça da Independência.
+                O aquecimento começará às 6h10.
             </p>
         ),
     },
@@ -42,19 +42,22 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <div>
                 <p>
-                    A entrega dos dorsais (para os atletas da corrida pedestre -
-                    15km) será feita na Associação de Atletismo da Cidade de
-                    Maputo nos dias 27 e 28 de novembro, mediante apresentação
-                    do recibo de inscrição e do documento de identificação. Para
-                    a caminhada, não haverá dorsais disponíveis
+                    O levantamento dos kits será realizado de 21 a 23 de
+                    outubro, na Associação de Atletismo da Cidade de Maputo para
+                    os atletas federados e na sede do Millennium bim para os
+                    demais participantes, mediante apresentação do recibo de
+                    inscrição e do documento de identificação. Para a caminhada,
+                    não haverá dorsais disponíveis.
                 </p>
-                <Image
-                    alt="Camiseta - 15 Corrida Millenium bim"
-                    src={"/assets/images/T-Shirt.png"}
-                    className="w-96 h-auto mx-auto"
-                    width={2517}
-                    height={2250}
-                />
+                <div className="flex justify-center items-center w-full my-6">
+                    <Image
+                        alt="Amostra do Kit - 16ª Corrida Millennium bim"
+                        src={"/assets/images/Kit-Corrida-Transparencia.png"}
+                        className="block mx-auto w-full max-w-md md:max-w-lg h-auto object-contain"
+                        width={2517}
+                        height={2250}
+                    />
+                </div>
             </div>
         ),
     },
@@ -84,7 +87,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                         {""}
                         {"Distribuição de água durante a corrida"}
                     </span>
-                    Haverá 4 pontos de distribuição de água ao longo do
+                    Haverá 3 pontos de distribuição de água ao longo do
                     percurso: na Sede do Banco, no Radisson Blu, na Praça do
                     Destacamento Feminino, e novamente na Sede do Banco no
                     retorno.

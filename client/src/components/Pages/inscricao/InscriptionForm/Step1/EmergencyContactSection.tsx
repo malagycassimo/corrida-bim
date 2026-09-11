@@ -52,7 +52,7 @@ export default function EmergencyContactSection({ form }: SectionProps) {
                                 </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                                <SelectItem value="Amigo">Amigo</SelectItem>
+                                <SelectItem value="Outros">Outros</SelectItem>
                                 <SelectItem value="Esposa/Esposo">
                                     Esposa/Esposo
                                 </SelectItem>

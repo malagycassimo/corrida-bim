@@ -409,28 +409,48 @@ export const categories: { label: string; value: string }[] = [
         value: "Juvenis",
     },
     {
-        label: "Populares - Masculino (18–39 anos) / Feminino (18–34 anos)",
-        value: "Populares",
+        label: "Populares - Masculino (18–39 anos)",
+        value: "Populares - Masculino (18–39 anos)",
     },
     {
-        label: "Veteranos 1 - Masculino (40–50 anos) / Feminino (35–45 anos)",
-        value: "Veteranos 1",
+        label: "Populares - Feminino (18–34 anos)",
+        value: "Populares - Feminino (18–34 anos)",
     },
     {
-        label: "Veteranos 2 - Masculino (>50 anos) / Feminino (>45 anos)",
-        value: "Veteranos 2",
+        label: "Veteranos - Masculino (40–50 anos)",
+        value: "Veteranos - Masculino (40–50 anos)",
+    },
+    {
+        label: "Veteranos - Feminino (35–45 anos)",
+        value: "Veteranos - Feminino (35–45 anos)",
+    },
+    {
+        label: "Veteranos - Masculino (>50 anos)",
+        value: "Veteranos - Masculino (>50 anos)",
+    },
+    {
+        label: "Veteranos - Feminino (>45 anos)",
+        value: "Veteranos - Feminino (>45 anos)",
+    },
+    {
+        label: "Estrangeiros - Masculino menor de 50 anos",
+        value: "Estrangeiros - Masculino menor de 50 anos",
+    },
+    {
+        label: "Estrangeiros - Feminino menor de 45 anos",
+        value: "Estrangeiros - Feminino menor de 45 anos",
+    },
+    {
+        label: "Estrangeiros - Masculino maior de 50 anos",
+        value: "Estrangeiros - Masculino maior de 50 anos",
+    },
+    {
+        label: "Estrangeiros - Feminino maior de 45 anos",
+        value: "Estrangeiros - Feminino maior de 45 anos",
     },
     {
         label: "Federados (inscrição via Associação de Atletismo)",
         value: "Federados",
-    },
-    {
-        label: "Estrangeiros 1 - Masculino (18–49 anos) / Feminino (18–44 anos)",
-        value: "Estrangeiros 1",
-    },
-    {
-        label: "Estrangeiros 2 - Masculino (>50 anos) / Feminino (>45 anos)",
-        value: "Estrangeiros 2",
     },
     {
         label: "Triciclos (inscrição via Associação de Atletismo)",
