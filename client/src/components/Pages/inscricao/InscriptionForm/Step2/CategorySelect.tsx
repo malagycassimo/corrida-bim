@@ -51,6 +51,9 @@ export const CategorySelect = ({
             name="category"
             render={({ field }) => {
                 const handleValueChange = (val: string) => {
+                    if (field.value && val !== field.value) {
+                        return;
+                    }
                     if (!isAllowedCategory(val)) {
                         const matchedCat = categories.find((c) => c.value === val);
                         setSelectedRestrictedName(matchedCat ? matchedCat.label : val);
@@ -81,33 +84,39 @@ export const CategorySelect = ({
                                 </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                                {categories.map(({ value, label }) => (
-                                    <SelectItem
-                                        key={value}
-                                        value={value}
-                                        disabled={
-                                            !isAvailable(
-                                                value,
-                                                state.availability.constraints,
-                                            )
-                                        }
-                                    >
-                                        {`${label} ${
-                                            isAvailable(
-                                                value,
-                                                state.availability.constraints,
-                                            )
-                                                ? ""
-                                                : "(Esgotado)"
-                                        }`}
-                                    </SelectItem>
-                                ))}
+                                {categories.map(({ value, label }) => {
+                                    const isSelected = field.value === value;
+                                    const isAvailableForEvent = isAvailable(
+                                        value,
+                                        state.availability.constraints,
+                                    );
+                                    // Se uma categoria já foi selecionada automaticamente, as outras não podem ser selecionadas e aparecem desabilitadas
+                                    const isOtherCategory = Boolean(field.value) && !isSelected;
+                                    const isDisabled = !isAvailableForEvent || isOtherCategory;
+
+                                    let suffix = "";
+                                    if (!isAvailableForEvent) {
+                                        suffix = " (Esgotado)";
+                                    } else if (isOtherCategory) {
+                                        suffix = " (Indisponível)";
+                                    }
+
+                                    return (
+                                        <SelectItem
+                                            key={value}
+                                            value={value}
+                                            disabled={isDisabled}
+                                        >
+                                            {`${label}${suffix}`}
+                                        </SelectItem>
+                                    );
+                                })}
                             </SelectContent>
                         </Select>
                         <FormMessage />
                         {field.value && isAllowedCategory(field.value) && (
                             <p className="text-xs text-green-700 font-medium mt-1">
-                                ✓ Categoria selecionada automaticamente com base nos seus dados pessoais.
+                                ✓ Categoria selecionada automaticamente com base nos seus dados pessoais. As restantes opções estão desabilitadas.
                             </p>
                         )}
 
