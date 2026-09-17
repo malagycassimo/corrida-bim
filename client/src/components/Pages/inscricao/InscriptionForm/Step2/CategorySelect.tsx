@@ -97,8 +97,6 @@ export const CategorySelect = ({
                                     let suffix = "";
                                     if (!isAvailableForEvent) {
                                         suffix = " (Esgotado)";
-                                    } else if (isOtherCategory) {
-                                        suffix = " (Indisponível)";
                                     }
 
                                     return (

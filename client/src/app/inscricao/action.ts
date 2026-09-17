@@ -83,7 +83,11 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
                 (p) => p.route && p.route.includes("15km"),
             ).length,
             caminhada7k: safeData.filter(
-                (p) => p.route && p.route.includes("7km"),
+                (p) =>
+                    p.route &&
+                    (p.route.includes("7.2km") ||
+                        p.route.includes("7km") ||
+                        p.route.toLowerCase().includes("caminhada")),
             ).length,
             total: safeData.length,
         };

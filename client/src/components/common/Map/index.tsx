@@ -52,7 +52,7 @@ const Walk = ({
                     active ? "text-white" : "text-primary"
                 }`}
             >
-                <span className="md:inline-block hidden">Caminhada - 7km</span>
+                <span className="md:inline-block hidden">Caminhada - 7.2km</span>
             </span>
         </button>
     );
@@ -85,7 +85,7 @@ const Disabled = ({
                 }`}
             >
                 <span className="md:inline-block hidden">
-                    Deficientes - 9km
+                    Cadeirantes - 9.2km
                 </span>
             </span>
         </button>

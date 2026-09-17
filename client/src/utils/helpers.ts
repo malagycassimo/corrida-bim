@@ -6,29 +6,29 @@ export function isAvailable(
 ) {
     if (!constraints) return true;
 
-    // 1. Limite Máximo Geral do Evento (5.000 participantes)
-    if (constraints.total >= 5000) {
+    // 1. Limite Máximo Geral do Evento Online (3.000 participantes)
+    if (constraints.total >= 3000) {
         return false;
     }
 
-    // 2. Limite da Caminhada 7km (3.000 participantes)
-    if (value.includes("7km")) {
-        return constraints.caminhada7k < 3000;
+    // 2. Limite da Caminhada 7.2km (1.000 participantes)
+    if (value.includes("7") || value.toLowerCase().includes("caminhada")) {
+        return constraints.caminhada7k < 1000;
     }
 
     // 3. Limite Geral da Corrida 15km (2.000 atletas)
-    if (value.includes("15km")) {
+    if (value.includes("15km") || value.toLowerCase().includes("corrida")) {
         return constraints.corrida15k < 2000;
     }
 
-    return constraints.total < 5000;
+    return constraints.total < 3000;
 }
 
 export function isEventFullySoldOut(
     constraints?: PedestrianRaceConstraints,
 ): boolean {
     if (!constraints) return false;
-    const caminhadaEsgotada = !isAvailable("7km", constraints);
+    const caminhadaEsgotada = !isAvailable("7.2km", constraints);
     const corridaEsgotada = !isAvailable("15km", constraints);
     return caminhadaEsgotada && corridaEsgotada;
 }
@@ -87,9 +87,9 @@ export function determineCategory({
 
     const isFemale = gender === "F";
 
-    // Menores de 18 anos são Juvenis
+    // Menores de 18 anos não se inscrevem online (devem se inscrever na Federação/Associação de Atletismo)
     if (age < 18) {
-        return "Juvenis (inscrição via Associação de Atletismo)";
+        return "";
     }
 
     // Estrangeiros

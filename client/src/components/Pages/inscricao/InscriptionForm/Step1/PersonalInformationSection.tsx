@@ -165,7 +165,6 @@ export default function PersonalInformationSection({ form }: SectionProps) {
                             <SelectContent>
                                 <SelectItem value="M">Masculino</SelectItem>
                                 <SelectItem value="F">Feminino</SelectItem>
-                                <SelectItem value="N">Não binário</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />

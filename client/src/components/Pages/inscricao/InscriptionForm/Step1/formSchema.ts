@@ -1,6 +1,7 @@
 import * as z from "zod";
 import { getIsAvailable } from "@/app/inscricao/action";
 import { countries, provinces } from "@/utils/statics";
+import { calculateAge } from "@/utils/helpers";
 
 export const formSchema = z.object({
     IDCode: z
@@ -34,10 +35,15 @@ export const formSchema = z.object({
             message: "Selecione uma província válida",
         },
     ),
-    dob: z.date({
-        required_error: "Selecione uma data válida",
-        message: "Selecione uma data válida",
-    }),
+    dob: z
+        .date({
+            required_error: "Selecione uma data válida",
+            message: "Selecione uma data válida",
+        })
+        .refine((date) => calculateAge(date) >= 18, {
+            message:
+                "Inscrições online são exclusivas para maiores de 18 anos. Atletas juvenis devem se inscrever na Federação de Atletismo.",
+        }),
     country: z.enum(
         countries.map(({ value }) => value) as unknown as readonly [
             string,

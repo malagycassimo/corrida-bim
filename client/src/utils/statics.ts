@@ -405,10 +405,6 @@ export const countries = [
 
 export const categories: { label: string; value: string }[] = [
     {
-        label: "Juvenis (inscrição via Associação de Atletismo)",
-        value: "Juvenis",
-    },
-    {
         label: "Populares - Masculino (18–39 anos)",
         value: "Populares - Masculino (18–39 anos)",
     },
@@ -448,29 +444,17 @@ export const categories: { label: string; value: string }[] = [
         label: "Estrangeiros - Feminino maior de 45 anos",
         value: "Estrangeiros - Feminino maior de 45 anos",
     },
-    {
-        label: "Federados (inscrição via Associação de Atletismo)",
-        value: "Federados",
-    },
-    {
-        label: "Triciclos (inscrição via Associação de Atletismo)",
-        value: "Triciclos",
-    },
-    {
-        label: "Cadeirantes (inscrição via Associação de Atletismo)",
-        value: "Cadeirantes",
-    },
 ];
 
 
 export const routes: { label: string; value: string }[] = [
     {
-        label: "Caminhada - 7km",
-        value: "Caminhada - 7km",
+        label: "Caminhada - 7.2km",
+        value: "Caminhada - 7.2km",
     },
     {
-        label: "Portadores De Deficiência - 9km",
-        value: "Portadores De Deficiência - 9km",
+        label: "Cadeirantes - 9.2km",
+        value: "Cadeirantes - 9.2km",
     },
     {
         label: "Corrida Pedestre - 15km",
