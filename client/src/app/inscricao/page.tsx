@@ -14,11 +14,12 @@ export default function Inscricao() {
             {/* Hero section */}
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/inscricao-hero.webp"}
+                    src={"/assets/images/carrosel-new/DSC_4776.jpg"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
+                    priority
                 />
 
                 <div className="text-white container mx-auto">
@@ -34,10 +35,11 @@ export default function Inscricao() {
             <section className="mt-[100px] relative h-96 lg:hidden">
                 <Image
                     alt="Informações"
-                    src={"/assets/images/inscricao-hero-m.webp"}
+                    src={"/assets/images/carrosel-new/DSC_4776.jpg"}
                     fill
                     className="object-cover"
                     onLoad={() => setLoaded(true)}
+                    priority
                 />
                 <div className="absolute text-center text-white bg-primary bottom-0 right-0 left-0 py-4 text-lg font-semibold">
                     Inscrição

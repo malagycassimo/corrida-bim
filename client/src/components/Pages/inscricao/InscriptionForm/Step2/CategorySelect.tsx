@@ -79,7 +79,7 @@ export const CategorySelect = ({
                             value={field.value || ""}
                         >
                             <FormControl>
-                                <SelectTrigger>
+                                <SelectTrigger className="bg-white">
                                     <SelectValue placeholder="Selecione a categoria" />
                                 </SelectTrigger>
                             </FormControl>

@@ -23,62 +23,84 @@ interface PhoneInputProps<
 > {
     control: Control<TFieldValues>;
     name: TName;
+    label?: string;
+    placeholder?: string;
+    required?: boolean;
 }
 
 export function PhoneInput<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->({ control, name }: PhoneInputProps<TFieldValues, TName>) {
+>({
+    control,
+    name,
+    label = "Telefone",
+    placeholder = "84 123 4567",
+    required = true,
+}: PhoneInputProps<TFieldValues, TName>) {
     return (
         <FormField
             control={control}
             name={name}
-            render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Telefone</FormLabel>
-                    <div className="flex">
-                        <Select
-                            onValueChange={(value) =>
-                                field.onChange(
-                                    `${value}${field.value.split(" ")[1] || ""}`,
-                                )
-                            }
-                            defaultValue="+258"
-                        >
+            render={({ field }) => {
+                const rawValue = field.value || "+258 ";
+                const parts = rawValue.split(" ");
+                const currentCode = parts[0] || "+258";
+                const currentNumber = parts.slice(1).join(" ");
+
+                const handleCodeChange = (newCode: string) => {
+                    field.onChange(`${newCode} ${currentNumber}`.trim());
+                };
+
+                const handleNumberChange = (
+                    e: React.ChangeEvent<HTMLInputElement>,
+                ) => {
+                    const cleanVal = e.target.value.replace(/[^\d\s-]/g, "");
+                    field.onChange(`${currentCode} ${cleanVal}`);
+                };
+
+                return (
+                    <FormItem>
+                        <FormLabel>
+                            {label}{" "}
+                            {required && (
+                                <span className="text-primary font-bold">*</span>
+                            )}
+                        </FormLabel>
+                        <div className="flex gap-2">
+                            <Select
+                                onValueChange={handleCodeChange}
+                                value={currentCode}
+                            >
+                                <FormControl>
+                                    <SelectTrigger className="w-[120px] shrink-0 bg-white">
+                                        <SelectValue placeholder="Código" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent className="max-h-60">
+                                    {countryCodes.map((item) => (
+                                        <SelectItem
+                                            key={`${item.code}-${item.country}`}
+                                            value={item.code}
+                                        >
+                                            {item.code} ({item.country})
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
                             <FormControl>
-                                <SelectTrigger className="w-[110px]">
-                                    <SelectValue placeholder="Código" />
-                                </SelectTrigger>
+                                <Input
+                                    className="flex-1 bg-white"
+                                    placeholder={placeholder}
+                                    onChange={handleNumberChange}
+                                    value={currentNumber}
+                                />
                             </FormControl>
-                            <SelectContent>
-                                {countryCodes.map((item) => (
-                                    <SelectItem
-                                        key={item.code}
-                                        value={item.code}
-                                    >
-                                        {item.code} ({item.country})
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                        <FormControl>
-                            <Input
-                                className="flex-1 ml-2"
-                                placeholder="Número de telefone"
-                                {...field}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>,
-                                ) => {
-                                    const [code] = field.value.split(" ");
-                                    field.onChange(`${code} ${e.target.value}`);
-                                }}
-                                value={field.value.split(" ")[1] || ""}
-                            />
-                        </FormControl>
-                    </div>
-                    <FormMessage />
-                </FormItem>
-            )}
+                        </div>
+                        <FormMessage />
+                    </FormItem>
+                );
+            }}
         />
     );
 }

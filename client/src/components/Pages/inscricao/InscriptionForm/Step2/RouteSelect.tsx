@@ -55,7 +55,7 @@ export default function RouteSelect({ form, state }: Step2SectionProps) {
                             value={field.value || ""}
                         >
                             <FormControl>
-                                <SelectTrigger>
+                                <SelectTrigger className="bg-white">
                                     <SelectValue placeholder="Selecione o seu percurso" />
                                 </SelectTrigger>
                             </FormControl>
