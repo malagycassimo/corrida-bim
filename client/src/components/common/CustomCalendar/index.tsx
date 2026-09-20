@@ -24,7 +24,7 @@ type FieldType = ControllerRenderProps<
         email: string;
         lastName: string;
         phone: string;
-        province: string;
+        province?: string;
         dob: Date;
         country: string;
         gender: "M" | "F" | "N";
@@ -37,26 +37,32 @@ type FieldType = ControllerRenderProps<
 
 export default function CustomCalendar({ field }: { field: FieldType }) {
     return (
-        <FormItem className="flex flex-col">
-            <FormLabel>Data de nascimento</FormLabel>
+        <FormItem className="w-full">
+            <FormLabel>
+                Data de nascimento{" "}
+                <span className="text-primary font-bold">*</span>
+            </FormLabel>
             <Popover>
                 <PopoverTrigger asChild>
                     <FormControl>
                         <Button
+                            type="button"
                             variant={"outline"}
                             className={cn(
-                                "w-[240px] pl-3 text-left font-normal",
+                                "flex h-12 w-full items-center justify-between rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm shadow-sm font-normal text-left focus:outline-none focus:ring-1 focus:ring-zinc-950 hover:bg-zinc-50 overflow-hidden",
                                 !field.value && "text-muted-foreground",
                             )}
                         >
-                            {field.value ? (
-                                format(field.value, "PPP", {
-                                    locale: pt,
-                                }) // Adicione o locale aqui também
-                            ) : (
-                                <span>Selecione uma data</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            <span className="truncate pr-2 text-zinc-600">
+                                {field.value ? (
+                                    format(field.value, "PPP", {
+                                        locale: pt,
+                                    })
+                                ) : (
+                                    "Selecione a data de nascimento"
+                                )}
+                            </span>
+                            <CalendarIcon className="h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                     </FormControl>
                 </PopoverTrigger>

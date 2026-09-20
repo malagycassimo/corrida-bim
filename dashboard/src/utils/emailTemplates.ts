@@ -19,8 +19,8 @@ Falta muito pouco para a 16ª Corrida Millennium bim! A grande prova acontecerá
 📌 Informações Rápidas:
 - Categoria: {CATEGORIA}
 - Percurso: {ROTA}
-- Concentração: 6h20 na Praça da Independência
-- Início da Prova: 7h00 em ponto
+- Início do Aquecimento: 6h10 na Praça da Independência
+- Início da Prova: 6h30 em ponto
 
 Prepare os seus tênis, hidrate-se bem e venha fazer parte dessa grande festa do esporte e da saúde!
 
@@ -38,9 +38,11 @@ A sua inscrição para a 16ª Corrida Millennium bim está confirmada!
 
 Chegou o momento de levantar o seu Kit do Atleta (T-shirt oficial, dorsal e chip).
 
-📌 Locais e Horários de Levantamento:
-- Local: Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores)
-- Documentos necessários: Apresentação do Bilhete de Identidade ({BI}) ou comprovativo da inscrição.
+📌 Locais e Datas de Levantamento (21 a 23 de Outubro):
+- Federados, juvenis e portadores de deficiência: Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores).
+- Demais inscritos: Sede do Millennium bim, na Rua dos Desportistas nº 873/879.
+
+📌 Documentos necessários: Apresentação do Bilhete de Identidade ({BI}) ou comprovativo da inscrição.
 - Tamanho da T-shirt selecionado: {CAMISETE}
 
 Lembramos que o levantamento do kit é obrigatório para a participação na prova.
@@ -63,11 +65,11 @@ Para garantir que a sua experiência na 16ª Corrida Millennium bim seja inesque
 - Categoria: {CATEGORIA}
 
 💧 Hidratação & Apoio:
-Teremos postos de hidratação oficiais Bonaqua ao longo de todo o percurso e apoio médico a postos.
+Haverá 4 pontos de hidratação ao longo do percurso (Clube Naval com 2 pontos, Em frente à Embaixada dos EUA e Clínica Trauma) e apoio médico a postos.
 
 ⏰ Horários:
-- 06h20: Aquecimento orientado
-- 07h00: Partida Oficial
+- 06h10: Aquecimento orientado
+- 06h30: Partida Oficial
 
 Desejamos uma excelente corrida!
 Comissão Organizadora - 16ª Corrida Millennium bim`,

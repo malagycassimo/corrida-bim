@@ -405,52 +405,56 @@ export const countries = [
 
 export const categories: { label: string; value: string }[] = [
     {
-        label: "Juvenis (inscrição via Associação de Atletismo)",
-        value: "Juvenis",
+        label: "Populares - Masculino (18–39 anos)",
+        value: "Populares - Masculino (18–39 anos)",
     },
     {
-        label: "Populares - Masculino (18–39 anos) / Feminino (18–34 anos)",
-        value: "Populares",
+        label: "Populares - Feminino (18–34 anos)",
+        value: "Populares - Feminino (18–34 anos)",
     },
     {
-        label: "Veteranos 1 - Masculino (40–50 anos) / Feminino (35–45 anos)",
-        value: "Veteranos 1",
+        label: "Veteranos - Masculino (40–50 anos)",
+        value: "Veteranos - Masculino (40–50 anos)",
     },
     {
-        label: "Veteranos 2 - Masculino (>50 anos) / Feminino (>45 anos)",
-        value: "Veteranos 2",
+        label: "Veteranos - Feminino (35–45 anos)",
+        value: "Veteranos - Feminino (35–45 anos)",
     },
     {
-        label: "Federados (inscrição via Associação de Atletismo)",
-        value: "Federados",
+        label: "Veteranos - Masculino (>50 anos)",
+        value: "Veteranos - Masculino (>50 anos)",
     },
     {
-        label: "Estrangeiros 1 - Masculino (18–49 anos) / Feminino (18–44 anos)",
-        value: "Estrangeiros 1",
+        label: "Veteranos - Feminino (>45 anos)",
+        value: "Veteranos - Feminino (>45 anos)",
     },
     {
-        label: "Estrangeiros 2 - Masculino (>50 anos) / Feminino (>45 anos)",
-        value: "Estrangeiros 2",
+        label: "Estrangeiros - Masculino menor de 50 anos",
+        value: "Estrangeiros - Masculino menor de 50 anos",
     },
     {
-        label: "Triciclos (inscrição via Associação de Atletismo)",
-        value: "Triciclos",
+        label: "Estrangeiros - Feminino menor de 45 anos",
+        value: "Estrangeiros - Feminino menor de 45 anos",
     },
     {
-        label: "Cadeirantes (inscrição via Associação de Atletismo)",
-        value: "Cadeirantes",
+        label: "Estrangeiros - Masculino maior de 50 anos",
+        value: "Estrangeiros - Masculino maior de 50 anos",
+    },
+    {
+        label: "Estrangeiros - Feminino maior de 45 anos",
+        value: "Estrangeiros - Feminino maior de 45 anos",
     },
 ];
 
 
 export const routes: { label: string; value: string }[] = [
     {
-        label: "Caminhada - 7km",
-        value: "Caminhada - 7km",
+        label: "Caminhada - 7.2km",
+        value: "Caminhada - 7.2km",
     },
     {
-        label: "Portadores De Deficiência - 9km",
-        value: "Portadores De Deficiência - 9km",
+        label: "Cadeirantes - 9.2km",
+        value: "Cadeirantes - 9.2km",
     },
     {
         label: "Corrida Pedestre - 15km",

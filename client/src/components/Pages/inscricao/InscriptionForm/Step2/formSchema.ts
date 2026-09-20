@@ -14,13 +14,19 @@ export const raceFormSchema = z.object({
             string,
             ...string[],
         ],
-        { message: "Selecione um percurso válida" },
+        { message: "Selecione um percurso válido" },
     ),
-    shirt: z.string(),
+    shirt: z
+        .string({
+            required_error: "Selecione o tamanho da camiseta",
+        })
+        .min(1, {
+            message: "Selecione o tamanho da camiseta",
+        }),
     accept: z.boolean().refine((val) => val === true, {
-        message: "Concorde com o regulamento para prosseguir",
+        message: "É obrigatório aceitar o regulamento da prova",
     }),
     acceptterms: z.boolean().refine((val) => val === true, {
-        message: "Concorde com os termos para prosseguir",
+        message: "É obrigatório aceitar o termo de responsabilidade",
     }),
 });

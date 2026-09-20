@@ -20,24 +20,29 @@ export default function ShirtSizeSelect({ form }: Step2SectionProps) {
             control={form.control}
             name="shirt"
             render={({ field }) => (
-                <FormItem className="w-fit">
-                    <FormLabel>Tamaho da camiseta</FormLabel>
+                <FormItem className="w-full">
+                    <FormLabel>
+                        Tamanho da T-shirt oficial{" "}
+                        <span className="text-primary font-bold">*</span>
+                    </FormLabel>
                     <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        value={field.value || ""}
                     >
                         <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Selecione o seu tamanho" />
+                            <SelectTrigger className="bg-white">
+                                <SelectValue placeholder="Selecione o tamanho da sua T-shirt" />
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                            <SelectItem value="Small">S</SelectItem>
-                            <SelectItem value="Medium">M</SelectItem>
-                            <SelectItem value="Large">L</SelectItem>
-                            <SelectItem value="ExtraLarge">XL</SelectItem>
+                            <SelectItem value="Small">S - Pequeno</SelectItem>
+                            <SelectItem value="Medium">M - Médio</SelectItem>
+                            <SelectItem value="Large">L - Grande</SelectItem>
+                            <SelectItem value="ExtraLarge">
+                                XL - Extra Grande
+                            </SelectItem>
                             <SelectItem value="DoubleExtraLarge">
-                                XXL
+                                XXL - Duplo Extra Grande
                             </SelectItem>
                         </SelectContent>
                     </Select>

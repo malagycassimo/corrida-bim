@@ -3,6 +3,9 @@ FROM node:20-alpine
 
 WORKDIR /app
 
+ARG NEXT_PUBLIC_DASHBOARD_PASSWORD
+ENV NEXT_PUBLIC_DASHBOARD_PASSWORD=$NEXT_PUBLIC_DASHBOARD_PASSWORD
+
 # Copiar definições de dependências
 COPY package.json package-lock.json* ./
 

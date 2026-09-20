@@ -7,6 +7,7 @@ import { Form } from "@/components/ui/form";
 import PersonalInformationSection from "./PersonalInformationSection";
 import EmergencyContactSection from "./EmergencyContactSection";
 import { SubmitButton } from "../SubmitButton";
+import { determineCategory } from "@/utils/helpers";
 
 export default function Step1({ state, setState }: FormProps) {
     const form = useForm<z.infer<typeof formSchema>>({
@@ -15,11 +16,21 @@ export default function Step1({ state, setState }: FormProps) {
     });
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
+        const autoCategory = determineCategory({
+            dob: values.dob,
+            gender: values.gender,
+            country: values.country,
+        });
+
         setState((state) => ({
             ...state,
             step1: {
                 ...values,
                 dob: values.dob.toISOString(),
+            },
+            step2: {
+                ...state.step2,
+                category: autoCategory || state.step2.category,
             },
             currentStep: 1,
         }));

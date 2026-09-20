@@ -16,6 +16,10 @@ dev: ## Sobe os serviços em ambiente de desenvolvimento (docker-compose.dev.yml
 	@echo "Iniciando os containers em ambiente de desenvolvimento..."
 	docker compose -f docker-compose.dev.yml -p $(PROJECT_NAME) up -d --build
 
+dev-%: ## Sobe e reconstrói um serviço específico (ex: make dev-client)
+	@echo "Iniciando o serviço $* em ambiente de desenvolvimento..."
+	docker compose -f docker-compose.dev.yml -p $(PROJECT_NAME) up -d --build $*
+
 
 
 down: ## Para e remove todos os containers e redes

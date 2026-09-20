@@ -9,7 +9,7 @@ export const ConfirmationSection = ({
     step1: Step1Data;
     step2: Step2Data;
 }) => (
-    <div className="flex sm:flex-row flex-col justify-between space-y-3 sm:space-y-0 sm:space-x-10">
+    <div className="flex flex-col space-y-4 w-full">
         <PersonalInfoColumn step1={step1} />
         <RaceInfoColumn step1={step1} step2={step2} />
     </div>

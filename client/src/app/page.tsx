@@ -26,12 +26,13 @@ export default function Home() {
             {/* Hero section */}
             <section className="hidden relative h-[750px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/BIM-MARATONA-COVER.png"}
+                    src={"/assets/images/Banner-App-Corrida.jpg"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
                     quality={100}
+                    priority
                 />
 
                 <div className="text-white container mx-auto">
@@ -59,12 +60,13 @@ export default function Home() {
             </section>
             <section className="lg:hidden mt-[295px] relative h-[752px]">
                 <Image
-                    src={"/assets/images/BIM-MARATONA-COVER-MOBILE.png"}
+                    src={"/assets/images/Banner-App-Corrida.jpg"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
                     quality={100}
+                    priority
                 />
                 <AnimatedComponent>
                     <div className="py-9 text-center px-6 text-white bg-gradient-to-br from-primary to-secondary mx-4 sm:mx-auto max-w-xl rounded-xl -translate-y-1/2">
