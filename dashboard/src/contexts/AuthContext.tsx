@@ -17,9 +17,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const login = async (password: string): Promise<boolean> => {
         try {
-            const CORRECT_PASSWORD = process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD;
+            const correctPassword = process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD;
 
-            if (password === CORRECT_PASSWORD) {
+            if (correctPassword && password === correctPassword) {
                 setIsAuthenticated(true);
                 localStorage.setItem("isAuthenticated", "true");
                 return true;
