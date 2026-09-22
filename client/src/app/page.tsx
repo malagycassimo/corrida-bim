@@ -99,7 +99,7 @@ export default function Home() {
             {/* Routes section  */}
             <section className="mt-14 mb-20" id="route">
                 <h2 className="max-w-md mx-10 sm:mx-auto text-2xl font-bold lg:text-3xl lg:font-bold text-center">
-                    Veja os percursos na Corrida do Millennium bim
+                    Veja os percursos da Corrida Millennium bim
                 </h2>
                 <p className="mx-10 sm:mx-auto text-lg text-center mt-2 text-neutral-800">
                     Selecione o percurso pretendido para ver a sua rota no mapa

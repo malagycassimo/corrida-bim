@@ -37,22 +37,36 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <div>
                 <p>
+                    O levantamento do material será feito na sede do Millennium bim
+                    (Rua dos Desportistas n.º 873-879/15, Maputo), entre os dias
+                    21 a 23 de outubro, das 10h00 às 16h30, mediante apresentação
+                    do recibo de inscrição e do respectivo documento de identificação.
+                </p>
+                <br />
+                <p>
+                    Excepcionalmente, os participantes portadores de deficiência 
+                    deverão efectuar o levantamento na Associação
+                    de Atletismo da Cidade de Maputo (Parque dos Continuadores),
+                     entre os dias 21 a 23 de outubro.
+                </p>
+                    
+                {/* <p>
                     O levantamento dos kits decorrerá de 21 a 23 de
                     Outubro, das 10h00 às 16h30, mediante
                     apresentação do recibo de inscrição e documento de
                     identificação, nos seguintes locais:
-                </p>
-                <ul className="list-disc list-inside my-2 space-y-1">
+                </p> */}
+                {/* <ul className="list-disc list-inside my-2 space-y-1">
                     <li>
                         Associação de Atletismo da Cidade de Maputo: atletas federados, juvenis e pessoas com deficiência.
                     </li>
                     <li>
                         Sede do Millennium bim (Rua dos Desportistas, n.º 873/879): demais inscritos.
                     </li>
-                </ul>
+                </ul>*/}
                 <p className="text-xs text-zinc-700">
                     *Nota: Os kits da caminhada não incluem dorsal.
-                </p>
+                </p> 
                 <div className="flex justify-center items-center w-full my-6">
                     <Image
                         alt="Amostra do Kit - 16ª Corrida Millennium bim"
@@ -84,9 +98,9 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     <span className="mb-1 block text-[0.95rem] font-normal">
                         {"Pontos de água"}
                     </span>
-                    <p>Estarão disponíveis 4 pontos de hidratação ao longo do percurso:</p>
+                    <p>Estarão disponíveis 3 pontos de hidratação ao longo do percurso:</p>
                     <ul className="list-disc list-inside my-2 space-y-1">
-                        <li>Clube Naval (2 pontos)</li>
+                        <li>Clube Naval</li>
                         <li>Em frente à Embaixada dos EUA</li>
                         <li>Clínica Trauma</li>
                     </ul>
@@ -101,13 +115,18 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                 <p>
                     Serão atribuídas medalhas e prémios monetários aos 3
                     primeiros classificados (masculinos e femininos) das
-                    categorias da Corrida:
+                    categorias abaixo:
                 </p>
                 <ul className="list-disc list-inside my-2 space-y-1">
-                    <li>Pessoas com Deficiência (Triciclos e Cadeiras de Rodas)</li>
+                    <li>Portadores de Deficiência – Triciclos</li>
+                    <li>Portadores de Deficiência – Cadeiras de Rodas</li>
                     <li>Juvenis, Populares e Federados</li>
-                    <li>Veteranos e Estrangeiros</li>
-                    <li>Colaboradores do Millennium bim</li>
+                    <li>Veteranos dos 35 – 45 anos femininos e 40 – 50 anos masculinos</li>
+                    <li>Veteranos com mais de 45 anos femininos e mais de 50 anos masculinos</li>
+                    <li>Estrangeiros com menos de 45 anos femininos e menos de 50 anos masculinos</li>
+                    <li>Estrangeiros com mais de 45 anos femininos e mais de 50 anos masculinos.</li>
+                    <li>Colaboradores do Millennium bim com menos de 40 anos</li>
+                    <li>Colaboradores do Millennium bim com mais de 40 anos.</li>
                 </ul>
                 <p>
                     Haverá também distinção especial para o atleta
