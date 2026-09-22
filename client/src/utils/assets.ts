@@ -72,4 +72,8 @@ export const partnersImages: CarouselImageProps[] = [
         alt: "Associação de Atletismo da Cidade de Maputo",
         src: "/assets/images/partners/partner-4.jpg",
     },
+    {
+        alt: "Tomas Bonnet",
+        src: "/assets/images/partners/tomasbonnet.png",
+    },
 ];

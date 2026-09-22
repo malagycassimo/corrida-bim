@@ -1,16 +1,15 @@
 import Image from "next/image";
 import { AccordionProps } from ".";
-import { IconPack } from "../IconPack";
 
 export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
     {
         title: "Informações gerais",
-        subtitle: "Data e Horário",
         content: (
             <p>
-                A 16ª Corrida Millennium bim terá lugar no dia 25 de
-                outubro em Maputo, com início às 6h30 na Praça da Independência.
-                O aquecimento começará às 6h10.
+                A 16.ª Corrida Millennium bim realizar-se-á no dia 25 de
+                Outubro, em Maputo. As provas terão como local de partida e
+                chegada a sede do Millennium bim. O aquecimento terá início às
+                06h10 e as provas arrancarão às 06h30.
             </p>
         ),
     },
@@ -18,18 +17,17 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         title: "Inscrições",
         content: (
             <div>
-                <p className="font-medium">
-                    As inscrições são gratuitas e serão feitas online, com exceção
-                    das categorias de Juvenis, Federados e Cadeirantes que deverão
-                    inscrever-se presencialmente na Associação de Atletismo da
-                    Cidade de Maputo, localizada no Parque dos Continuadores.
-                </p>
-                <br></br>
                 <p>
-                    As inscrições para a caminhada (7.2 km) estão previstas para
-                    1.000 participantes e para a corrida (15 km) para 2.000
-                    atletas, sendo que os federados, juvenis e cadeirantes farão
-                    a sua inscrição na Associação de Atletismo.
+                    As inscrições são gratuitas e devem ser feitas online,
+                    através do website oficial. Excepcionam-se as categorias de
+                    Juvenis, Federados e Pessoas com Deficiência
+                    (Cadeirantes/Triciclos),
+                    cujas inscrições devem ser efectuadas presencialmente na
+                    Associação de Atletismo da Cidade de Maputo (Parque dos
+                    Continuadores), de 05 a 16 de Outubro.
+                </p>
+                <p className="mt-4 text-xs font-normal text-zinc-700">
+                    Vagas limitadas: Corrida (15 km): 2.000 participantes; Caminhada (7,2 km): 1.000 participantes.
                 </p>
             </div>
         ),
@@ -39,20 +37,21 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <div>
                 <p>
-                    O levantamento dos kits será realizado de 21 a 23 de
-                    outubro, mediante apresentação do recibo de inscrição e do
-                    documento de identificação:
+                    O levantamento dos kits decorrerá de 21 a 23 de
+                    Outubro, das 10h00 às 16h30, mediante
+                    apresentação do recibo de inscrição e documento de
+                    identificação, nos seguintes locais:
                 </p>
                 <ul className="list-disc list-inside my-2 space-y-1">
                     <li>
-                        <strong>Associação de Atletismo da Cidade de Maputo:</strong> para atletas federados, juvenis e portadores de deficiência.
+                        Associação de Atletismo da Cidade de Maputo: atletas federados, juvenis e pessoas com deficiência.
                     </li>
                     <li>
-                        <strong>Sede do Millennium bim (Rua dos Desportistas nº 873/879):</strong> para os demais inscritos.
+                        Sede do Millennium bim (Rua dos Desportistas, n.º 873/879): demais inscritos.
                     </li>
                 </ul>
-                <p className="text-sm text-zinc-600">
-                    *Para a caminhada, não haverá dorsais disponíveis.
+                <p className="text-xs text-zinc-700">
+                    *Nota: Os kits da caminhada não incluem dorsal.
                 </p>
                 <div className="flex justify-center items-center w-full my-6">
                     <Image
@@ -71,30 +70,23 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <div>
                 <p>
-                    <span className="relative block text-lg font-medium mb-1">
-                        <IconPack.ChevronRight className="absolute -left-4 top-1/2 -translate-y-1/2 " />
-                        {""}
+                    <span className="mb-1 block text-[0.95rem] font-normal">
                         {"Segurança no percurso"}
                     </span>
-                    As provas terão lugar à beira da estrada, sem interrupção
-                    total da via pública. Solicitamos a todos os participantes
-                    que tenham o máximo cuidado com o trânsito ao longo do
-                    percurso. A polícia estará presente para monitorar o tráfego
-                    e garantir a segurança. Estarão também disponíveis
-                    ambulâncias para prestar primeiros socorros ou, caso
-                    necessário, transportar participantes para a unidade de
-                    saúde mais próxima.
+                    As provas decorrerão na via pública sem interrupção total do
+                    trânsito, pelo que se solicita a máxima atenção de todos os
+                    participantes. O evento contará com acompanhamento da
+                    Polícia para controlo do tráfego e ambulâncias para
+                    assistência médica e primeiros socorros.
                 </p>
                 <br></br>
                 <div>
-                    <span className="relative block text-lg font-medium mb-1">
-                        <IconPack.ChevronRight className="absolute -left-4 top-1/2 -translate-y-1/2 " />
-                        {""}
-                        {"Distribuição de água durante a corrida"}
+                    <span className="mb-1 block text-[0.95rem] font-normal">
+                        {"Pontos de água"}
                     </span>
-                    <p>Serão 4 pontos de água ao longo do percurso:</p>
+                    <p>Estarão disponíveis 4 pontos de hidratação ao longo do percurso:</p>
                     <ul className="list-disc list-inside my-2 space-y-1">
-                        <li>Clube Naval (terá 2 pontos de água)</li>
+                        <li>Clube Naval (2 pontos)</li>
                         <li>Em frente à Embaixada dos EUA</li>
                         <li>Clínica Trauma</li>
                     </ul>
@@ -106,16 +98,25 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         title: "Premiação",
         content: (
             <div>
-                Aos 3 primeiros finalistas, em masculinos e femininos, bem como
-                das categorias de Portadores de Deficiência em triciclo/cadeiras
-                de rodas, Juvenis, Populares, Veteranas dos 35 aos 45 anos,
-                Veteranas com mais de 45 anos, Veteranos dos 40 aos 50 anos,
-                Veteranos acima dos 50 anos, Colaboradores do Millennium bim,
-                Federados, Estrangeiros com menos de 50 anos e Estrangeiros com
-                mais de 50 anos da prova de corrida, serão atribuídas medalhas e
-                prémios monetários. O atleta mais jovem e o mais velho serão
-                também recompensados. Na prova de caminhada não estão
-                contempladas premiações
+                <p>
+                    Serão atribuídas medalhas e prémios monetários aos 3
+                    primeiros classificados (masculinos e femininos) das
+                    categorias da Corrida:
+                </p>
+                <ul className="list-disc list-inside my-2 space-y-1">
+                    <li>Pessoas com Deficiência (Triciclos e Cadeiras de Rodas)</li>
+                    <li>Juvenis, Populares e Federados</li>
+                    <li>Veteranos e Estrangeiros</li>
+                    <li>Colaboradores do Millennium bim</li>
+                </ul>
+                <p>
+                    Haverá também distinção especial para o atleta
+                    mais jovem e o mais idoso.
+                </p>
+                <p className="mt-3">
+                    *A modalidade de Caminhada não tem carácter competitivo,
+                    pelo que não haverá atribuição de prémios.
+                </p>
             </div>
         ),
     },

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IconPack } from "../IconPack";
 
 export interface AccordionProps {
     idx: number;
@@ -20,22 +19,25 @@ const Accordion: React.FC<AccordionProps> = ({
 
     return (
         <div
-            className={`py-9 px-11 max-w-[920px] mx-auto rounded-[20px] transition-colors duration-300 ${isOpen ? "bg-primaryLighter" : "bg-primaryLightest"}`}
+            className={`py-9 px-14 max-w-[920px] mx-auto rounded-[20px] transition-colors duration-300 ${isOpen ? "bg-primaryLighter" : "bg-primaryLightest"}`}
         >
             <motion.header
                 initial={false}
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative flex flex-col lg:flex-row lg:space-x-9 lg:items-center hover:cursor-pointer"
+                className="relative flex items-center hover:cursor-pointer"
             >
-                <span className="text-4xl text-primary font-bold">
-                    {idx < 10 ? "0" + idx : idx}
+                <span className="w-10 shrink-0 text-4xl text-primary font-semibold">
+                    {idx}
                 </span>
-                <h3 className="text-xl font-semibold max-w-40 xs:max-w-full">
+                <h3 className="flex-1 px-4 text-left text-xl font-semibold">
                     {title}
                 </h3>
-                <IconPack.FilledCross
-                    className={`group absolute right-0 top-1/2 -translate-y-1/2 origin-center transition-all duration-300 ${isOpen && "rotate-45"}`}
-                />
+                <span
+                    aria-hidden="true"
+                    className={`absolute right-0 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full bg-zinc-900 text-center text-xl font-light leading-7 text-white transition-transform duration-300 ${isOpen && "rotate-45"}`}
+                >
+                    +
+                </span>
             </motion.header>
             <AnimatePresence initial={false}>
                 {isOpen && (
@@ -50,10 +52,9 @@ const Accordion: React.FC<AccordionProps> = ({
                         }}
                         transition={{ duration: 0.3 }}
                     >
-                        <div className="lg:ml-[72px] pt-5">
+                        <div className="pt-5 pl-14 pr-0 text-justify text-[0.95rem] font-medium leading-relaxed text-zinc-800">
                             {subtitle && (
-                                <span className="relative block text-lg font-medium mb-1">
-                                    <IconPack.ChevronRight className="absolute -left-4 top-1/2 -translate-y-1/2 " />{" "}
+                                <span className="mb-1 block text-justify text-[0.95rem] font-normal">
                                     {subtitle}
                                 </span>
                             )}

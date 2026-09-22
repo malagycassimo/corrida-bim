@@ -118,7 +118,7 @@ const Running = ({
                     active ? "text-white" : "text-primary"
                 }`}
             >
-                <span className="md:inline-block hidden">Pedestres - 15km</span>
+                <span className="md:inline-block hidden">Corrida -15km</span>
             </span>
         </button>
     );
