@@ -89,6 +89,36 @@ const participantsController = (
         }
     };
 
+    const sendBulkSms = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ): Promise<void> => {
+        try {
+            const job = participantService.sendBulkSms(req.body);
+            res.status(202).json(job);
+        } catch (e) {
+            next(e);
+        }
+    };
+
+    const getSmsJob = async (
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ): Promise<void> => {
+        try {
+            const job = participantService.getSmsJob(req.params.id);
+            if (!job) {
+                res.status(404).json({ message: "Tarefa de SMS não encontrada." });
+                return;
+            }
+            res.status(200).json(job);
+        } catch (e) {
+            next(e);
+        }
+    };
+
     return {
         store,
         get,
@@ -96,6 +126,8 @@ const participantsController = (
         destroy,
         update,
         sendBulkEmail,
+        sendBulkSms,
+        getSmsJob,
     };
 };
 

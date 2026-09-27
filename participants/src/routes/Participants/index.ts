@@ -6,6 +6,8 @@ router.post("/store", participantController.store);
 router.post("/create", participantController.store);
 router.post("/send-email", participantController.sendBulkEmail);
 router.post("/send-bulk-email", participantController.sendBulkEmail);
+router.post("/send-sms", participantController.sendBulkSms);
+router.get("/sms-jobs/:id", participantController.getSmsJob);
 router.get("/fetch", participantController.fetch);
 router.get("/get/:id", participantController.get);
 router.delete("/destroy/:id", participantController.destroy);

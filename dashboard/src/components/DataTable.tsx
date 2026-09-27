@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import {
     Table,
     TableBody,
@@ -10,11 +10,13 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Download, Search, Copy, Check } from "lucide-react";
+import { Download, Search, Copy, Check, RefreshCw, Trash2, X } from "lucide-react";
 import * as XLSX from "xlsx";
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { EmailManagerModal } from "@/components/EmailManagerModal";
+import { SmsManagerModal } from "@/components/SmsManagerModal";
 
 type DataItem = {
     id: string;
@@ -35,6 +37,7 @@ type DataItem = {
     shirt: string;
 };
 
+const EMPTY_DATA: DataItem[] = [];
 const AnimatedTableRow = motion(TableRow);
 
 const formatDate = (dateStr: string) => {
@@ -49,14 +52,23 @@ const formatDate = (dateStr: string) => {
 
 
 export default function DataTable({
-    initialData = [],
+    initialData = EMPTY_DATA,
 }: {
     initialData?: DataItem[];
 }) {
     const safeInitial = Array.isArray(initialData) ? initialData : [];
-    const [data] = useState<DataItem[]>(safeInitial);
+    const router = useRouter();
+    const [data, setData] = useState<DataItem[]>(safeInitial);
+    const [isRefreshing, startTransition] = useTransition();
     const [searchTerm, setSearchTerm] = useState("");
     const [copiedId, setCopiedId] = useState<string | null>(null);
+    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteError, setDeleteError] = useState("");
+
+    useEffect(() => {
+        setData(initialData);
+    }, [initialData]);
 
     const filteredData = useMemo(() => {
         return data.filter((item) =>
@@ -68,6 +80,74 @@ export default function DataTable({
             ),
         );
     }, [data, searchTerm]);
+
+    const allVisibleSelected =
+        filteredData.length > 0 && filteredData.every((item) => selectedIds.has(item.id));
+
+    const toggleSelection = (id: string) => {
+        setSelectedIds((current) => {
+            const next = new Set(current);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    };
+
+    const toggleVisibleSelection = () => {
+        setSelectedIds((current) => {
+            const next = new Set(current);
+            if (allVisibleSelected) filteredData.forEach((item) => next.delete(item.id));
+            else filteredData.forEach((item) => next.add(item.id));
+            return next;
+        });
+    };
+
+    const removeSelected = async () => {
+        const selected = data.filter((item) => selectedIds.has(item.id));
+        if (!selected.length || isDeleting) return;
+        const confirmed = window.confirm(
+            `Tem certeza de que deseja remover ${selected.length} participante(s)? Esta ação não pode ser desfeita.`,
+        );
+        if (!confirmed) return;
+
+        setIsDeleting(true);
+        setDeleteError("");
+        const deletedIds = new Set<string>();
+        const serverUrl =
+            process.env.NEXT_PUBLIC_API_URL ||
+            `${window.location.protocol}//${window.location.hostname}:3002`;
+
+        try {
+            for (let offset = 0; offset < selected.length; offset += 10) {
+                const batch = selected.slice(offset, offset + 10);
+                const results = await Promise.all(batch.map(async (item) => {
+                    try {
+                        const response = await fetch(
+                            `${serverUrl}/participants/destroy/${encodeURIComponent(item.id)}`,
+                            { method: "DELETE" },
+                        );
+                        return { id: item.id, ok: response.ok };
+                    } catch {
+                        return { id: item.id, ok: false };
+                    }
+                }));
+                results.forEach(({ id, ok }) => {
+                    if (ok) deletedIds.add(id);
+                });
+            }
+
+            setData((current) => current.filter((item) => !deletedIds.has(item.id)));
+            setSelectedIds((current) => new Set([...current].filter((id) => !deletedIds.has(id))));
+            if (deletedIds.size > 0) router.refresh();
+            if (deletedIds.size < selected.length) {
+                setDeleteError(
+                    `${selected.length - deletedIds.size} participante(s) não puderam ser removidos. Tente novamente.`,
+                );
+            }
+        } finally {
+            setIsDeleting(false);
+        }
+    };
 
     const handleCopyId = (id: string) => {
         navigator.clipboard.writeText(id);
@@ -120,8 +200,47 @@ export default function DataTable({
                         />
                     </div>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex flex-wrap items-center justify-end gap-3">
+                    {selectedIds.size > 0 && (
+                        <>
+                            <span className="whitespace-nowrap text-sm font-medium text-slate-600">
+                                {selectedIds.size} selecionado(s)
+                            </span>
+                            <Button
+                                onClick={removeSelected}
+                                disabled={isDeleting}
+                                variant="destructive"
+                                className="h-11 shrink-0 rounded-xl"
+                            >
+                                <Trash2 className="h-4 w-4" />
+                                {isDeleting ? "Removendo..." : "Remover"}
+                            </Button>
+                            <Button
+                                onClick={() => setSelectedIds(new Set())}
+                                disabled={isDeleting}
+                                variant="outline"
+                                size="icon"
+                                className="h-11 w-11 shrink-0"
+                                title="Limpar seleção"
+                                aria-label="Limpar seleção"
+                            >
+                                <X className="h-4 w-4" />
+                            </Button>
+                        </>
+                    )}
                     <EmailManagerModal data={data} />
+                    <SmsManagerModal data={data} />
+                    <Button
+                        onClick={() => startTransition(() => router.refresh())}
+                        disabled={isRefreshing}
+                        variant="outline"
+                        size="icon"
+                        className="h-11 w-11 shrink-0"
+                        title="Atualizar tabela"
+                        aria-label="Atualizar tabela"
+                    >
+                        <RefreshCw className={`h-4 w-4 ${isRefreshing ? "animate-spin" : ""}`} />
+                    </Button>
                     <Button
                         onClick={exportToExcel}
                         className="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-5 h-11 rounded-xl shadow-xs transition-colors duration-200 shrink-0"
@@ -138,6 +257,15 @@ export default function DataTable({
                     <Table className="w-full text-left text-sm">
                         <TableHeader>
                             <TableRow className="bg-slate-100/90 border-b border-slate-200 hover:bg-slate-100/90">
+                                <TableHead className="w-10 px-3">
+                                    <input
+                                        type="checkbox"
+                                        checked={allVisibleSelected}
+                                        onChange={toggleVisibleSelection}
+                                        aria-label="Selecionar participantes visíveis"
+                                        className="h-4 w-4 cursor-pointer accent-rose-600"
+                                    />
+                                </TableHead>
                                 <TableHead className="font-bold text-xs uppercase tracking-wider text-slate-700 whitespace-nowrap py-3.5 px-4">
                                     ID
                                 </TableHead>
@@ -198,7 +326,7 @@ export default function DataTable({
                                         transition={{ duration: 0.2 }}
                                     >
                                         <TableCell
-                                            colSpan={16}
+                                            colSpan={17}
                                             className="text-center py-12 text-slate-400 font-medium"
                                         >
                                             Nenhum participante encontrado
@@ -220,8 +348,17 @@ export default function DataTable({
                                                 opacity: 0,
                                                 transition: { duration: 0.15 },
                                             }}
-                                            className="hover:bg-slate-50/90 border-b border-slate-100 transition-colors"
+                                            className={`${selectedIds.has(item.id) ? "bg-rose-50/70" : "hover:bg-slate-50/90"} border-b border-slate-100 transition-colors`}
                                         >
+                                            <TableCell className="w-10 px-3">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedIds.has(item.id)}
+                                                    onChange={() => toggleSelection(item.id)}
+                                                    aria-label={`Selecionar ${item.firstName} ${item.lastName}`}
+                                                    className="h-4 w-4 cursor-pointer accent-rose-600"
+                                                />
+                                            </TableCell>
                                             {/* ID */}
                                             <TableCell className="whitespace-nowrap py-3 px-4">
                                                 <button
@@ -332,6 +469,12 @@ export default function DataTable({
                     </Table>
                 </div>
             </div>
+
+            {deleteError && (
+                <p role="alert" className="text-sm font-medium text-red-700">
+                    {deleteError}
+                </p>
+            )}
 
             {/* Footer with stats */}
             <motion.div

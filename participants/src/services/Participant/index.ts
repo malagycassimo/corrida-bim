@@ -2,9 +2,11 @@ import type { Participant } from "../../models/types";
 import type { MailerService } from "../Mailer";
 import type { ParticipantService } from "../types";
 import * as MailDefaults from "../Mailer/defaults";
+import type { SmsService } from "../Sms";
 const ParticipantServ = (
     Participants: Participant.ParticipantRepository,
     Mail: MailerService,
+    Sms: SmsService,
 ): ParticipantService => {
     const store = async (participant: Participant.ParticipantRequest) => {
         const particp = await Participants.store(participant);
@@ -119,6 +121,9 @@ const ParticipantServ = (
         return { sentCount };
     };
 
+    const sendBulkSms: ParticipantService["sendBulkSms"] = (data) => Sms.sendBulkSms(data);
+    const getSmsJob: ParticipantService["getSmsJob"] = (id) => Sms.getSmsJob(id);
+
     return {
         store,
         get,
@@ -126,6 +131,8 @@ const ParticipantServ = (
         destroy,
         update,
         sendBulkEmail,
+        sendBulkSms,
+        getSmsJob,
     };
 };
 

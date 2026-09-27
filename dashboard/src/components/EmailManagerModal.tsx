@@ -60,7 +60,7 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
             return safeData.filter((p) => p.route && p.route.includes("15km"));
         }
         if (audienceSegment === "7km") {
-            return safeData.filter((p) => p.route && p.route.includes("7km"));
+            return safeData.filter((p) => p.route && /7(?:\.2)?\s?km/i.test(p.route));
         }
         if (audienceSegment === "disability") {
             return safeData.filter(
