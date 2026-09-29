@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Loader2, MessageSquareText, Send, Users } from "lucide-react";
+import { getApiBaseUrl } from "@/lib/api";
 
 type Participant = {
     IDCode: string;
@@ -62,9 +63,7 @@ export function SmsManagerModal({ data = [] }: { data?: Participant[] }) {
     );
     const progress = job?.total ? Math.round(((job.sentCount + job.failedCount) / job.total) * 100) : 0;
 
-    const getServerUrl = () =>
-        process.env.NEXT_PUBLIC_API_URL ||
-        `${window.location.protocol}//${window.location.hostname}:3002`;
+    const getServerUrl = () => getApiBaseUrl();
 
     const handleSend = async () => {
         setError("");
