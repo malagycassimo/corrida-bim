@@ -14,7 +14,7 @@ export default function Inscricao() {
             {/* Hero section */}
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/carrosel-new/DSC_4776.JPG"}
+                    src={"/assets/images/Banner-App-Corrida.jpg"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
@@ -36,7 +36,7 @@ export default function Inscricao() {
             <section className="mt-[100px] relative h-96 lg:hidden">
                 <Image
                     alt="Inscrição"
-                    src={"/assets/images/carrosel-new/DSC_4776.JPG"}
+                    src={"/assets/images/Banner-App-Corrida.jpg"}
                     fill
                     className="object-cover"
                     onLoad={() => setLoaded(true)}

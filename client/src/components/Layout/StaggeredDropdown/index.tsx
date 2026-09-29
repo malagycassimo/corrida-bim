@@ -3,6 +3,7 @@ import { IconPack } from "@/components/common/IconPack";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRegistrationModal } from "@/components/common/RegistrationClosedModal";
 
 const StaggeredDropDown: React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
@@ -48,7 +49,14 @@ interface OptionProps {
 
 const Option: React.FC<OptionProps> = ({ text, setOpen, href }) => {
     const router = useRouter();
+    const { isRegistrationOpen, openClosedModal } = useRegistrationModal();
+
     const handleClick = () => {
+        if (href === "/inscricao" && isRegistrationOpen === false) {
+            openClosedModal();
+            setOpen(false);
+            return;
+        }
         router.push(href);
         setOpen(false);
     };
