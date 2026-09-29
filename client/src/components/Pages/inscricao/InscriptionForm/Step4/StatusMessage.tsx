@@ -57,7 +57,7 @@ export const StatusMessage = ({ isAllowed }: { isAllowed: boolean }) => (
                 </div>
 
                 <div className="bg-primary/5 border border-primary/15 rounded-xl p-3.5 text-xs text-zinc-600 leading-relaxed">
-                    <strong className="text-primary font-semibold">Nota:</strong> Apresente o seu documento de identificação original no momento do levantamento. Os inscritos nas categorias de Federados, Juvenis e Portadores de Deficiência levantarão na Associação de Atletismo da Cidade de Maputo.
+                    <strong className="text-primary font-semibold">Nota:</strong> Apresente o seu documento de identificação original no momento do levantamento. Os inscritos na categoria de Portadores de Deficiência levantarão na Associação de Atletismo da Cidade de Maputo.
                 </div>
             </div>
         ) : (
