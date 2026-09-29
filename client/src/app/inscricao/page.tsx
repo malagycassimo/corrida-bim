@@ -14,18 +14,19 @@ export default function Inscricao() {
             {/* Hero section */}
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/carrosel-new/DSC_4776.jpg"}
+                    src={"/assets/images/carrosel-new/DSC_4776.JPG"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
                     priority
                 />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent -z-40" />
 
                 <div className="text-white container mx-auto">
                     <AnimatedComponent>
                         <div className="max-w-[518px] px-6 space-y-4">
-                            <h1 className="text-5xl font-semibold">
+                            <h1 className="text-5xl font-semibold drop-shadow-md">
                                 Inscrição
                             </h1>
                         </div>
@@ -34,13 +35,13 @@ export default function Inscricao() {
             </section>
             <section className="mt-[100px] relative h-96 lg:hidden">
                 <Image
-                    alt="Informações"
-                    src={"/assets/images/carrosel-new/DSC_4776.jpg"}
+                    alt="Inscrição"
+                    src={"/assets/images/carrosel-new/DSC_4776.JPG"}
                     fill
                     className="object-cover"
                     onLoad={() => setLoaded(true)}
-                    priority
                 />
+                <div className="absolute inset-0 bg-black/20" />
                 <div className="absolute text-center text-white bg-primary bottom-0 right-0 left-0 py-4 text-lg font-semibold">
                     Inscrição
                 </div>

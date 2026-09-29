@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { pt } from "date-fns/locale";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerRenderProps, useFormContext } from "react-hook-form";
 
 type FieldType = ControllerRenderProps<
     {
@@ -36,6 +36,11 @@ type FieldType = ControllerRenderProps<
 >;
 
 export default function CustomCalendar({ field }: { field: FieldType }) {
+    const selectedDate = field.value ? new Date(field.value) : new Date();
+    const currentYear = new Date().getFullYear();
+    const { formState } = useFormContext();
+    const hasError = !!formState.errors.dob;
+
     return (
         <FormItem className="w-full">
             <FormLabel>
@@ -50,17 +55,14 @@ export default function CustomCalendar({ field }: { field: FieldType }) {
                             variant={"outline"}
                             className={cn(
                                 "flex h-12 w-full items-center justify-between rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm shadow-sm font-normal text-left focus:outline-none focus:ring-1 focus:ring-zinc-950 hover:bg-zinc-50 overflow-hidden",
+                                hasError && "border-red-500 focus:ring-red-500",
                                 !field.value && "text-muted-foreground",
                             )}
                         >
                             <span className="truncate pr-2 text-zinc-600">
-                                {field.value ? (
-                                    format(field.value, "PPP", {
-                                        locale: pt,
-                                    })
-                                ) : (
-                                    "Selecione a data de nascimento"
-                                )}
+                                {format(selectedDate, "PPP", {
+                                    locale: pt,
+                                })}
                             </span>
                             <CalendarIcon className="h-4 w-4 shrink-0 opacity-50" />
                         </Button>
@@ -69,15 +71,16 @@ export default function CustomCalendar({ field }: { field: FieldType }) {
                 <PopoverContent className="w-auto p-0" align="start">
                     <Calendar
                         mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
+                        selected={selectedDate}
+                        defaultMonth={selectedDate}
+                        onSelect={(date) => field.onChange(date || new Date())}
                         disabled={(date) =>
                             date > new Date() || date < new Date("1900-01-01")
                         }
                         initialFocus
-                        captionLayout="dropdown-buttons" // Adiciona dropdowns para mês e ano
+                        captionLayout="dropdown-buttons"
                         fromYear={1900}
-                        toYear={2010}
+                        toYear={currentYear}
                         locale={pt}
                         ISOWeek
                         labels={{

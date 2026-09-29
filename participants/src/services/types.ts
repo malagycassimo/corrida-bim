@@ -1,4 +1,5 @@
 import type { Participant } from "../models/types";
+import type { SmsJob, SmsRecipient } from "./Sms";
 
 export interface BulkEmailRequest {
     recipients: {
@@ -14,6 +15,11 @@ export interface BulkEmailRequest {
     html: string;
 }
 
+export interface BulkSmsRequest {
+    recipients: SmsRecipient[];
+    message: string;
+}
+
 export interface ParticipantService {
     store: (
         participant: Participant.ParticipantRequest,
@@ -26,4 +32,6 @@ export interface ParticipantService {
         participant: Participant.ParticipantSchema,
     ) => Promise<Participant.ParticipantSchema>;
     sendBulkEmail: (data: BulkEmailRequest) => Promise<{ sentCount: number }>;
+    sendBulkSms: (data: BulkSmsRequest) => SmsJob;
+    getSmsJob: (id: string) => SmsJob | undefined;
 }

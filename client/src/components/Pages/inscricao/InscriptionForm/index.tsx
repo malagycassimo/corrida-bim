@@ -13,6 +13,7 @@ import { initialFormState } from "./constants";
 import { isEventFullySoldOut } from "@/utils/helpers";
 import { FullySoldOutNotice } from "./FullySoldOutNotice";
 import { TemporarilyClosedNotice } from "./TemporarilyClosedNotice";
+import { Loader2 } from "lucide-react";
 
 export default function InscriptionForm() {
     const [formState, setFormState] = useState<FormState>(initialFormState);
@@ -35,9 +36,21 @@ export default function InscriptionForm() {
     }, []);
 
     const isTemporarilyClosed = formState.availability?.registrationOpen === false;
-    const fullySoldOut = isEventFullySoldOut(formState.availability?.constraints);
+    const fullySoldOut = isEventFullySoldOut(
+        formState.availability?.constraints,
+        formState.availability?.routeLimits,
+    );
 
-    if (!loading && isTemporarilyClosed) {
+    if (loading) {
+        return (
+            <div className="mx-6 flex min-h-48 items-center justify-center gap-3 text-sm font-medium text-slate-600 lg:mx-auto" role="status">
+                <Loader2 className="h-5 w-5 animate-spin" />
+                <span>A verificar vagas disponíveis...</span>
+            </div>
+        );
+    }
+
+    if (isTemporarilyClosed) {
         return (
             <AnimatedComponent>
                 <div className="lg:w-1/2 max-w-4xl py-11 rounded-3xl space-y-8 lg:mx-auto px-9 lg:px-20 shadow-lg relative m-6 lg:m-0 border lg:-top-20 z-10 bg-white">
@@ -47,7 +60,7 @@ export default function InscriptionForm() {
         );
     }
 
-    if (!loading && fullySoldOut) {
+    if (fullySoldOut) {
         return (
             <AnimatedComponent>
                 <div className="lg:w-1/2 max-w-4xl py-11 rounded-3xl space-y-8 lg:mx-auto px-9 lg:px-20 shadow-lg relative m-6 lg:m-0 border lg:-top-20 z-10 bg-white">

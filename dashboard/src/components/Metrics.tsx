@@ -72,7 +72,7 @@ export const Metrics = ({ data = [] }: { data?: DataItem[] }) => {
     const percentDef = total > 0 ? ((countDef / total) * 100).toFixed(1) : "0";
 
     const countWalk = safeData.filter(
-        (p) => p.route && p.route.includes("7km"),
+        (p) => p.route && /7(?:\.2)?\s?km/i.test(p.route),
     ).length;
     const percentWalk = total > 0 ? ((countWalk / total) * 100).toFixed(1) : "0";
 

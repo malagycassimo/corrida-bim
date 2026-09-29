@@ -25,9 +25,15 @@ export interface PedestrianRaceConstraints {
     total: number;
 }
 
+export interface RouteLimits {
+    corrida15k: number;
+    caminhada7k: number;
+}
+
 export interface AvailabilityResponse {
     codes: string[];
     constraints: PedestrianRaceConstraints;
+    routeLimits: RouteLimits;
     registrationOpen?: boolean;
 }
 
@@ -45,9 +51,11 @@ export async function submitData(payload: Record<string, unknown>) {
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error("Erro do servidor:", response.status, errorText);
-            throw new Error(`Erro ao registrar participante: ${response.status}`);
+            const errorData = await response.json().catch(() => null);
+            return {
+                success: false,
+                error: errorData?.message || "Erro ao realizar inscrição.",
+            };
         }
 
         return { success: true };
@@ -61,41 +69,23 @@ export const submitRegistration = submitData;
 
 export async function getIsAvailable(): Promise<AvailabilityResponse> {
     try {
-        let registrationOpen = true;
-        try {
-            const statusRes = await fetch("http://server:3002/settings/registration-status", { cache: "no-store" });
-            if (statusRes.ok) {
-                const statusData = await statusRes.json();
-                registrationOpen = statusData.registrationOpen !== false;
-            }
-        } catch (err) {
-            console.error("Erro ao buscar status de configurações:", err);
+        const [availabilityResponse, participantsResponse] = await Promise.all([
+            fetch("http://server:3002/settings/availability", { cache: "no-store" }),
+            fetch("http://server:3002/participants/fetch", { cache: "no-store" }),
+        ]);
+        if (!availabilityResponse.ok || !participantsResponse.ok) {
+            throw new Error("Não foi possível obter a disponibilidade das inscrições.");
         }
 
-        const response = await fetch("http://server:3002/participants/fetch");
-        const data: Participant[] = await response.json();
-
+        const availability = await availabilityResponse.json();
+        const data: Participant[] = await participantsResponse.json();
         const safeData = Array.isArray(data) ? data : [];
-        const codes = safeData.map((participant) => participant.IDCode);
-
-        const constraints: PedestrianRaceConstraints = {
-            corrida15k: safeData.filter(
-                (p) => p.route && p.route.includes("15km"),
-            ).length,
-            caminhada7k: safeData.filter(
-                (p) =>
-                    p.route &&
-                    (p.route.includes("7.2km") ||
-                        p.route.includes("7km") ||
-                        p.route.toLowerCase().includes("caminhada")),
-            ).length,
-            total: safeData.length,
-        };
 
         return {
-            codes,
-            constraints,
-            registrationOpen,
+            codes: safeData.map((participant) => participant.IDCode),
+            constraints: availability.routeCounts,
+            routeLimits: availability.routeLimits,
+            registrationOpen: availability.registrationOpen !== false,
         };
     } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -106,7 +96,11 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
                 caminhada7k: 0,
                 total: 0,
             },
-            registrationOpen: true,
+            routeLimits: {
+                corrida15k: 2000,
+                caminhada7k: 1000,
+            },
+            registrationOpen: false,
         };
     }
 }

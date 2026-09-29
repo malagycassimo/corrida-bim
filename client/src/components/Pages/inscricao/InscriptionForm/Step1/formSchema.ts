@@ -2,6 +2,7 @@ import * as z from "zod";
 import { getIsAvailable } from "@/app/inscricao/action";
 import { countries, provinces } from "@/utils/statics";
 import { calculateAge } from "@/utils/helpers";
+import { isValidMozambiqueMobilePhone, MOZAMBIQUE_PHONE_ERROR } from "@/utils/phoneValidation";
 
 const provinceValues = provinces.map(({ value }) => value);
 
@@ -88,9 +89,8 @@ export const formSchema = z
             .refine((date) => date <= new Date(), {
                 message: "A data de nascimento não pode ser futura",
             })
-            .refine((date) => calculateAge(date) >= 18, {
-                message:
-                    "Inscrições online são exclusivas para maiores de 18 anos. Atletas juvenis devem se inscrever na Federação de Atletismo.",
+            .refine((date) => calculateAge(date) >= 13, {
+                message: "A idade mínima para inscrição é de 13 anos.",
             })
             .refine((date) => calculateAge(date) <= 110, {
                 message: "Insira uma data de nascimento válida",
@@ -136,6 +136,14 @@ export const formSchema = z
     })
     .superRefine((data, ctx) => {
         if (data.country === "Moçambique") {
+            if (!isValidMozambiqueMobilePhone(data.phone)) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: MOZAMBIQUE_PHONE_ERROR,
+                    path: ["phone"],
+                });
+            }
+
             if (!data.province || !provinceValues.includes(data.province)) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,

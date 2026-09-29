@@ -37,7 +37,11 @@ export default function RouteSelect({ form, state }: Step2SectionProps) {
             name="route"
             render={({ field }) => {
                 const handleValueChange = (val: string) => {
-                    if (state && !isAvailable(val, state.availability.constraints)) {
+                    if (state && !isAvailable(
+                        val,
+                        state.availability.constraints,
+                        state.availability.routeLimits,
+                    )) {
                         const matchedRoute = routes.find((r) => r.value === val);
                         setSelectedLimitName(matchedRoute ? matchedRoute.label : val);
                         setLimitModalOpen(true);
@@ -62,7 +66,11 @@ export default function RouteSelect({ form, state }: Step2SectionProps) {
                             <SelectContent>
                                 {onlineRoutes.map(({ value, label }) => {
                                     const available = state
-                                        ? isAvailable(value, state.availability.constraints)
+                                        ? isAvailable(
+                                              value,
+                                              state.availability.constraints,
+                                              state.availability.routeLimits,
+                                          )
                                         : true;
                                     return (
                                         <SelectItem

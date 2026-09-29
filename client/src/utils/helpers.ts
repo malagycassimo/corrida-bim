@@ -3,33 +3,31 @@ import { PedestrianRaceConstraints } from "@/app/inscricao/action";
 export function isAvailable(
     value: string,
     constraints: PedestrianRaceConstraints,
+    routeLimits: { corrida15k: number; caminhada7k: number },
 ) {
     if (!constraints) return true;
 
-    // 1. Limite Máximo Geral do Evento Online (3.000 participantes)
-    if (constraints.total >= 3000) {
-        return false;
-    }
-
-    // 2. Limite da Caminhada 7.2km (1.000 participantes)
     if (value.includes("7") || value.toLowerCase().includes("caminhada")) {
-        return constraints.caminhada7k < 1000;
+        return constraints.caminhada7k < routeLimits.caminhada7k;
     }
 
-    // 3. Limite Geral da Corrida 15km (2.000 atletas)
     if (value.includes("15km") || value.toLowerCase().includes("corrida")) {
-        return constraints.corrida15k < 2000;
+        return constraints.corrida15k < routeLimits.corrida15k;
     }
 
-    return constraints.total < 3000;
+    return (
+        constraints.corrida15k < routeLimits.corrida15k ||
+        constraints.caminhada7k < routeLimits.caminhada7k
+    );
 }
 
 export function isEventFullySoldOut(
     constraints?: PedestrianRaceConstraints,
+    routeLimits?: { corrida15k: number; caminhada7k: number },
 ): boolean {
-    if (!constraints) return false;
-    const caminhadaEsgotada = !isAvailable("7.2km", constraints);
-    const corridaEsgotada = !isAvailable("15km", constraints);
+    if (!constraints || !routeLimits) return false;
+    const caminhadaEsgotada = !isAvailable("7.2km", constraints, routeLimits);
+    const corridaEsgotada = !isAvailable("15km", constraints, routeLimits);
     return caminhadaEsgotada && corridaEsgotada;
 }
 
@@ -44,7 +42,6 @@ export function shuffleArray<T>(array: T[]): T[] {
 
 export const isAllowedCategory = (category: string): boolean => {
     const restrictedCategories = [
-        "Juvenis",
         "Federados",
         "Triciclos",
         "Cadeirantes",
@@ -86,11 +83,6 @@ export function determineCategory({
         country.trim().toLowerCase() === "mocambique";
 
     const isFemale = gender === "F";
-
-    // Menores de 18 anos não se inscrevem online (devem se inscrever na Federação/Associação de Atletismo)
-    if (age < 18) {
-        return "";
-    }
 
     // Estrangeiros
     if (!isMozambique) {

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
     FormControl,
     FormField,
@@ -17,9 +18,35 @@ import {
 } from "@/components/ui/select";
 import { countries, provinces } from "@/utils/statics";
 import CustomCalendar from "@/components/common/CustomCalendar";
+import {
+    canBecomeValidMozambiqueMobilePhone,
+    isValidMozambiqueMobilePhone,
+    MOZAMBIQUE_PHONE_ERROR,
+} from "@/utils/phoneValidation";
 
 export default function PersonalInformationSection({ form }: SectionProps) {
     const isMozambique = form.watch("country") === "Moçambique";
+    const phone = form.watch("phone") || "";
+
+    useEffect(() => {
+        const phoneParts = phone.trim().split(/\s+/);
+        const nationalNumber = phoneParts.slice(1).join("").replace(/\D/g, "");
+        const shouldShowError =
+            isMozambique &&
+            nationalNumber.length > 0 &&
+            !isValidMozambiqueMobilePhone(phone) &&
+            !canBecomeValidMozambiqueMobilePhone(phone);
+        const existingErrorType = form.getFieldState("phone").error?.type;
+
+        if (shouldShowError) {
+            form.setError("phone", {
+                type: "mozambiqueOperatorPrefix",
+                message: MOZAMBIQUE_PHONE_ERROR,
+            });
+        } else if (existingErrorType === "mozambiqueOperatorPrefix") {
+            form.clearErrors("phone");
+        }
+    }, [form, isMozambique, phone]);
 
     return (
         <div className="space-y-6">

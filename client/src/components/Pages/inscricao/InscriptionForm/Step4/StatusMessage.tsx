@@ -64,7 +64,7 @@ export const StatusMessage = ({ isAllowed }: { isAllowed: boolean }) => (
             <div className="w-full bg-amber-50 border border-amber-200 rounded-2xl p-5 text-xs sm:text-sm text-amber-900 space-y-2 text-left">
                 <p className="font-semibold text-sm">Inscrições Presenciais</p>
                 <p className="text-xs text-amber-800 leading-relaxed">
-                    As inscrições para Juvenis, Federados e Portadores de Deficiência decorrem exclusivamente na Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores). O levantamento dos respectivos kits será também realizado na Associação, de 21 a 23 de Outubro.
+                    As inscrições para Federados e Portadores de Deficiência decorrem exclusivamente na Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores). O levantamento dos respectivos kits será também realizado na Associação, de 21 a 23 de Outubro.
                 </p>
             </div>
         )}

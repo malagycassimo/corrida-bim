@@ -31,7 +31,7 @@ export default function Footer() {
                 <ul className="space-x-4 flex">
                     {socials.map(({ label, href }, idx) => (
                         <li key={idx}>
-                            <Link href={href}>
+                            <Link href={href} target="_blank" rel="noreferrer">
                                 <IconPackWrapper componentName={label} />
                             </Link>
                         </li>

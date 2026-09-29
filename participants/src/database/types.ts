@@ -1,4 +1,5 @@
 import type { Participant } from "../models/types";
+import type { RouteAvailability, RouteLimits } from "../utils/routeLimits";
 
 export interface IDatabase {
     store: (
@@ -13,4 +14,6 @@ export interface IDatabase {
     ) => Promise<Participant.ParticipantSchema>;
     getSetting: (key: string) => Promise<string | null>;
     setSetting: (key: string, value: string) => Promise<string>;
+    getRouteAvailability: () => Promise<RouteAvailability>;
+    setRouteLimits: (limits: RouteLimits) => Promise<RouteAvailability>;
 }

@@ -11,11 +11,11 @@ export const carouselImages: CarouselImageProps[] = [
     },
     {
         alt: "16ª Corrida Millennium bim",
-        src: "/assets/images/carrosel-new/DSC_4217.jpg",
+        src: "/assets/images/carrosel-new/DSC_4217.JPG",
     },
     {
         alt: "16ª Corrida Millennium bim",
-        src: "/assets/images/carrosel-new/DSC_4271.jpg",
+        src: "/assets/images/carrosel-new/DSC_4271.JPG",
     },
     {
         alt: "16ª Corrida Millennium bim",
@@ -23,7 +23,7 @@ export const carouselImages: CarouselImageProps[] = [
     },
     {
         alt: "16ª Corrida Millennium bim",
-        src: "/assets/images/carrosel-new/DSC_4394.jpg",
+        src: "/assets/images/carrosel-new/DSC_4394.JPG",
     },
     {
         alt: "16ª Corrida Millennium bim",
@@ -31,7 +31,7 @@ export const carouselImages: CarouselImageProps[] = [
     },
     {
         alt: "16ª Corrida Millennium bim",
-        src: "/assets/images/carrosel-new/DSC_4776.jpg",
+        src: "/assets/images/carrosel-new/DSC_4776.JPG",
     },
     {
         alt: "16ª Corrida Millennium bim",
@@ -43,11 +43,11 @@ export const carouselImages: CarouselImageProps[] = [
     },
     {
         alt: "16ª Corrida Millennium bim",
-        src: "/assets/images/carrosel-new/DSC_6590.jpg",
+        src: "/assets/images/carrosel-new/DSC_6590.JPG",
     },
     {
         alt: "16ª Corrida Millennium bim",
-        src: "/assets/images/carrosel-new/PHOTO-2026-09-09-16-10-28.jpg",
+        src: "/assets/images/carrosel-new/PHOTO-2026-09-09-16-10-28.JPG",
     },
 ];
 
@@ -71,5 +71,9 @@ export const partnersImages: CarouselImageProps[] = [
     {
         alt: "Associação de Atletismo da Cidade de Maputo",
         src: "/assets/images/partners/partner-4.jpg",
+    },
+    {
+        alt: "Tomas Bonnet",
+        src: "/assets/images/partners/tomasbonnet.png",
     },
 ];

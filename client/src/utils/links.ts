@@ -34,4 +34,12 @@ export const socials: Link[] = [
         label: "YouTube",
         href: "https://www.youtube.com/channel/UCS-mrXPuizjTpXhIxtGQogw",
     },
+    {
+        label: "X",
+        href: "https://x.com/millennium_bim",
+    },
+    {
+        label: "WhatsApp",
+        href: "https://whatsapp.com/channel/0029VaUg1VNCHDyt8KVjtk0w",
+    },
 ];
