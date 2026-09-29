@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { getRegistrationStatus } from "@/app/inscricao/action";
@@ -144,6 +145,8 @@ export function RegistrationProvider({
 }: {
     children: React.ReactNode;
 }) {
+    const pathname = usePathname();
+    const router = useRouter();
     const [isRegistrationOpen, setIsRegistrationOpen] = useState<boolean | null>(
         null,
     );
@@ -163,6 +166,21 @@ export function RegistrationProvider({
     useEffect(() => {
         checkStatus();
     }, [checkStatus]);
+
+    // If user navigates or types /inscricao directly while registrations are closed, show popup
+    useEffect(() => {
+        if (pathname === "/inscricao") {
+            if (isRegistrationOpen === false) {
+                setIsOpen(true);
+            } else if (isRegistrationOpen === null) {
+                checkStatus().then((open) => {
+                    if (!open) {
+                        setIsOpen(true);
+                    }
+                });
+            }
+        }
+    }, [pathname, isRegistrationOpen, checkStatus]);
 
     // Intercept clicks to /inscricao globally when registration is closed
     useEffect(() => {
@@ -196,7 +214,13 @@ export function RegistrationProvider({
     }, [isRegistrationOpen, checkStatus]);
 
     const openClosedModal = useCallback(() => setIsOpen(true), []);
-    const closeClosedModal = useCallback(() => setIsOpen(false), []);
+    const closeClosedModal = useCallback(() => {
+        setIsOpen(false);
+        // If the user closed the modal while on /inscricao, return to homepage
+        if (pathname === "/inscricao") {
+            router.push("/");
+        }
+    }, [pathname, router]);
 
     return (
         <RegistrationContext.Provider
