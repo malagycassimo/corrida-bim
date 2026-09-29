@@ -17,6 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { EmailManagerModal } from "@/components/EmailManagerModal";
 import { SmsManagerModal } from "@/components/SmsManagerModal";
+import { getApiBaseUrl } from "@/lib/api";
 
 type DataItem = {
     id: string;
@@ -113,9 +114,7 @@ export default function DataTable({
         setIsDeleting(true);
         setDeleteError("");
         const deletedIds = new Set<string>();
-        const serverUrl =
-            process.env.NEXT_PUBLIC_API_URL ||
-            `${window.location.protocol}//${window.location.hostname}:3002`;
+        const serverUrl = getApiBaseUrl();
 
         try {
             for (let offset = 0; offset < selected.length; offset += 10) {

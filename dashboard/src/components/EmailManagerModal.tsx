@@ -23,6 +23,7 @@ import {
     Loader2,
 } from "lucide-react";
 import { DEFAULT_TEMPLATES, EmailTemplate } from "@/utils/emailTemplates";
+import { getApiBaseUrl } from "@/lib/api";
 import Image from "next/image";
 
 type DataItem = {
@@ -117,11 +118,7 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
         setIsSuccess(false);
 
         try {
-            const serverUrl =
-                process.env.NEXT_PUBLIC_API_URL ||
-                (typeof window !== "undefined"
-                    ? `${window.location.protocol}//${window.location.hostname}:3002`
-                    : "http://localhost:3002");
+            const serverUrl = getApiBaseUrl();
             const response = await fetch(`${serverUrl}/participants/send-email`, {
                 method: "POST",
                 headers: {
