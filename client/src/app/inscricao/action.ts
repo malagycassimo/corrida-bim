@@ -104,3 +104,21 @@ export async function getIsAvailable(): Promise<AvailabilityResponse> {
         };
     }
 }
+
+export async function getRegistrationStatus(): Promise<boolean> {
+    try {
+        const response = await fetch("http://server:3002/settings/registration-status", {
+            cache: "no-store",
+        }).catch(() =>
+            fetch("http://localhost:3002/settings/registration-status", {
+                cache: "no-store",
+            })
+        );
+        if (!response.ok) return true;
+        const data = await response.json();
+        return data.registrationOpen !== false;
+    } catch {
+        return false;
+    }
+}
+

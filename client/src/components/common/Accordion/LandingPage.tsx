@@ -7,7 +7,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <p>
                 A 16.ª Corrida Millennium bim realizar-se-á no dia 25 de
-                Outubro, em Maputo. As provas terão como local de partida e
+                outubro, em Maputo. As provas terão como local de partida e
                 chegada a sede do Millennium bim. O aquecimento terá início às
                 06h10 e as provas arrancarão às 06h30.
             </p>
@@ -24,7 +24,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     (Cadeirantes/Triciclos),
                     cujas inscrições devem ser efectuadas presencialmente na
                     Associação de Atletismo da Cidade de Maputo (Parque dos
-                    Continuadores), de 05 a 16 de Outubro.
+                    Continuadores), de 05 a 16 de outubro.
                 </p>
                 <p className="mt-4 text-xs font-normal text-zinc-700">
                     Vagas limitadas: Corrida (15 km): 2.000 participantes; Caminhada (7,2 km): 1.000 participantes.

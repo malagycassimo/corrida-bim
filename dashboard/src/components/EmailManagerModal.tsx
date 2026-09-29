@@ -37,7 +37,7 @@ type DataItem = {
 };
 
 export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
-    const safeData = Array.isArray(data) ? data : [];
+    const safeData = useMemo(() => (Array.isArray(data) ? data : []), [data]);
     const [isOpen, setIsOpen] = useState(false);
 
     // Form State
@@ -86,14 +86,18 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
     };
 
     // Renderized HTML Preview with sample participant
-    const sampleParticipant = filteredRecipients[0] || {
-        firstName: "Malagy",
-        lastName: "Cassimo",
-        category: "Populares",
-        route: "Corrida Pedestre - 15km",
-        IDCode: "8768686989J",
-        shirt: "L",
-    };
+    const sampleParticipant = useMemo(
+        () =>
+            filteredRecipients[0] || {
+                firstName: "Malagy",
+                lastName: "Cassimo",
+                category: "Populares",
+                route: "Corrida Pedestre - 15km",
+                IDCode: "8768686989J",
+                shirt: "L",
+            },
+        [filteredRecipients],
+    );
 
     const formattedPreviewBody = useMemo(() => {
         let text = body;
