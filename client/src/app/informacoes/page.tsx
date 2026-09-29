@@ -19,7 +19,7 @@ export default function Informacoes() {
             {/* Hero section */}
             <section className="hidden relative h-[443px] lg:flex items-center">
                 <Image
-                    src={"/assets/images/info-hero.webp"}
+                    src={"/assets/images/carrosel-new/DSC_6590.JPG"}
                     alt="Corrida Millennium bim"
                     fill
                     className="mx-auto object-cover -z-50"
@@ -40,7 +40,7 @@ export default function Informacoes() {
             <section className="mt-[100px] relative h-96 lg:hidden">
                 <Image
                     alt="Informações"
-                    src={"/assets/images/info-hero-m.webp"}
+                    src={"/assets/images/carrosel-new/DSC_6590.JPG"}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"

@@ -2,6 +2,14 @@ import { PrismaClient } from "@prisma/client";
 import type { IDatabase } from "../types";
 import type { Participant } from "../../models/types";
 import { ErrorImpl } from "../../utils/error";
+import { isValidMozambiqueMobilePhone } from "../../utils/phoneValidation";
+import {
+    DEFAULT_ROUTE_LIMITS,
+    getRouteCountFilter,
+    getRouteLimitKey,
+    parseRouteLimit,
+    ROUTE_LIMIT_SETTING_KEYS,
+} from "../../utils/routeLimits";
 
 const prismaDatabase = (): IDatabase => {
     const prisma = new PrismaClient({ log: ["info", "warn", "error"] });
@@ -10,18 +18,57 @@ const prismaDatabase = (): IDatabase => {
     return {
         store: async (participant: Participant.ParticipantRequest) => {
             try {
-                const setting = await prisma.setting.findUnique({
-                    where: { key: "registrations_open" },
+                return await prisma.$transaction(async (transaction) => {
+                    await transaction.$executeRaw`LOCK TABLE "Participant" IN SHARE ROW EXCLUSIVE MODE`;
+
+                    const setting = await transaction.setting.findUnique({
+                        where: { key: "registrations_open" },
+                    });
+                    if (setting && setting.value === "false") {
+                        throw new ErrorImpl(
+                            "As inscrições estão temporariamente fechadas.",
+                            403,
+                            "Inscrições temporariamente fechadas pelo administrador",
+                        );
+                    }
+
+                    if (
+                        participant.country === "Moçambique" &&
+                        !isValidMozambiqueMobilePhone(participant.phone)
+                    ) {
+                        throw new ErrorImpl(
+                            "Para Moçambique, use o indicativo +258 e um número iniciado por 82, 83, 84, 85, 86, 87 ou 88.",
+                            400,
+                            "Prefixo de telefone moçambicano inválido",
+                        );
+                    }
+
+                    const routeLimitKey = getRouteLimitKey(participant.route);
+                    if (routeLimitKey) {
+                        const limitSetting = await transaction.setting.findUnique({
+                            where: { key: ROUTE_LIMIT_SETTING_KEYS[routeLimitKey] },
+                        });
+                        const limit = parseRouteLimit(
+                            limitSetting?.value ?? null,
+                            DEFAULT_ROUTE_LIMITS[routeLimitKey],
+                        );
+                        const count = await transaction.participant.count({
+                            where: getRouteCountFilter(routeLimitKey),
+                        });
+
+                        if (count >= limit) {
+                            const routeName = routeLimitKey === "corrida15k" ? "15 km" : "7,2 km";
+                            throw new ErrorImpl(
+                                `As inscrições para o percurso de ${routeName} estão esgotadas.`,
+                                409,
+                                "Limite de inscrições do percurso atingido",
+                            );
+                        }
+                    }
+
+                    const { accept, acceptterms, ...participantData } = participant as any;
+                    return await transaction.participant.create({ data: participantData });
                 });
-                if (setting && setting.value === "false") {
-                    throw new ErrorImpl(
-                        "As inscrições estão temporariamente fechadas.",
-                        403,
-                        "Inscrições temporariamente fechadas pelo administrador",
-                    );
-                }
-                const { accept, acceptterms, ...participantData } = participant as any;
-                return await prisma.participant.create({ data: participantData });
             } catch (error) {
                 if (error instanceof Error && !(error instanceof ErrorImpl)) {
                     throw new ErrorImpl(
@@ -145,7 +192,50 @@ const prismaDatabase = (): IDatabase => {
                 throw error;
             }
         },
+        getRouteAvailability: prismaDatabaseAvailability,
+        setRouteLimits: async (limits) => {
+            await prisma.$transaction(async (transaction) => {
+                await transaction.$executeRaw`LOCK TABLE "Participant" IN SHARE ROW EXCLUSIVE MODE`;
+                await Promise.all(
+                    (Object.keys(ROUTE_LIMIT_SETTING_KEYS) as (keyof typeof ROUTE_LIMIT_SETTING_KEYS)[]).map((key) =>
+                        transaction.setting.upsert({
+                            where: { key: ROUTE_LIMIT_SETTING_KEYS[key] },
+                            update: { value: String(limits[key]) },
+                            create: {
+                                key: ROUTE_LIMIT_SETTING_KEYS[key],
+                                value: String(limits[key]),
+                            },
+                        }),
+                    ),
+                );
+            });
+            return await prismaDatabaseAvailability();
+        },
     };
+
+    async function prismaDatabaseAvailability() {
+        const [registrationSetting, corridaLimitSetting, caminhadaLimitSetting, corridaCount, caminhadaCount, total] = await Promise.all([
+            prisma.setting.findUnique({ where: { key: "registrations_open" } }),
+            prisma.setting.findUnique({ where: { key: ROUTE_LIMIT_SETTING_KEYS.corrida15k } }),
+            prisma.setting.findUnique({ where: { key: ROUTE_LIMIT_SETTING_KEYS.caminhada7k } }),
+            prisma.participant.count({ where: getRouteCountFilter("corrida15k") }),
+            prisma.participant.count({ where: getRouteCountFilter("caminhada7k") }),
+            prisma.participant.count(),
+        ]);
+
+        return {
+            registrationOpen: registrationSetting?.value !== "false",
+            routeLimits: {
+                corrida15k: parseRouteLimit(corridaLimitSetting?.value ?? null, DEFAULT_ROUTE_LIMITS.corrida15k),
+                caminhada7k: parseRouteLimit(caminhadaLimitSetting?.value ?? null, DEFAULT_ROUTE_LIMITS.caminhada7k),
+            },
+            routeCounts: {
+                corrida15k: corridaCount,
+                caminhada7k: caminhadaCount,
+                total,
+            },
+        };
+    }
 };
 
 export { prismaDatabase };

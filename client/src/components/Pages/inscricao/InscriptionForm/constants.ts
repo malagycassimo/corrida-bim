@@ -21,7 +21,7 @@ export const MESSAGES = {
     FAILURE: {
         TITLE: "Inscrição não foi concluída",
         DESCRIPTION:
-            "Não é possível continuar a inscrição no site para a categoria seleccionada. As inscrições para as categorias de Juvenis, Federados, Triciclos e Cadeirantes deverão ser realizadas presencialmente na Associação de Atletismo da Cidade de Maputo, localizada no Parque dos Continuadores.",
+            "Não é possível continuar a inscrição no site para a categoria seleccionada. As inscrições para as categorias de Federados, Triciclos e Cadeirantes deverão ser realizadas presencialmente na Associação de Atletismo da Cidade de Maputo, localizada no Parque dos Continuadores.",
     },
 };
 
@@ -41,7 +41,7 @@ export const initialFormState: FormState = {
         phone: "+258 ",
         country: "Moçambique",
         province: "Maputo",
-        dob: "",
+        dob: new Date().toISOString(),
         gender: "",
         emergencyName: "",
         emergencyPhone: "",
@@ -60,6 +60,10 @@ export const initialFormState: FormState = {
             corrida15k: 0,
             caminhada7k: 0,
             total: 0,
+        },
+        routeLimits: {
+            corrida15k: 2000,
+            caminhada7k: 1000,
         },
     },
 };

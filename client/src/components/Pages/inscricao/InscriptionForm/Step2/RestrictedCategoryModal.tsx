@@ -52,7 +52,7 @@ export function RestrictedCategoryModal({
                             <strong className="text-zinc-900">{categoryName || "seleccionada"}</strong>.
                             <br />
                             <br />
-                            As inscrições para as categorias de <strong>Juvenis</strong>, <strong>Federados</strong>, <strong>Triciclos</strong> e <strong>Cadeirantes</strong> deverão ser realizadas presencialmente na <strong>Associação de Atletismo da Cidade de Maputo</strong>, localizada no Parque dos Continuadores.
+                            As inscrições para as categorias de <strong>Federados</strong>, <strong>Triciclos</strong> e <strong>Cadeirantes</strong> deverão ser realizadas presencialmente na <strong>Associação de Atletismo da Cidade de Maputo</strong>, localizada no Parque dos Continuadores.
                         </p>
 
                         <div className="pt-2">

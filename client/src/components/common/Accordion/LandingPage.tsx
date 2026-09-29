@@ -20,7 +20,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                 <p>
                     As inscrições são gratuitas e devem ser feitas online,
                     através do website oficial. Excepcionam-se as categorias de
-                    Juvenis, Federados e Pessoas com Deficiência
+                    Federados e Pessoas com Deficiência
                     (Cadeirantes/Triciclos),
                     cujas inscrições devem ser efectuadas presencialmente na
                     Associação de Atletismo da Cidade de Maputo (Parque dos

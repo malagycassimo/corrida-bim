@@ -61,7 +61,11 @@ export const CategorySelect = ({
                         field.onChange("");
                         return;
                     }
-                    if (!isAvailable(val, state.availability.constraints)) {
+                    if (!isAvailable(
+                        val,
+                        state.availability.constraints,
+                        state.availability.routeLimits,
+                    )) {
                         const matchedCat = categories.find((c) => c.value === val);
                         setSelectedLimitName(matchedCat ? matchedCat.label : val);
                         setLimitModalOpen(true);
@@ -89,6 +93,7 @@ export const CategorySelect = ({
                                     const isAvailableForEvent = isAvailable(
                                         value,
                                         state.availability.constraints,
+                                        state.availability.routeLimits,
                                     );
                                     // Se uma categoria já foi selecionada automaticamente, as outras não podem ser selecionadas e aparecem desabilitadas
                                     const isOtherCategory = Boolean(field.value) && !isSelected;
