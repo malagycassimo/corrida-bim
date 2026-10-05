@@ -61,9 +61,9 @@ Para rodar o projeto localmente utilizando Docker e Docker Compose, siga os pass
 
 ## ⚙️ Comandos Úteis
 
-### Configurar SMS com Twilio
+### Configurar SMS com MozeSMS
 
-Preencha no `.env` as credenciais da conta Twilio (`TWILIO_ACCOUNT_SID` e `TWILIO_AUTH_TOKEN`) e configure **um** remetente: `TWILIO_MESSAGING_SERVICE_SID` (recomendado) ou `TWILIO_FROM_NUMBER` no formato internacional, como `+258...`. As variáveis estão preparadas em `.env.example`; mantenha o token apenas no ambiente do servidor.
+Preencha no `.env` as credenciais da conta MozeSMS (`SMS_API_KEY` e `SMS_API_SECRET`) e o remetente aprovado (`SMS_SENDER_ID`, por exemplo `16a Corrida`). As variáveis estão preparadas em `.env.example`; mantenha as credenciais apenas no ambiente do servidor.
 
 `SMS_BATCH_SIZE` define quantos SMS são enviados antes de uma pausa e `SMS_BATCH_DELAY_MS` define essa pausa em milissegundos. O dashboard inicia o trabalho sem aguardar a campanha inteira e consulta o progresso, evitando timeout da requisição web. Cada SMS tem timeout e novas tentativas limitadas; o processamento e o estado dos trabalhos ficam em memória e são perdidos se o serviço reiniciar.
 
