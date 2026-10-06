@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AlertTriangle, Check, Loader2, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getApiBaseUrl } from "@/lib/api";
 
 interface RouteAvailability {
     registrationOpen: boolean;
@@ -69,8 +70,7 @@ export function RouteLimitsManager({
         setError("");
         setFeedback("");
         try {
-            const serverUrl = process.env.NEXT_PUBLIC_API_URL ||
-                `${window.location.protocol}//${window.location.hostname}:3002`;
+            const serverUrl = getApiBaseUrl();
             const response = await fetch(`${serverUrl}/settings/route-limits`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
