@@ -21,7 +21,7 @@ if os.path.exists(env_file):
 
 api_key = env_vars.get("SMS_API_KEY") or os.environ.get("SMS_API_KEY", "")
 api_secret = env_vars.get("SMS_API_SECRET") or os.environ.get("SMS_API_SECRET", "")
-sender_id = env_vars.get("SMS_SENDER_ID") or os.environ.get("SMS_SENDER_ID", "TESTES")
+sender_id = env_vars.get("SMS_SENDER_ID") or os.environ.get("SMS_SENDER_ID", "CORRIDA16")
 
 phone = sys.argv[1] if len(sys.argv) > 1 else "258821397762"
 clean_phone = phone.replace("+", "").replace(" ", "").replace("-", "")

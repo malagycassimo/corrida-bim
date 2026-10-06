@@ -33,7 +33,7 @@ const SmsServ = (): SmsService => {
     const jobs = new Map<string, SmsJob>();
     const apiKey = (process.env.SMS_API_KEY || process.env.MOZESMS_API_KEY || "").trim();
     const apiSecret = (process.env.SMS_API_SECRET || process.env.MOZESMS_API_SECRET || "").trim();
-    const senderId = (process.env.SMS_SENDER_ID || process.env.MOZESMS_SENDER_ID || "TESTES").trim();
+    const senderId = (process.env.SMS_SENDER_ID || process.env.MOZESMS_SENDER_ID || "CORRIDA16").trim();
     const apiUrl = process.env.SMS_API_URL || process.env.MOZESMS_API_URL || "https://api.mozesms.com/sms/bulk";
     // MozeSMS permite até 1000 mensagens por pedido em /sms/bulk
     const batchSize = Math.min(1000, Math.max(1, Number(process.env.SMS_BATCH_SIZE) || 500));
@@ -111,6 +111,13 @@ const SmsServ = (): SmsService => {
                         cost?: number;
                         remaining_balance?: number;
                     };
+                    summary?: {
+                        total?: number;
+                        success?: number;
+                        failed?: number;
+                        total_cost?: number;
+                        remaining_balance?: number;
+                    };
                     error?: string | { message?: string };
                     message?: string;
                     raw?: string;
@@ -122,11 +129,11 @@ const SmsServ = (): SmsService => {
                 }
 
                 if (response.ok && responseData.success !== false) {
-                    const data = responseData.data || {};
+                    const summary = responseData.summary || responseData.data || {};
                     console.log(`[MozeSMS] Resposta completa da API: ${rawText}`);
                     return {
-                        sent: Number(data.sent ?? batchMessages.length),
-                        failed: Number(data.failed ?? 0),
+                        sent: Number(summary.success ?? (summary as { sent?: number }).sent ?? batchMessages.length),
+                        failed: Number(summary.failed ?? 0),
                     };
                 }
 

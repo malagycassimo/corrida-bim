@@ -40,13 +40,19 @@ const MailerServ = (apiKey: string): MailerService => {
                         <p>A sua inscrição para a <strong>16ª Corrida Millennium bim</strong> foi efetuada com sucesso!</p>
                         
                         <div style="background-color: #f4f4f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
-                            <p style="margin: 5px 0;"><strong>Código da Inscrição:</strong> ${id || ""}</p>
                             <p style="margin: 5px 0;"><strong>Nº Documento:</strong> ${IDCode || ""}</p>
                             <p style="margin: 5px 0;"><strong>Categoria:</strong> ${category || ""}</p>
                             <p style="margin: 5px 0;"><strong>Percurso:</strong> ${route || ""}</p>
                         </div>
+
+                        <div style="background-color: #fff1f2; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffe4e6;">
+                            <p style="margin: 0 0 8px 0; font-weight: bold; color: #be123c;">Levantamento dos Kits (21 a 23 de Outubro):</p>
+                            <p style="margin: 4px 0; font-size: 13px; color: #475569;"><strong>Local:</strong> Sede do Millennium bim (Rua dos Desportistas n.º 873-879/15), das 10h00 às 16h30, mediante comprovativo e documento de identificação.</p>
+                            <p style="margin: 8px 0 2px 0; font-size: 12px; color: #9f1239;"><strong>*Nota:</strong> Para portadores de deficiência, o levantamento será efectuado na Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores), entre os dias 21 a 23 de outubro.</p>
+                            <p style="margin: 0; font-size: 12px; color: #9f1239;"><strong>*Nota:</strong> Os kits da caminhada não incluem dorsal.</p>
+                        </div>
                         
-                        <p style="color: #52525b; font-size: 14px;">Vemo-nos no dia do evento! Guarde este e-mail para a levantamento do seu kit.</p>
+                        <p style="color: #52525b; font-size: 14px;">Vemo-nos no dia do evento! Guarde este e-mail para o levantamento do seu kit.</p>
                     </div>
                 `;
             }
