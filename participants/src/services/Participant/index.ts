@@ -15,6 +15,29 @@ const ParticipantServ = (
         } catch (mailError) {
             console.error("Erro ao enviar e-mail de boas-vindas:", mailError);
         }
+        if (particp.phone) {
+            try {
+                const smsMessage =
+                    process.env.REGISTRATION_SMS_TEMPLATE ||
+                    "Ola {NOME}, a sua inscricao na 16a Corrida foi confirmada! Percurso: {ROTA}. Verifique o seu email para mais detalhes.";
+                Sms.sendBulkSms({
+                    recipients: [
+                        {
+                            phone: particp.phone,
+                            firstName: particp.firstName,
+                            lastName: particp.lastName,
+                            category: particp.category,
+                            route: particp.route,
+                            IDCode: particp.IDCode,
+                            shirt: particp.shirt,
+                        },
+                    ],
+                    message: smsMessage,
+                });
+            } catch (smsError) {
+                console.error("Erro ao enviar SMS de confirmação:", smsError);
+            }
+        }
         return particp;
     };
     const get = async (id: string) => {

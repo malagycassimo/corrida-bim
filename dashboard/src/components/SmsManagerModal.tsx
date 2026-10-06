@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Loader2, MessageSquareText, Send, Users } from "lucide-react";
-import { getApiBaseUrl } from "@/lib/api";
 
 type Participant = {
     IDCode: string;
@@ -34,7 +33,7 @@ type SmsJob = {
     error?: string;
 };
 
-const DEFAULT_MESSAGE = "Olá {NOME}, a sua inscrição na 16ª Corrida Millennium bim foi confirmada. Percurso: {ROTA}.";
+const DEFAULT_MESSAGE = "Ola {NOME}, a sua inscricao na 16a Corrida foi confirmada! Percurso: {ROTA}. Verifique o seu email para mais detalhes.";
 
 export function SmsManagerModal({ data = [] }: { data?: Participant[] }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +62,9 @@ export function SmsManagerModal({ data = [] }: { data?: Participant[] }) {
     );
     const progress = job?.total ? Math.round(((job.sentCount + job.failedCount) / job.total) * 100) : 0;
 
-    const getServerUrl = () => getApiBaseUrl();
+    const getServerUrl = () =>
+        process.env.NEXT_PUBLIC_API_URL ||
+        `${window.location.protocol}//${window.location.hostname}:3002`;
 
     const handleSend = async () => {
         setError("");
@@ -75,12 +76,12 @@ export function SmsManagerModal({ data = [] }: { data?: Participant[] }) {
             }));
 
         if (mode === "test" && !phone.trim()) {
-            setError("Informe o telefone de teste com indicativo internacional, por exemplo +258841234567.");
+            setError("Informe o telefone de teste, por exemplo 258841234567 ou +258841234567.");
             return;
         }
         if (mode === "test" && /^\+?258/.test(phone.trim().replace(/[\s().-]/g, "")) &&
             !/^\+?258\d{9}$/.test(phone.trim().replace(/[\s().-]/g, ""))) {
-            setError("O número moçambicano deve ter 9 dígitos após +258. Exemplo: +258841234567.");
+            setError("O número moçambicano deve ter 9 dígitos após 258. Exemplo: 258841234567.");
             return;
         }
         if (!targets.length) {
@@ -243,13 +244,13 @@ export function SmsManagerModal({ data = [] }: { data?: Participant[] }) {
                     {job?.status === "completed" && (
                         job.failedCount > 0 ? (
                             <div role="alert" className="space-y-1 text-sm text-red-700">
-                                <p>{job.error || "Alguns SMS não puderam ser enviados. Confira os números e a configuração Twilio."}</p>
-                                <p>Os SMS aceites pelo Twilio ainda dependem da entrega pela operadora.</p>
+                                <p>{job.error || "Alguns SMS não puderam ser enviados. Confira os números e as credenciais do MozeSMS."}</p>
+                                <p>Os SMS aceites pelo MozeSMS ainda dependem da entrega pela operadora.</p>
                             </div>
                         ) : (
                             <p className="flex items-center gap-2 text-sm text-emerald-800">
                                 <CheckCircle2 className="h-4 w-4" />
-                                Processamento finalizado. Os SMS foram aceites pelo Twilio; a entrega depende da operadora.
+                                Processamento finalizado. Os SMS foram enviados via MozeSMS; a entrega depende da operadora.
                             </p>
                         )
                     )}

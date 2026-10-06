@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle2, Lock, Unlock, Loader2 } from "lucide-react";
-import { getApiBaseUrl } from "@/lib/api";
 
 interface RegistrationToggleProps {
     initialStatus?: boolean;
@@ -14,7 +13,17 @@ export function RegistrationToggle({ initialStatus }: RegistrationToggleProps) {
     const [updating, setUpdating] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-    const getServerUrl = () => getApiBaseUrl();
+    const getServerUrl = () => {
+        if (typeof window !== "undefined") {
+            if (process.env.NEXT_PUBLIC_API_URL) {
+                return process.env.NEXT_PUBLIC_API_URL;
+            }
+            const protocol = window.location.protocol;
+            const hostname = window.location.hostname;
+            return `${protocol}//${hostname}:3002`;
+        }
+        return "http://server:3002";
+    };
 
     useEffect(() => {
         if (initialStatus !== undefined) return;
