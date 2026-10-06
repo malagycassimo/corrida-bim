@@ -38,13 +38,14 @@ A sua inscrição para a 16ª Corrida Millennium bim está confirmada!
 
 Chegou o momento de levantar o seu Kit do Atleta (T-shirt oficial, dorsal e chip).
 
-📌 Locais e Datas de Levantamento (21 a 23 de Outubro):
-- Federados, juvenis e portadores de deficiência: Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores).
-- Demais inscritos: Sede do Millennium bim, na Rua dos Desportistas nº 873/879.
+📌 Locais e Datas de Levantamento (21 a 23 de Outubro, das 10h00 às 16h30):
+- Sede do Millennium bim (Rua dos Desportistas n.º 873-879/15, Maputo).
 
 📌 Documentos necessários: Apresentação do Bilhete de Identidade ({BI}) ou comprovativo da inscrição.
 - Tamanho da T-shirt selecionado: {CAMISETE}
 
+*Nota: Para portadores de deficiência, o levantamento será efectuado na Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores), entre os dias 21 a 23 de outubro.
+*Nota: Os kits da caminhada não incluem dorsal.
 Lembramos que o levantamento do kit é obrigatório para a participação na prova.
 
 Até breve!

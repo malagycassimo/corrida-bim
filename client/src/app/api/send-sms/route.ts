@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 
         const apiKey = process.env.SMS_API_KEY || process.env.MOZESMS_API_KEY;
         const apiSecret = process.env.SMS_API_SECRET || process.env.MOZESMS_API_SECRET;
-        const senderId = (process.env.SMS_SENDER_ID || process.env.MOZESMS_SENDER_ID || "TESTES").trim();
+        const senderId = (process.env.SMS_SENDER_ID || process.env.MOZESMS_SENDER_ID || "CORRIDA16").trim();
         const apiUrl = process.env.SMS_API_URL || process.env.MOZESMS_API_URL || "https://api.mozesms.com/sms/bulk";
 
         if (!apiKey || !apiSecret) {

@@ -11,7 +11,6 @@ const buildWelcomeEmailHtml = ({
     shirt,
 }: Participant.ParticipantSchema): string => {
     const fullName = `${firstName || ""} ${lastName || ""}`.trim() || "Participante";
-    const regCode = `cb-${id.substring(0, 7)}`;
     const appUrl = process.env.APP_URL || "https://corridamillenniumbim.co.mz";
     const logoUrl = `${appUrl}/assets/brand/logo-16-white.png`;
 
@@ -41,7 +40,6 @@ const buildWelcomeEmailHtml = ({
                     <div style="background-color: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; padding: 16px; margin: 20px 0;">
                         <p style="margin: 0 0 10px 0; font-weight: bold; color: #0f172a; font-size: 14px;">📌 Informações da sua Inscrição:</p>
                         <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 13px; line-height: 1.8;">
-                            <li><strong>Código da Inscrição:</strong> ${regCode}</li>
                             <li><strong>Nº de Documento (BI):</strong> ${IDCode || "Não informado"}</li>
                             <li><strong>Categoria:</strong> ${category || "Geral"}</li>
                             <li><strong>Percurso:</strong> ${route || "Geral"}</li>
@@ -53,10 +51,14 @@ const buildWelcomeEmailHtml = ({
                     <div style="background-color: #fff1f2; border-radius: 12px; border: 1px solid #ffe4e6; padding: 16px; margin: 20px 0;">
                         <p style="margin: 0 0 10px 0; font-weight: bold; color: #be123c; font-size: 14px;">🎽 Levantamento dos Kits do Atleta (21 a 23 de Outubro):</p>
                         <ul style="margin: 0; padding-left: 20px; color: #475569; font-size: 13px; line-height: 1.8;">
-                            <li><strong>Local:</strong> Sede do Millennium bim, Rua dos Desportistas nº 873/879, Maputo.</li>
-                            <li><strong>Horário:</strong> 08h00 às 17h00.</li>
-                            <li><strong>Documentos necessários:</strong> Apresentação do Bilhete de Identidade original ou comprovativo de inscrição.</li>
+                            <li><strong>Local:</strong> Sede do Millennium bim (Rua dos Desportistas n.º 873-879/15, Maputo).</li>
+                            <li><strong>Horário:</strong> 10h00 às 16h30.</li>
+                            <li><strong>Documentos necessários:</strong> Apresentação do comprovativo de inscrição e do respectivo documento de identificação.</li>
                         </ul>
+                        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed #fecdd3; font-size: 12px; color: #9f1239; line-height: 1.6;">
+                            <p style="margin: 0 0 4px 0;"><strong>*Nota:</strong> Para portadores de deficiência, o levantamento será efectuado na Associação de Atletismo da Cidade de Maputo (Parque dos Continuadores), entre os dias 21 a 23 de outubro.</p>
+                            <p style="margin: 0;"><strong>*Nota:</strong> Os kits da caminhada não incluem dorsal.</p>
+                        </div>
                     </div>
 
                     <p style="margin: 20px 0 16px 0;">Prepare os seus ténis, hidrate-se bem e venha fazer parte desta grande festa do desporto e da saúde!</p>
