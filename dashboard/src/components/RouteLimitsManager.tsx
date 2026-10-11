@@ -22,7 +22,7 @@ type RouteLimitKey = keyof RouteAvailability["routeLimits"];
 
 const ROUTES: { key: RouteLimitKey; label: string }[] = [
     { key: "corrida15k", label: "Corrida 15 km" },
-    { key: "caminhada7k", label: "Caminhada 7,2 km" },
+    { key: "caminhada7k", label: "Caminhada 7 km" },
 ];
 
 export function RouteLimitsManager({

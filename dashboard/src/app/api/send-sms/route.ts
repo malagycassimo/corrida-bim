@@ -45,8 +45,12 @@ export async function POST(req: Request) {
         const cleanMessage = String(message)
             .replace(/ª/g, "a")
             .replace(/º/g, "o")
+            .replace(/[–—]/g, "-")
+            .replace(/[""]/g, '"')
+            .replace(/['']/g, "'")
             .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^\x20-\x7E\r\n]/g, "");
 
         const bodyPayload: MozeSmsPayload = {
             messages: [{ phone: cleanPhone, message: cleanMessage }],

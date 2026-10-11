@@ -449,12 +449,12 @@ export const categories: { label: string; value: string }[] = [
 
 export const routes: { label: string; value: string }[] = [
     {
-        label: "Caminhada - 7.2km",
-        value: "Caminhada - 7.2km",
+        label: "Caminhada - 7km",
+        value: "Caminhada - 7km",
     },
     {
-        label: "Cadeirantes - 9.2km",
-        value: "Cadeirantes - 9.2km",
+        label: "Cadeirantes - 9km",
+        value: "Cadeirantes - 9km",
     },
     {
         label: "Corrida Pedestre - 15km",

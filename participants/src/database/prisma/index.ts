@@ -57,7 +57,7 @@ const prismaDatabase = (): IDatabase => {
                         });
 
                         if (count >= limit) {
-                            const routeName = routeLimitKey === "corrida15k" ? "15 km" : "7,2 km";
+                            const routeName = routeLimitKey === "corrida15k" ? "15 km" : "7 km";
                             throw new ErrorImpl(
                                 `As inscrições para o percurso de ${routeName} estão esgotadas.`,
                                 409,
