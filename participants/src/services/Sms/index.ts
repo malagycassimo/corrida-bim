@@ -55,18 +55,34 @@ const SmsServ = (): SmsService => {
         return normalized;
     };
 
+    const formatShortName = (firstName?: string, lastName?: string): string => {
+        const rawFirst = (firstName || "").trim().split(/\s+/).filter(Boolean);
+        const rawLast = (lastName || "").trim().split(/\s+/).filter(Boolean);
+
+        const first = rawFirst[0] || "";
+        const last = rawLast.length > 0
+            ? rawLast[rawLast.length - 1]
+            : (rawFirst.length > 1 ? rawFirst[rawFirst.length - 1] : "");
+
+        return last ? `${first} ${last}` : first || "Participante";
+    };
+
     const sanitizeForSms = (text: string) => {
         return text
             .replace(/ª/g, "a")
             .replace(/º/g, "o")
+            .replace(/[–—]/g, "-")
+            .replace(/[""]/g, '"')
+            .replace(/['']/g, "'")
             .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^\x20-\x7E\r\n]/g, "");
     };
 
     const personalizeMessage = (template: string, recipient: SmsRecipient) => {
-        const fullName = `${recipient.firstName || ""} ${recipient.lastName || ""}`.trim() || "Participante";
+        const shortName = formatShortName(recipient.firstName, recipient.lastName);
         const personalized = template
-            .replace(/{NOME}/g, fullName)
+            .replace(/{NOME}/g, shortName)
             .replace(/{CATEGORIA}/g, recipient.category || "")
             .replace(/{ROTA}|{PERCURSO}/g, recipient.route || "")
             .replace(/{BI}/g, recipient.IDCode || "")
