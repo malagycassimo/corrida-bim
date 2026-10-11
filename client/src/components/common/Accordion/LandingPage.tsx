@@ -24,10 +24,10 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     (Cadeirantes/Triciclos),
                     cujas inscrições devem ser efectuadas presencialmente na
                     Associação de Atletismo da Cidade de Maputo (Parque dos
-                    Continuadores), de 05 a 16 de outubro.
+                    Continuadores), de 13 a 16 de outubro.
                 </p>
                 <p className="mt-4 text-xs font-normal text-zinc-700">
-                    Vagas limitadas: Corrida (15 km): 2.000 participantes; Caminhada (7,2 km): 1.000 participantes.
+                    Vagas limitadas: Corrida (15 km): 2.000 participantes; Caminhada (7 km): 1.000 participantes.
                 </p>
             </div>
         ),
@@ -70,7 +70,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                 <div className="flex justify-center items-center w-full my-6">
                     <Image
                         alt="Amostra do Kit - 16ª Corrida Millennium bim"
-                        src={"/assets/images/Kit-Corrida-Transparencia.png"}
+                        src={"/assets/images/Kit-Corrida.png"}
                         className="block mx-auto w-full max-w-md md:max-w-lg h-auto object-contain"
                         width={2517}
                         height={2250}
@@ -98,12 +98,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     <span className="mb-1 block text-[0.95rem] font-normal">
                         {"Pontos de água"}
                     </span>
-                    <p>Estarão disponíveis 3 pontos de hidratação ao longo do percurso:</p>
-                    <ul className="list-disc list-inside my-2 space-y-1">
-                        <li>Clube Naval</li>
-                        <li>Em frente à Embaixada dos EUA</li>
-                        <li>Clínica Trauma</li>
-                    </ul>
+                    <p>Ao longo do percurso da corrida serão instalados três pontos de abastecimento de água, para hidratação dos participantes.</p>
                 </div>
             </div>
         ),

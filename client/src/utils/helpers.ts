@@ -26,7 +26,7 @@ export function isEventFullySoldOut(
     routeLimits?: { corrida15k: number; caminhada7k: number },
 ): boolean {
     if (!constraints || !routeLimits) return false;
-    const caminhadaEsgotada = !isAvailable("7.2km", constraints, routeLimits);
+    const caminhadaEsgotada = !isAvailable("7km", constraints, routeLimits);
     const corridaEsgotada = !isAvailable("15km", constraints, routeLimits);
     return caminhadaEsgotada && corridaEsgotada;
 }
