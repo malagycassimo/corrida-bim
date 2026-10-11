@@ -3,11 +3,14 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { IconPack } from "../IconPack";
 import Map1 from "./Maps";
 
+// Defina como 'true' para exibir o mapa normalmente, ou 'false' para ocultar com desfoque e o aviso "Brevemente"
+const SHOW_ROUTES_MAP = false;
+
 export default function Map() {
     const [active, setActive] = useState("walk");
     return (
         <div className="mt-8">
-            <div className="w-fit space-x-3 lg:space-x-5 mx-auto flex  mb-4">
+            <div className="w-fit space-x-3 lg:space-x-5 mx-auto flex mb-4">
                 <Walk active={active === "walk"} setActive={setActive} />
                 <Disabled
                     active={active === "disabled"}
@@ -15,12 +18,30 @@ export default function Map() {
                 />
                 <Running active={active === "run"} setActive={setActive} />
             </div>
-            <div className="mx-auto max-w-[826px]">
-                {active === "walk" && <Map1 embedId="3283752888139517016" />}
-                {active === "disabled" && (
-                    <Map1 embedId="3283747075580661848" />
+            <div className="mx-auto max-w-[826px] relative min-h-[460px] rounded-2xl overflow-hidden">
+                <div className={`transition-all duration-500 ${!SHOW_ROUTES_MAP ? "filter blur-md select-none pointer-events-none opacity-40 scale-[1.02]" : ""}`}>
+                    {active === "walk" && <Map1 embedId="3283752888139517016" />}
+                    {active === "disabled" && (
+                        <Map1 embedId="3283747075580661848" />
+                    )}
+                    {active === "run" && <Map1 embedId="3283738218266926168" />}
+                </div>
+
+                {!SHOW_ROUTES_MAP && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/40 backdrop-blur-md z-10 px-6 text-center rounded-2xl border border-white/60 shadow-inner">
+                        <div className="bg-white/90 shadow-xl border border-rose-100 rounded-3xl p-8 max-w-md mx-auto transform transition-all">
+                            <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-50 text-primary border border-rose-200 mb-4">
+                                🚀 Novidades a caminho
+                            </span>
+                            <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mb-2">
+                                Brevemente
+                            </h3>
+                            <p className="text-sm sm:text-base text-neutral-600 leading-relaxed">
+                                Os percursos oficiais detalhados serão disponibilizados muito em breve. Fique atento às nossas atualizações!
+                            </p>
+                        </div>
+                    </div>
                 )}
-                {active === "run" && <Map1 embedId="3283738218266926168" />}
             </div>
         </div>
     );
