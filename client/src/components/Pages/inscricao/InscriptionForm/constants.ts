@@ -16,7 +16,7 @@ export const MESSAGES = {
     SUCCESS: {
         TITLE: "Inscrição concluída",
         DESCRIPTION:
-            "Agradecemos por se inscrever na 16ª Corrida Millennium bim! Sua participação é muito importante para nós e estamos animados para vê-lo(a) no dia 25 de Outubro. Verifique sua caixa de entrada ou spam para o e-mail de confirmação.",
+            "Agradecemos por se inscrever na 16ª Corrida Millennium bim! A sua participação é muito importante para nós e estamos animados para vê-lo(a) no dia 25 de Outubro. Verifique a sua caixa de entrada ou spam para o e-mail de confirmação.",
     },
     FAILURE: {
         TITLE: "Inscrição não foi concluída",
