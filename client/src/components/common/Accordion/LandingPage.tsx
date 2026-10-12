@@ -7,7 +7,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
         content: (
             <p>
                 A 16.ª Corrida Millennium bim realizar-se-á no dia 25 de
-                outubro, em Maputo. As provas terão como local de partida e
+                Outubro, em Maputo. As provas terão como local de partida e
                 chegada a sede do Millennium bim. O aquecimento terá início às
                 06h10 e as provas arrancarão às 06h30.
             </p>
@@ -24,7 +24,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     (Cadeirantes/Triciclos),
                     cujas inscrições devem ser efectuadas presencialmente na
                     Associação de Atletismo da Cidade de Maputo (Parque dos
-                    Continuadores), de 13 a 16 de outubro.
+                    Continuadores), de 13 a 16 de Outubro.
                 </p>
                 <p className="mt-4 text-xs font-normal text-zinc-700">
                     Vagas limitadas: Corrida (14 km): 2.000 participantes; Caminhada (7 km): 1.000 participantes.
@@ -39,7 +39,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                 <p>
                     O levantamento do material será feito na sede do Millennium bim
                     (Rua dos Desportistas n.º 873-879/15, Maputo), entre os dias
-                    21 a 23 de outubro, das 10h00 às 16h30, mediante apresentação
+                    21 a 23 de Outubro, das 10h00 às 16h30, mediante apresentação
                     do recibo de inscrição e do respectivo documento de identificação.
                 </p>
                 <br />
@@ -47,7 +47,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     Excepcionalmente, os participantes portadores de deficiência 
                     deverão efectuar o levantamento na Associação
                     de Atletismo da Cidade de Maputo (Parque dos Continuadores),
-                     entre os dias 21 a 23 de outubro.
+                     entre os dias 21 a 23 de Outubro.
                 </p>
                     
                 {/* <p>
