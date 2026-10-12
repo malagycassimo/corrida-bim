@@ -33,7 +33,13 @@ export const parseRouteLimit = (value: string | null, fallback: number): number 
 
 export const getRouteLimitKey = (route: string): RouteLimitKey | null => {
     const normalizedRoute = route.toLowerCase().replace(/\s/g, "");
-    if (normalizedRoute.includes("15km")) return "corrida15k";
+    if (
+        normalizedRoute.includes("14km") ||
+        normalizedRoute.includes("15km") ||
+        normalizedRoute.includes("corrida")
+    ) {
+        return "corrida15k";
+    }
     if (
         normalizedRoute.includes("7.2km") ||
         normalizedRoute.includes("7km") ||
@@ -46,7 +52,13 @@ export const getRouteLimitKey = (route: string): RouteLimitKey | null => {
 
 export const getRouteCountFilter = (key: RouteLimitKey) =>
     key === "corrida15k"
-        ? { route: { contains: "15km", mode: "insensitive" as const } }
+        ? {
+              OR: [
+                  { route: { contains: "14km", mode: "insensitive" as const } },
+                  { route: { contains: "15km", mode: "insensitive" as const } },
+                  { route: { contains: "corrida", mode: "insensitive" as const } },
+              ],
+          }
         : {
               OR: [
                   { route: { contains: "7.2km", mode: "insensitive" as const } },

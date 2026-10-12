@@ -13,11 +13,20 @@ import Link from "next/link";
 import Loading from "./loading";
 import { useState } from "react";
 import { shuffleArray } from "@/utils/helpers";
+import { useRegistrationModal } from "@/components/common/RegistrationClosedModal";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 
 export default function Home() {
     const [loaded, setLoaded] = useState(false);
+    const { isRegistrationOpen, openClosedModal } = useRegistrationModal();
+
+    const handleInscriptionClick = (e: React.MouseEvent) => {
+        if (isRegistrationOpen === false) {
+            e.preventDefault();
+            openClosedModal();
+        }
+    };
 
     return (
         <main>
@@ -31,7 +40,6 @@ export default function Home() {
                     fill
                     className="mx-auto object-cover -z-50"
                     onLoad={() => setLoaded(true)}
-                    quality={100}
                     priority
                 />
 
@@ -49,6 +57,7 @@ export default function Home() {
                             </p>
                             <Link
                                 href={"/inscricao"}
+                                onClick={handleInscriptionClick}
                                 className="btn bg-white text-black"
                             >
                                 <span>Inscreva-se</span>{" "}
@@ -79,6 +88,7 @@ export default function Home() {
                         </p>
                         <Link
                             href={"/inscricao"}
+                            onClick={handleInscriptionClick}
                             className="btn w-full flex justify-center bg-white text-black"
                         >
                             <span>Inscreva-se</span>{" "}
@@ -124,6 +134,7 @@ export default function Home() {
                             </h2>
                             <Link
                                 href={"/inscricao"}
+                                onClick={handleInscriptionClick}
                                 className="btn w-full sm:w-fit flex justify-center bg-white text-black mx-auto"
                             >
                                 <span>Inscreva-se</span>{" "}

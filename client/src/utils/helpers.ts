@@ -11,7 +11,7 @@ export function isAvailable(
         return constraints.caminhada7k < routeLimits.caminhada7k;
     }
 
-    if (value.includes("15km") || value.toLowerCase().includes("corrida")) {
+    if (value.includes("14km") || value.includes("15km") || value.toLowerCase().includes("corrida")) {
         return constraints.corrida15k < routeLimits.corrida15k;
     }
 
@@ -27,7 +27,7 @@ export function isEventFullySoldOut(
 ): boolean {
     if (!constraints || !routeLimits) return false;
     const caminhadaEsgotada = !isAvailable("7km", constraints, routeLimits);
-    const corridaEsgotada = !isAvailable("15km", constraints, routeLimits);
+    const corridaEsgotada = !isAvailable("14km", constraints, routeLimits);
     return caminhadaEsgotada && corridaEsgotada;
 }
 

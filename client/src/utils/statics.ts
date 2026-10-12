@@ -457,7 +457,7 @@ export const routes: { label: string; value: string }[] = [
         value: "Cadeirantes - 9km",
     },
     {
-        label: "Corrida Pedestre - 15km",
-        value: "Corrida Pedestre - 15km",
+        label: "Corrida Pedestre - 14km",
+        value: "Corrida Pedestre - 14km",
     },
 ];

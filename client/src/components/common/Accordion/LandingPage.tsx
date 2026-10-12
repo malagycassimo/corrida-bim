@@ -27,7 +27,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     Continuadores), de 13 a 16 de outubro.
                 </p>
                 <p className="mt-4 text-xs font-normal text-zinc-700">
-                    Vagas limitadas: Corrida (15 km): 2.000 participantes; Caminhada (7 km): 1.000 participantes.
+                    Vagas limitadas: Corrida (14 km): 2.000 participantes; Caminhada (7 km): 1.000 participantes.
                 </p>
             </div>
         ),
@@ -98,7 +98,7 @@ export const landingPageAccordion: Omit<AccordionProps, "idx">[] = [
                     <span className="mb-1 block text-[0.95rem] font-normal">
                         {"Pontos de água"}
                     </span>
-                    <p>Ao longo do percurso da corrida serão instalados três pontos de abastecimento de água, para hidratação dos participantes.</p>
+                    <p>Ao longo do percurso da corrida serão instalados quatro pontos de abastecimento de água, para hidratação dos participantes.</p>
                 </div>
             </div>
         ),

@@ -22,7 +22,7 @@ export default function RouteSelect({ form, state }: Step2SectionProps) {
     const [limitModalOpen, setLimitModalOpen] = useState(false);
     const [selectedLimitName, setSelectedLimitName] = useState("");
 
-    // Filtramos para exibir apenas os percursos disponíveis para inscrição online (15km e 7km)
+    // Filtramos para exibir apenas os percursos disponíveis para inscrição online (14km e 7km)
     // O percurso de 9km (Cadeirantes / Deficiência) é de inscrição presencial via Associação
     const onlineRoutes = routes.filter(
         (r) =>

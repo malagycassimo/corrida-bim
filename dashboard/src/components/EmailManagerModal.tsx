@@ -57,8 +57,8 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
 
     // Target Participants Count
     const filteredRecipients = useMemo(() => {
-        if (audienceSegment === "15km") {
-            return safeData.filter((p) => p.route && p.route.includes("15km"));
+        if (audienceSegment === "14km" || audienceSegment === "15km") {
+            return safeData.filter((p) => p.route && (p.route.includes("14km") || p.route.includes("15km")));
         }
         if (audienceSegment === "7km") {
             return safeData.filter((p) => p.route && /7(?:\.2)?\s?km/i.test(p.route));
@@ -93,7 +93,7 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
                 firstName: "Malagy",
                 lastName: "Cassimo",
                 category: "Populares",
-                route: "Corrida Pedestre - 15km",
+                route: "Corrida Pedestre - 14km",
                 IDCode: "8768686989J",
                 shirt: "L",
             },
@@ -105,7 +105,7 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
         const fullName = `${sampleParticipant.firstName || "Participante"} ${sampleParticipant.lastName || ""}`.trim();
         text = text.replace(/{NOME}/g, fullName);
         text = text.replace(/{CATEGORIA}/g, sampleParticipant.category || "Populares");
-        text = text.replace(/{ROTA}/g, sampleParticipant.route || "Corrida Pedestre - 15km");
+        text = text.replace(/{ROTA}/g, sampleParticipant.route || "Corrida Pedestre - 14km");
         text = text.replace(/{BI}/g, sampleParticipant.IDCode || "Documento");
         text = text.replace(/{CAMISETE}/g, sampleParticipant.shirt || "M");
         return text;
@@ -223,7 +223,7 @@ export function EmailManagerModal({ data = [] }: { data?: DataItem[] }) {
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                 {[
                                     { id: "all", label: "Todos os Inscritos" },
-                                    { id: "15km", label: "Corrida 15 Km" },
+                                    { id: "14km", label: "Corrida 14 Km" },
                                     { id: "7km", label: "Caminhada 7 Km" },
                                     { id: "disability", label: "P. Deficiência" },
                                 ].map((seg) => (

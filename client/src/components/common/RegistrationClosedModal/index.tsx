@@ -61,7 +61,7 @@ export function RegistrationClosedModal({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
+                        className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity"
                     />
 
                     {/* Modal Card */}
@@ -158,8 +158,8 @@ export function RegistrationProvider({
             setIsRegistrationOpen(status);
             return status;
         } catch {
-            setIsRegistrationOpen(true);
-            return true;
+            setIsRegistrationOpen(false);
+            return false;
         }
     }, []);
 
@@ -186,15 +186,24 @@ export function RegistrationProvider({
     useEffect(() => {
         const handleGlobalClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement | null;
-            const link = target?.closest('a[href="/inscricao"]');
-            if (link) {
+            const link = target?.closest('a');
+            if (!link) return;
+
+            const href = link.getAttribute('href') || link.href || '';
+            const isInscricao =
+                href === '/inscricao' ||
+                href.startsWith('/inscricao?') ||
+                href.endsWith('/inscricao') ||
+                link.pathname === '/inscricao';
+
+            if (isInscricao) {
                 // If registrations are confirmed closed, open popup and prevent navigation
                 if (isRegistrationOpen === false) {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsOpen(true);
                 } else if (isRegistrationOpen === null) {
-                    // If still resolving, check quickly
+                    // While resolving, prevent immediate jump and check
                     e.preventDefault();
                     e.stopPropagation();
                     checkStatus().then((open) => {
