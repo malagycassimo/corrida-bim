@@ -8,9 +8,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Loading from "../loading";
 import { useState } from "react";
+import { useRegistrationModal } from "@/components/common/RegistrationClosedModal";
 
 export default function Informacoes() {
     const [loaded, setLoaded] = useState(false);
+    const { isRegistrationOpen, openClosedModal } = useRegistrationModal();
 
     return (
         <main>
@@ -84,6 +86,12 @@ export default function Informacoes() {
                             </h2>
                             <Link
                                 href={"/inscricao"}
+                                onClick={(e) => {
+                                    if (isRegistrationOpen === false) {
+                                        e.preventDefault();
+                                        openClosedModal();
+                                    }
+                                }}
                                 className="btn w-full sm:w-fit flex justify-center bg-white text-black mx-auto"
                             >
                                 <span>Inscreva-se</span>{" "}

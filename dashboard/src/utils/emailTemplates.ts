@@ -66,7 +66,7 @@ Para garantir que a sua experiência na 16ª Corrida Millennium bim seja inesque
 - Categoria: {CATEGORIA}
 
 💧 Hidratação & Apoio:
-Ao longo do percurso da corrida serão instalados três pontos de abastecimento de água, para hidratação dos participantes, além de apoio médico a postos.
+Ao longo do percurso da corrida serão instalados quatro pontos de abastecimento de água, para hidratação dos participantes, além de apoio médico a postos.
 
 ⏰ Horários:
 - 06h10: Aquecimento orientado

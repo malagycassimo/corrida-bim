@@ -21,7 +21,7 @@ interface RouteAvailability {
 type RouteLimitKey = keyof RouteAvailability["routeLimits"];
 
 const ROUTES: { key: RouteLimitKey; label: string }[] = [
-    { key: "corrida15k", label: "Corrida 15 km" },
+    { key: "corrida15k", label: "Corrida 14 km" },
     { key: "caminhada7k", label: "Caminhada 7 km" },
 ];
 

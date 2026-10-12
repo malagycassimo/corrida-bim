@@ -114,7 +114,7 @@ export async function getRegistrationStatus(): Promise<boolean> {
                 cache: "no-store",
             })
         );
-        if (!response.ok) return true;
+        if (!response.ok) return false;
         const data = await response.json();
         return data.registrationOpen !== false;
     } catch {

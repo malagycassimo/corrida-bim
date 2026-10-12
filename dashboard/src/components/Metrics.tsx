@@ -56,10 +56,10 @@ export const Metrics = ({ data = [] }: { data?: DataItem[] }) => {
     const safeData = Array.isArray(data) ? data : [];
     const total = safeData.length;
 
-    const count15k = safeData.filter(
-        (p) => p.route && p.route.includes("15km"),
+    const count14k = safeData.filter(
+        (p) => p.route && (p.route.includes("14km") || p.route.includes("15km")),
     ).length;
-    const percent15k = total > 0 ? ((count15k / total) * 100).toFixed(1) : "0";
+    const percent14k = total > 0 ? ((count14k / total) * 100).toFixed(1) : "0";
 
     const countDef = safeData.filter(
         (p) =>
@@ -95,9 +95,9 @@ export const Metrics = ({ data = [] }: { data?: DataItem[] }) => {
 
                 <motion.div variants={item}>
                     <MetricCard
-                        title="Corrida 15 Km"
-                        value={count15k}
-                        change={`${percent15k}% dos inscritos`}
+                        title="Corrida 14 Km"
+                        value={count14k}
+                        change={`${percent14k}% dos inscritos`}
                         icon={<Footprints className="h-5 w-5" />}
                     />
                 </motion.div>
