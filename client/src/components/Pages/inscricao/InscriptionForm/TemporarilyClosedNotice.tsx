@@ -30,17 +30,17 @@ export function TemporarilyClosedNotice() {
 
                     {/* Main Title */}
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight mt-3 mb-4">
-                        As inscrições<br />ainda não<br />estão abertas
+                        Inscrições<br />Encerradas
                     </h2>
 
                     {/* Body Text */}
                     <p className="text-white/95 text-sm sm:text-base font-normal leading-relaxed max-w-xs mx-auto mb-3">
-                        Fica atento às nossas páginas para não perderes nenhuma novidade! 👀
+                        Agradecemos pelo enorme interesse! O limite de vagas para a 16ª Corrida Millennium bim foi atingido.
                     </p>
 
                     {/* Footer Phrase */}
                     <p className="text-white font-bold text-sm sm:text-base">
-                        Continua a preparar-te. 😉
+                        Vemo-nos no dia 25 de Outubro! 🏃‍♂️
                     </p>
                 </div>
 
