@@ -4,7 +4,7 @@ import { IconPack } from "../IconPack";
 import Map1 from "./Maps";
 
 // Defina como 'true' para exibir o mapa normalmente, ou 'false' para ocultar com desfoque e o aviso "Brevemente"
-const SHOW_ROUTES_MAP = false;
+const SHOW_ROUTES_MAP = true;
 
 export default function Map() {
     const [active, setActive] = useState("walk");
