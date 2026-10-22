@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { IconPack } from "../IconPack";
 import Map1 from "./Maps";
 import DescriptiveRoute from "./DescriptiveRoute";
-import { FileText, Map as MapIcon } from "lucide-react";
 
 // =========================================================================
 // CONFIGURAÇÕES DOS PERCURSOS (Ajuste conforme necessário)
@@ -12,58 +11,27 @@ import { FileText, Map as MapIcon } from "lucide-react";
 // show_route: true para exibir os percursos; false para ocultar e exibir o aviso "Brevemente"
 export const show_route: boolean = true;
 
-// show_map: false para ocultar o mapa Strava e mostrar apenas as rotas descritivas
-export const show_map: boolean = false;
+// route_type: "map" para mapa interativo Strava; "text" para itinerário descritivo detalhado
+export const route_type: "text" | "map" = "map";
 
-// route_type: "text" (itinerário descritivo detalhado) ou "map" (mapa interativo Strava)
-export const route_type: "text" | "map" = "text";
+// only_14km: true para exibir apenas o percurso da corrida de 14,5km
+export const only_14km: boolean = true;
 
 export default function Map() {
     const [active, setActive] = useState<"walk" | "disabled" | "run">("run");
-    const [currentRouteType, setCurrentRouteType] = useState<"text" | "map">(
-        show_map ? route_type : "text",
-    );
 
     return (
         <div className="mt-8">
             {/* Seletor de Categoria / Distância */}
             <div className="w-fit gap-2 sm:gap-3 lg:gap-5 mx-auto flex flex-wrap justify-center mb-6 px-4">
-                <Walk active={active === "walk"} setActive={setActive} />
-                <Disabled active={active === "disabled"} setActive={setActive} />
-                <Running active={active === "run"} setActive={setActive} />
+                {!only_14km && (
+                    <>
+                        <Walk active={active === "walk"} setActive={setActive} />
+                        <Disabled active={active === "disabled"} setActive={setActive} />
+                    </>
+                )}
+                <Running active={true} setActive={setActive} />
             </div>
-
-            {/* Alternador de Modo de Exibição (Apenas se show_route e show_map estiverem ativos) */}
-            {show_route && show_map && (
-                <div className="flex items-center justify-center mb-6">
-                    <div className="inline-flex p-1 bg-neutral-100 rounded-xl border border-neutral-200 shadow-inner">
-                        <button
-                            type="button"
-                            onClick={() => setCurrentRouteType("text")}
-                            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                                currentRouteType === "text"
-                                    ? "bg-white text-primary shadow-xs"
-                                    : "text-neutral-500 hover:text-neutral-800"
-                            }`}
-                        >
-                            <FileText className="w-3.5 h-3.5" />
-                            <span>Itinerário Descritivo</span>
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setCurrentRouteType("map")}
-                            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                                currentRouteType === "map"
-                                    ? "bg-white text-primary shadow-xs"
-                                    : "text-neutral-500 hover:text-neutral-800"
-                            }`}
-                        >
-                            <MapIcon className="w-3.5 h-3.5" />
-                            <span>Mapa Interativo</span>
-                        </button>
-                    </div>
-                </div>
-            )}
 
             {/* Container Principal */}
             <div className="mx-auto max-w-4xl relative min-h-[460px] rounded-2xl">
@@ -74,13 +42,19 @@ export default function Map() {
                             : ""
                     }`}
                 >
-                    {!show_map || currentRouteType === "text" ? (
+                    {route_type === "text" ? (
                         <DescriptiveRoute activeRoute={active} />
                     ) : (
                         <div className="mx-auto max-w-[826px] rounded-2xl overflow-hidden shadow-[0_12px_40px_-10px_rgba(0,0,0,0.12)] border border-slate-100">
-                            {active === "walk" && <Map1 embedId="3283752888139517016" />}
-                            {active === "disabled" && <Map1 embedId="3283747075580661848" />}
-                            {active === "run" && <Map1 embedId="3283738218266926168" />}
+                            {only_14km ? (
+                                <Map1 embedId="3283738218266926168" />
+                            ) : (
+                                <>
+                                    {active === "walk" && <Map1 embedId="3283752888139517016" />}
+                                    {active === "disabled" && <Map1 embedId="3283747075580661848" />}
+                                    {active === "run" && <Map1 embedId="3283738218266926168" />}
+                                </>
+                            )}
                         </div>
                     )}
                 </div>
