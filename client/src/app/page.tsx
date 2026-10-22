@@ -113,10 +113,10 @@ export default function Home() {
             {/* Routes section  */}
             <section className="mt-14 mb-20" id="route">
                 <h2 className="max-w-md mx-10 sm:mx-auto text-2xl font-bold lg:text-3xl lg:font-bold text-center">
-                    Veja o percurso da Corrida Millennium bim
+                    Veja os percursos da Corrida Millennium bim
                 </h2>
                 <p className="mx-10 sm:mx-auto text-lg text-center mt-2 text-neutral-800">
-                    Consulte o mapa do trajeto oficial da corrida de 14,5 km
+                    Consulte os mapas dos trajetos oficiais da Corrida de 14 km e Portadores de Deficiência de 9 km
                 </p>
                 <Map />
             </section>
