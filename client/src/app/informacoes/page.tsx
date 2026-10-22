@@ -9,6 +9,7 @@ import Link from "next/link";
 import Loading from "../loading";
 import { useState } from "react";
 import { useRegistrationModal } from "@/components/common/RegistrationClosedModal";
+import RaceScheduleCard from "@/components/common/RaceScheduleCard";
 
 export default function Informacoes() {
     const [loaded, setLoaded] = useState(false);
@@ -52,8 +53,22 @@ export default function Informacoes() {
                     Informações
                 </div>
             </section>
+
+            {/* Race Schedule Widget Section */}
+            <section className="mt-12 mb-6 px-4">
+                <div className="container mx-auto flex flex-col items-center">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-center text-neutral-800 mb-2">
+                        Horários do Dia da Prova
+                    </h2>
+                    <p className="text-center text-sm sm:text-base text-neutral-600 max-w-md mb-2">
+                        Consulte o horário de concentração e os momentos-chave para o dia 25 de Outubro.
+                    </p>
+                    <RaceScheduleCard />
+                </div>
+            </section>
+
             {/* Accordion section  */}
-            <section className="mb-20 mt-14 mx-4 xl:mx-0">
+            <section className="mb-20 mt-10 mx-4 xl:mx-0">
                 <div className="container mx-auto space-y-1">
                     {landingPageAccordion.map(
                         ({ title, subtitle, content }, idx) => (

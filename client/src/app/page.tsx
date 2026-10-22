@@ -14,6 +14,7 @@ import Loading from "./loading";
 import { useState } from "react";
 import { shuffleArray } from "@/utils/helpers";
 import { useRegistrationModal } from "@/components/common/RegistrationClosedModal";
+import RaceScheduleCard from "@/components/common/RaceScheduleCard";
 
 const OPTIONS: EmblaOptionsType = { loop: true };
 
@@ -104,6 +105,9 @@ export default function Home() {
                     A sua jornada na corrida mais aguardada de Maputo começa em
                 </h2>
                 <ShiftingCountdown />
+                <div className="mt-8 flex justify-center">
+                    <RaceScheduleCard />
+                </div>
             </section>
 
             {/* Routes section  */}
@@ -112,7 +116,7 @@ export default function Home() {
                     Veja os percursos da Corrida Millennium bim
                 </h2>
                 <p className="mx-10 sm:mx-auto text-lg text-center mt-2 text-neutral-800">
-                    Selecione o percurso pretendido para ver a sua rota no mapa
+                    Selecione o percurso pretendido para consultar o itinerário detalhado e o trajeto da prova
                 </p>
                 <Map />
             </section>
