@@ -14,8 +14,8 @@ export const show_route: boolean = true;
 // route_type: "map" para mapa interativo Strava; "text" para itinerário descritivo detalhado
 export const route_type: "text" | "map" = "map";
 
-// only_14km: true para exibir apenas o percurso da corrida de 14,5km
-export const only_14km: boolean = true;
+// show_walk: false para exibir apenas a Corrida (14km) e Portadores de Deficiência (9km)
+export const show_walk: boolean = false;
 
 export default function Map() {
     const [active, setActive] = useState<"walk" | "disabled" | "run">("run");
@@ -24,13 +24,9 @@ export default function Map() {
         <div className="mt-8">
             {/* Seletor de Categoria / Distância */}
             <div className="w-fit gap-2 sm:gap-3 lg:gap-5 mx-auto flex flex-wrap justify-center mb-6 px-4">
-                {!only_14km && (
-                    <>
-                        <Walk active={active === "walk"} setActive={setActive} />
-                        <Disabled active={active === "disabled"} setActive={setActive} />
-                    </>
-                )}
-                <Running active={true} setActive={setActive} />
+                {show_walk && <Walk active={active === "walk"} setActive={setActive} />}
+                <Disabled active={active === "disabled"} setActive={setActive} />
+                <Running active={active === "run"} setActive={setActive} />
             </div>
 
             {/* Container Principal */}
@@ -46,15 +42,9 @@ export default function Map() {
                         <DescriptiveRoute activeRoute={active} />
                     ) : (
                         <div className="mx-auto max-w-[826px] rounded-2xl overflow-hidden shadow-[0_12px_40px_-10px_rgba(0,0,0,0.12)] border border-slate-100">
-                            {only_14km ? (
-                                <Map1 embedId="3283738218266926168" />
-                            ) : (
-                                <>
-                                    {active === "walk" && <Map1 embedId="3283752888139517016" />}
-                                    {active === "disabled" && <Map1 embedId="3283747075580661848" />}
-                                    {active === "run" && <Map1 embedId="3283738218266926168" />}
-                                </>
-                            )}
+                            {show_walk && active === "walk" && <Map1 embedId="3283752888139517016" />}
+                            {active === "disabled" && <Map1 embedId="3283747075580661848" />}
+                            {active === "run" && <Map1 embedId="3283738218266926168" />}
                         </div>
                     )}
                 </div>
@@ -136,7 +126,7 @@ const Disabled = ({
                 <IconPack.PersonDisabled fill={active ? "white" : "#D1005D"} />
             </div>
             <span className="text-xs sm:text-sm font-semibold">
-                <span className="hidden sm:inline">Cadeirantes - </span>9km
+                <span className="hidden sm:inline">Portadores de Deficiência - </span>9km
             </span>
         </button>
     );
@@ -167,7 +157,7 @@ const Running = ({
                 <IconPack.PersonRunning fill={active ? "white" : "#D1005D"} />
             </div>
             <span className="text-xs sm:text-sm font-semibold">
-                <span className="hidden sm:inline">Corrida - </span>14,5km
+                <span className="hidden sm:inline">Corrida - </span>14km
             </span>
         </button>
     );

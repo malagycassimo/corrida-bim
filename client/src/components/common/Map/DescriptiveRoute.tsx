@@ -37,17 +37,17 @@ export const ROUTES_DATA: Record<string, RouteDetail> = {
     run: {
         id: "run",
         title: "Corrida dos Atletas",
-        distance: "14,5 km",
+        distance: "14 km",
         subtitle: "Percurso oficial de competição para atletas federados e amadores",
         badge: "Corrida Oficial",
         turnaroundPoint: "Rotunda do Baía Mall",
-        turnaroundDesc: "Ponto oficial de retorno da prova de 14,5km",
+        turnaroundDesc: "Ponto oficial de retorno da prova de 14km",
         fullText:
             "Partida: Sede do banco Bim na Rua dos Desportistas – Rua que passa frente ao JAT – Avenida 25 de Setembro (à esquerda) – Praça Robert Mugabe – Avenida da Marginal até a rotunda do Baía Mall – dar volta – Marginal até Praça Robert Mugabe – Rua dos Desportistas – Chegada frente a Sede do banco Bim",
         highlights: [
             { label: "Partida & Chegada", value: "Sede do Bim (Rua dos Desportistas)" },
             { label: "Ponto de Retorno", value: "Rotunda do Baía Mall" },
-            { label: "Distância Total", value: "14,5 km" },
+            { label: "Distância Total", value: "14 km" },
             { label: "Tipo de Piso", value: "Asfalto plano e Marginal costeira" },
         ],
         steps: [
@@ -84,7 +84,7 @@ export const ROUTES_DATA: Record<string, RouteDetail> = {
             {
                 number: 6,
                 title: "Ponto de Retorno (Dar a volta)",
-                description: "Rotunda do Baía Mall – ponto oficial de retorno dos 14,5km",
+                description: "Rotunda do Baía Mall – ponto oficial de retorno dos 14km",
                 type: "turnaround",
             },
             {
